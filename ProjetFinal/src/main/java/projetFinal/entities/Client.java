@@ -21,7 +21,6 @@ public class Client extends Utilisateur {
 	@OneToMany(mappedBy = "client")
 	private Set<Commentaire> commentaires;
 	
-	
 	public Client() {
 		
 	}
