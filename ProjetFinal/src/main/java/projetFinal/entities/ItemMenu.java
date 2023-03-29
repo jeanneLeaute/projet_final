@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
@@ -17,8 +19,17 @@ import javax.persistence.Table;
 @Table(name = "item_menu")
 public class ItemMenu {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_item")
-	private String id_item;
+	private Long id_item;
+	public Long getId_item() {
+		return id_item;
+	}
+
+	public void setId_item(Long id_item) {
+		this.id_item = id_item;
+	}
+
 	@Column(name = "urlImage")
 	private String urlImage;
 	@Column(name = "nom")
@@ -37,9 +48,7 @@ public class ItemMenu {
 	@ManyToMany
 	@JoinColumn(name = "commande_item_id", foreignKey = @ForeignKey(name="commande_item_id_fk"))
 	private Set<CommandeADomicile> commandesAdomicile;
-	@ManyToOne
-	@JoinColumn(name = "restaurateur_restaurant_id", foreignKey = @ForeignKey(name="restaurateur_restaurant_id_fk"))
-	private Restaurateur restaurateur;
+	
 	
 	public ItemMenu() {
 		super();
@@ -83,6 +92,30 @@ public class ItemMenu {
 
 	public void setCategoriePlat(CategoriePlat categoriePlat) {
 		this.categoriePlat = categoriePlat;
+	}
+
+	public Restaurant getRestaurant() {
+		return restaurant;
+	}
+
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
+	}
+
+	public Set<SurPlace> getSurPlaces() {
+		return surPlaces;
+	}
+
+	public void setSurPlaces(Set<SurPlace> surPlaces) {
+		this.surPlaces = surPlaces;
+	}
+
+	public Set<CommandeADomicile> getCommandesAdomicile() {
+		return commandesAdomicile;
+	}
+
+	public void setCommandesAdomicile(Set<CommandeADomicile> commandesAdomicile) {
+		this.commandesAdomicile = commandesAdomicile;
 	}
 	
 	

@@ -22,7 +22,7 @@ import javax.persistence.Table;
 public class Restaurant {
 	@Id
 	@Column(name = "email", nullable = false, length = 255)
-	private long email;
+	private Long email;
 	@Column(name = "nom")
 	private String nom;
 	@Column(name = "nom")
@@ -36,7 +36,7 @@ public class Restaurant {
 	        
 	private Adresse adresse;
 	@Column(name = "description_restau")
-	private long description;
+	private Long description;
 	@Column(name = "horaire_ouverture")
 	private String horaireOuverture;
 	@Column(name = "urlImage")
