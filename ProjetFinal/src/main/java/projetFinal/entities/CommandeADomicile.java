@@ -22,7 +22,7 @@ public class CommandeADomicile extends Reservation{
 			@AttributeOverride(name = "ville", column = @Column(name = "commande_adresse_ville")),
 			@AttributeOverride(name = "complementAdresse", column = @Column(name = "commande_adresse_complementAdresse"))})
 	private Adresse adresse;
-	@ManyToMany(mappedBy = "commandesADomicile")
+	@ManyToMany(mappedBy = "commandesAdomicile")
 	private Set<ItemMenu> itemsMenu;
 	
 	public CommandeADomicile() {
