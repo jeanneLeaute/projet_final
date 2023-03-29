@@ -3,18 +3,55 @@ package projetFinal.entities;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "restaurant")
 public class Restaurant {
+	@Id
+	@Column(name = "email", nullable = false, length = 255)
 	private long email;
+	@Column(name = "nom")
 	private String nom;
+	@Column(name = "nom")
+	@Embedded
+	@AttributeOverrides({
+			@AttributeOverride(name = "numero", column = @Column(name = "restaurant_numero_rue", length = 50)),
+			@AttributeOverride(name = "rue", column = @Column(name = "restaurant_rue")),
+			@AttributeOverride(name = "codePostal", column = @Column(name = "restaurant_cp", length = 50)),
+			@AttributeOverride(name = "ville", column = @Column(name = "restaurant_ville")),
+			@AttributeOverride(name = "complementAdresse", column = @Column(name = "restaurant_complementAdresse"))})
+	        
 	private Adresse adresse;
+	@Column(name = "description_restau")
 	private long description;
+	@Column(name = "horaire_ouverture")
 	private String horaireOuverture;
+	@Column(name = "urlImage")
 	private String urlImage;
+	@Column(name = "menu")
 	private Set<ItemMenu> menu;
+	@Column(name = "aEmporter")
 	private boolean aEmporter;
+	@Column(name = "peutResrver")
 	private boolean peutReserver;
+	@Column(name = "commentaires")
+	@OneToMany(mappedBy = "restaurant")
 	private Set<Commentaire> commentaires;
-	private Set<Categorie> categories;
+	@Column(name = "categories")
+	@Enumerated(EnumType.STRING)
+	private Categorie categories;
+	@OneToMany(mappedBy = "restaurant")
+	private Set<ItemMenu> itemMenus;
 	
 	
 	
@@ -27,7 +64,7 @@ public class Restaurant {
 	
 	public Restaurant(long email, String nom, projetFinal.entities.Adresse adresse, long description,
 			String horaireOuverture, String urlImage, boolean aEmporter, boolean peutReserver,
-			Set<Commentaire> commentaires, Set<Categorie> categories) {
+			Set<Commentaire> commentaires, Categorie categories) {
 		super();
 		this.email = email;
 		this.nom = nom;
@@ -97,10 +134,10 @@ public class Restaurant {
 	public void setCommentaires(Set<Commentaire> commentaires) {
 		this.commentaires = commentaires;
 	}
-	public Set<Categorie> getCategories() {
+	public Categorie getCategories() {
 		return categories;
 	}
-	public void setCategories(Set<Categorie> categories) {
+	public void setCategories(Categorie categories) {
 		this.categories = categories;
 	}
 
