@@ -40,7 +40,7 @@ private static DaoCommentaire daoCommentaire = new DaoCommentaireImpl();
 	
 private static DaoItemMenu daoItemMenu = new DaoItemMenuImpl();
 	
-	public static DaoItemMenu getDaoCommentaire() {
+	public static DaoItemMenu getDaoItemMenu() {
 		return daoItemMenu;
 	}
 	
