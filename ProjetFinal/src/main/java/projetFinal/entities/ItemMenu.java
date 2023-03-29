@@ -118,8 +118,4 @@ public class ItemMenu {
 		this.commandesAdomicile = commandesAdomicile;
 	}
 	
-	
-	
-	
-
 }

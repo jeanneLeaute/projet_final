@@ -28,6 +28,10 @@ public class Restaurateur extends Utilisateur {
 		this.restaurants = restaurants;
 	}
 
+	public Restaurateur(String nom, String prenom, String eMail, String motDePasse) {
+		super(nom, prenom, eMail, motDePasse);
+	}
+
 	public Set<Restaurant> getRestaurants() {
 		return restaurants;
 	}
