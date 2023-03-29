@@ -47,6 +47,7 @@ public class Restaurant {
 	@Column(name = "urlImage")
 	private String urlImage;
 	@Column(name = "menu")
+	@OneToMany(mappedBy = "restaurant")
 	private Set<ItemMenu> menu;
 	@Column(name = "aEmporter")
 	private boolean aEmporter;

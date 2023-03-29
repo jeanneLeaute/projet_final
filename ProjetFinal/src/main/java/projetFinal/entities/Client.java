@@ -33,6 +33,11 @@ public class Client extends Utilisateur {
 	}
 
 
+	public Client(String nom, String prenom, String eMail, String motDePasse) {
+		super(nom, prenom, eMail, motDePasse);
+	}
+
+
 	public Set<Reservation> getReservations() {
 		return reservations;
 	}

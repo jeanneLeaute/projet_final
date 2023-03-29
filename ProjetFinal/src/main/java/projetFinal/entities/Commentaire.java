@@ -23,12 +23,12 @@ public class Commentaire {
 	
 	@Id
 	@ManyToOne
-	@JoinColumn(name="client",foreignKey = @ForeignKey(name="client_fk"))
+	@JoinColumn(name="commentaire_client",foreignKey = @ForeignKey(name="commentaire_client_fk"))
 	private Client client;
 	
 	@Id
 	@ManyToOne
-	@JoinColumn(name="restaurant",foreignKey = @ForeignKey(name="client_fk"))
+	@JoinColumn(name="commentaire_restaurant",foreignKey = @ForeignKey(name="commentaire_restaurant_fk"))
 	private Restaurant restaurant;
 
 	public Commentaire() {
