@@ -45,7 +45,7 @@ private static DaoItemMenu daoItemMenu = new DaoItemMenuImpl();
 	}
 	
 	private Contexte() {
-		emf = Persistence.createEntityManagerFactory("questjpa");
+		emf = Persistence.createEntityManagerFactory("projetfinal");
 	}
 	
 	public static Contexte getInstance() {
