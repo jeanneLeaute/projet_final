@@ -6,12 +6,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
-import projetFinal.entities.Client;
+import projetFinal.entities.Reservation;
 
-public class DaoClientJpaImpl implements DaoClient {
+public class DaoReservationImpl implements DaoReservation{
 
 	@Override
-	public Client save(Client obj) {
+	public Reservation save(Reservation obj) {
 		EntityManager em = Contexte.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
@@ -22,7 +22,7 @@ public class DaoClientJpaImpl implements DaoClient {
 	}
 
 	@Override
-	public void delete(Client obj) {
+	public void delete(Reservation obj) {
 		EntityManager em = Contexte.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
@@ -32,30 +32,30 @@ public class DaoClientJpaImpl implements DaoClient {
 	}
 
 	@Override
-	public void deleteByKey(String key) {
+	public void deleteByKey(Long key) {
 		EntityManager em = Contexte.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		em.remove(em.find(Client.class, key));
+		em.remove(em.find(Reservation.class, key));
 		tx.commit();
 		em.close();
 	}
 
 	@Override
-	public Client findByKey(String key) {
+	public Reservation findByKey(Long key) {
 		EntityManager em = Contexte.getInstance().getEntityManagerFactory().createEntityManager();
-		Client client = em.find(Client.class, key);
+		Reservation reservation = em.find(Reservation.class, key);
 		em.close();
-		return client;
+		return reservation;
 	}
 
 	@Override
-	public List<Client> findAll() {
+	public List<Reservation> findAll() {
 		EntityManager em = Contexte.getInstance().getEntityManagerFactory().createEntityManager();
-		TypedQuery<Client> query = em.createQuery("from Client p", Client.class);
-		List<Client> clients = query.getResultList();
+		TypedQuery<Reservation> query = em.createQuery("from Reservation p", Reservation.class);
+		List<Reservation> reservations = query.getResultList();
 		em.close();
-		return clients;
+		return reservations;
 	}
-
+	
 }
