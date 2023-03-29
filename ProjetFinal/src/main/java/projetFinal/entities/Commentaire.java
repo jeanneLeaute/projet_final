@@ -14,7 +14,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "commentaire")
 @IdClass(ClientRestaurantKey.class)
-
 public class Commentaire {
 	
 	
