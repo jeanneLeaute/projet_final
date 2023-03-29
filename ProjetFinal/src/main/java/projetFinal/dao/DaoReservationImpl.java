@@ -6,7 +6,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
+import projetFinal.entities.Client;
 import projetFinal.entities.Reservation;
+import projetFinal.entities.Restaurant;
 
 public class DaoReservationImpl implements DaoReservation{
 
@@ -53,6 +55,24 @@ public class DaoReservationImpl implements DaoReservation{
 	public List<Reservation> findAll() {
 		EntityManager em = Contexte.getInstance().getEntityManagerFactory().createEntityManager();
 		TypedQuery<Reservation> query = em.createQuery("from Reservation p", Reservation.class);
+		List<Reservation> reservations = query.getResultList();
+		em.close();
+		return reservations;
+	}
+	
+	public List<Reservation> findByClient(Client client) {
+		EntityManager em = Contexte.getInstance().getEntityManagerFactory().createEntityManager();
+		TypedQuery<Reservation> query = em.createQuery("from Reservation r where r.client=:client", Reservation.class);
+		query.setParameter("client", client);
+		List<Reservation> reservations = query.getResultList();
+		em.close();
+		return reservations;
+	}
+	
+	public List<Reservation> findByRestaurant(Restaurant restaurant) {
+		EntityManager em = Contexte.getInstance().getEntityManagerFactory().createEntityManager();
+		TypedQuery<Reservation> query = em.createQuery("from Reservation r where r.restaurant=:restaurant", Reservation.class);
+		query.setParameter("restaurant", restaurant);
 		List<Reservation> reservations = query.getResultList();
 		em.close();
 		return reservations;
