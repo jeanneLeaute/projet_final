@@ -12,8 +12,7 @@ public class AppTestMohameden {
 		DaoItemMenu daoItemMenu = Contexte.getDaoItemMenu();
 		DaoRestaurant daoRestaurant = Contexte.getDaoRestaurant();
 		Adresse adresse = new Adresse("11", "rue Maurice", "92500", "Rueil-Malmaison", null);
-		Restaurant restaurant = new Restaurant("restau", "restau", null);
-		restaurant.setAdresse(adresse);
+		Restaurant restaurant = new Restaurant("restau", "restau", adresse);
 		restaurant=daoRestaurant.save(restaurant);
 		
 		

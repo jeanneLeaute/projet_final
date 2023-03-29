@@ -104,13 +104,13 @@ public class Restaurant {
 
 
 
-	public Restaurant(String email, String nom, String string, String description,
+	public Restaurant(String email, String nom, Adresse adresse, String description,
 			String horaireOuverture, String urlImage, boolean aEmporter, boolean peutReserver,
 			Set<Commentaire> commentaires, Categorie categories) {
 		super();
 		this.email = email;
 		this.nom = nom;
-		this.adresse = string;
+		this.adresse = adresse;
 		this.description = description;
 		this.horaireOuverture = horaireOuverture;
 		this.urlImage = urlImage;
