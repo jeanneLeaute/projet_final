@@ -6,15 +6,15 @@ import java.util.Set;
 public class Restaurant {
 	long email;
 	String nom;
-	Adresse Adresse
+	Adresse adresse;
 	long description;
 	String horaireOuverture;
 	String urlImage;
 	Set<ItemMenu> menu;
 	boolean aEmporter;
 	boolean peutReserver;
-	Set<Commentaire> commentaires
-	Set<CategorieEnum> categories
+	Set<Commentaire> commentaires;
+	Set<Categorie> categories;
 	
 	
 	
@@ -27,11 +27,11 @@ public class Restaurant {
 	
 	public Restaurant(long email, String nom, projetFinal.entities.Adresse adresse, long description,
 			String horaireOuverture, String urlImage, boolean aEmporter, boolean peutReserver,
-			Set<Commentaire> commentaires, Set<CategorieEnum> categories) {
+			Set<Commentaire> commentaires, Set<Categorie> categories) {
 		super();
 		this.email = email;
 		this.nom = nom;
-		Adresse = adresse;
+		this.adresse = adresse;
 		this.description = description;
 		this.horaireOuverture = horaireOuverture;
 		this.urlImage = urlImage;
@@ -56,10 +56,10 @@ public class Restaurant {
 		this.nom = nom;
 	}
 	public Adresse getAdresse() {
-		return Adresse;
+		return adresse;
 	}
 	public void setAdresse(Adresse adresse) {
-		Adresse = adresse;
+		adresse = adresse;
 	}
 	public long getDescription() {
 		return description;
@@ -97,10 +97,10 @@ public class Restaurant {
 	public void setCommentaires(Set<Commentaire> commentaires) {
 		this.commentaires = commentaires;
 	}
-	public Set<CategorieEnum> getCategories() {
+	public Set<Categorie> getCategories() {
 		return categories;
 	}
-	public void setCategories(Set<CategorieEnum> categories) {
+	public void setCategories(Set<Categorie> categories) {
 		this.categories = categories;
 	}
 

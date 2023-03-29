@@ -5,13 +5,13 @@ public class ItemMenu {
 	String urlImage;
 	String nom;
 	String description;
-	CategoriePlatEnum categoriePlat;
+	CategoriePlat categoriePlat;
 	
 	public ItemMenu() {
 		super();
 	}
 
-	public ItemMenu(String urlImage, String nom, String description, CategoriePlatEnum categoriePlat) {
+	public ItemMenu(String urlImage, String nom, String description, CategoriePlat categoriePlat) {
 		super();
 		this.urlImage = urlImage;
 		this.nom = nom;
@@ -43,11 +43,11 @@ public class ItemMenu {
 		this.description = description;
 	}
 
-	public CategoriePlatEnum getCategoriePlat() {
+	public CategoriePlat getCategoriePlat() {
 		return categoriePlat;
 	}
 
-	public void setCategoriePlat(CategoriePlatEnum categoriePlat) {
+	public void setCategoriePlat(CategoriePlat categoriePlat) {
 		this.categoriePlat = categoriePlat;
 	}
 	
