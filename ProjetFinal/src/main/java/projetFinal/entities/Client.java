@@ -10,7 +10,7 @@ import javax.persistence.Table;
 public class Client extends Utilisateur {
 	
 	private Set<Reservation> reservations;
-	private Set<Commande> commandes;
+	private Set<CommandeADomicile> commandeADomicile;
 	private Set<Commentaire> commentaires;
 	
 	
@@ -20,10 +20,10 @@ public class Client extends Utilisateur {
 
 
 	public Client(String nom, String prenom, String eMail, String motDePasse, Set<Reservation> reservations,
-			Set<Commande> commandes, Set<Commentaire> commentaires) {
+			Set<CommandeADomicile> commandes, Set<Commentaire> commentaires) {
 		super(nom, prenom, eMail, motDePasse);
 		this.reservations = reservations;
-		this.commandes = commandes;
+		this.commandeADomicile = commandes;
 		this.commentaires = commentaires;
 	}
 
@@ -38,13 +38,13 @@ public class Client extends Utilisateur {
 	}
 
 
-	public Set<Commande> getCommandes() {
-		return commandes;
+	public Set<CommandeADomicile> getCommandes() {
+		return commandeADomicile;
 	}
 
 
-	public void setCommandes(Set<Commande> commandes) {
-		this.commandes = commandes;
+	public void setCommandes(Set<CommandeADomicile> commandes) {
+		this.commandeADomicile = commandes;
 	}
 
 
