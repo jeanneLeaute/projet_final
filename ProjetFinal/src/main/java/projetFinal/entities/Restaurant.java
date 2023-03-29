@@ -73,14 +73,44 @@ public class Restaurant {
 	}
 	
 	
+	public Restaurant(String email, String nom, Adresse adresse) {
+		super();
+		this.email = email;
+		this.nom = nom;
+		this.adresse = adresse;
+	}
 	
-	public Restaurant(String email, String nom, projetFinal.entities.Adresse adresse, String description,
+
+
+	public Restaurant(String email, String nom, Adresse adresse, String description, String horaireOuverture,
+			String urlImage, Set<ItemMenu> menu, boolean aEmporter, boolean peutReserver, Categorie categories,
+			Set<ItemMenu> itemMenus, Restaurateur restaurateur) {
+		super();
+		this.email = email;
+		this.nom = nom;
+		this.adresse = adresse;
+		this.description = description;
+		this.horaireOuverture = horaireOuverture;
+		this.urlImage = urlImage;
+		this.menu = menu;
+		this.aEmporter = aEmporter;
+		this.peutReserver = peutReserver;
+		this.categories = categories;
+		this.itemMenus = itemMenus;
+		this.restaurateur = restaurateur;
+	}
+
+
+
+
+
+	public Restaurant(String email, String nom, String string, String description,
 			String horaireOuverture, String urlImage, boolean aEmporter, boolean peutReserver,
 			Set<Commentaire> commentaires, Categorie categories) {
 		super();
 		this.email = email;
 		this.nom = nom;
-		this.adresse = adresse;
+		this.adresse = string;
 		this.description = description;
 		this.horaireOuverture = horaireOuverture;
 		this.urlImage = urlImage;
