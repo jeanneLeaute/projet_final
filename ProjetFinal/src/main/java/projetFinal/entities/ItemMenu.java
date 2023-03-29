@@ -2,10 +2,10 @@ package projetFinal.entities;
 
 public class ItemMenu {
 	
-	String urlImage;
-	String nom;
-	String description;
-	CategoriePlat categoriePlat;
+	private String urlImage;
+	private String nom;
+	private String description;
+	private CategoriePlat categoriePlat;
 	
 	public ItemMenu() {
 		super();

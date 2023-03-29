@@ -4,17 +4,17 @@ import java.util.Objects;
 import java.util.Set;
 
 public class Restaurant {
-	long email;
-	String nom;
-	Adresse adresse;
-	long description;
-	String horaireOuverture;
-	String urlImage;
-	Set<ItemMenu> menu;
-	boolean aEmporter;
-	boolean peutReserver;
-	Set<Commentaire> commentaires;
-	Set<Categorie> categories;
+	private long email;
+	private String nom;
+	private Adresse adresse;
+	private long description;
+	private String horaireOuverture;
+	private String urlImage;
+	private Set<ItemMenu> menu;
+	private boolean aEmporter;
+	private boolean peutReserver;
+	private Set<Commentaire> commentaires;
+	private Set<Categorie> categories;
 	
 	
 	
