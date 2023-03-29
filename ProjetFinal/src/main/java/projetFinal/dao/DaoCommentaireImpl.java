@@ -13,7 +13,7 @@ import projetFinal.entities.Restaurant;
 
 
 
-public class DaoCommentaireJpaImpl implements DaoCommentaire {
+public class DaoCommentaireImpl implements DaoCommentaire {
 
 	@Override
 	public Commentaire save(Commentaire obj) {
