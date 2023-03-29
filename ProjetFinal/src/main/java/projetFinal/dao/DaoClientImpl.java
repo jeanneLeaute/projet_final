@@ -8,7 +8,7 @@ import javax.persistence.TypedQuery;
 
 import projetFinal.entities.Client;
 
-public class DaoClientJpaImpl implements DaoClient {
+public class DaoClientImpl implements DaoClient {
 
 	@Override
 	public Client save(Client obj) {

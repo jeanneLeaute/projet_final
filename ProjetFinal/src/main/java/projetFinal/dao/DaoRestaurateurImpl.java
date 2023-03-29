@@ -8,7 +8,7 @@ import javax.persistence.TypedQuery;
 
 import projetFinal.entities.Restaurateur;
 
-public class DaoRestaurateurJpaImpl implements DaoRestaurateur {
+public class DaoRestaurateurImpl implements DaoRestaurateur {
 
 	@Override
 	public Restaurateur save(Restaurateur obj) {
