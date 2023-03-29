@@ -22,7 +22,7 @@ import javax.persistence.Table;
 public class Restaurant {
 	@Id
 	@Column(name = "email", nullable = false, length = 255)
-	private Long email;
+	private String email;
 	@Column(name = "nom")
 	private String nom;
 	@Column(name = "nom")
@@ -36,7 +36,7 @@ public class Restaurant {
 	        
 	private Adresse adresse;
 	@Column(name = "description_restau")
-	private Long description;
+	private String description;
 	@Column(name = "horaire_ouverture")
 	private String horaireOuverture;
 	@Column(name = "urlImage")
@@ -68,7 +68,7 @@ public class Restaurant {
 	
 	
 	
-	public Restaurant(long email, String nom, projetFinal.entities.Adresse adresse, long description,
+	public Restaurant(String email, String nom, projetFinal.entities.Adresse adresse, String description,
 			String horaireOuverture, String urlImage, boolean aEmporter, boolean peutReserver,
 			Set<Commentaire> commentaires, Categorie categories) {
 		super();
@@ -86,10 +86,10 @@ public class Restaurant {
 
 
 
-	public long getEmail() {
+	public String getEmail() {
 		return email;
 	}
-	public void setEmail(long email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
 	public String getNom() {
@@ -104,10 +104,10 @@ public class Restaurant {
 	public void setAdresse(Adresse adresse) {
 		adresse = adresse;
 	}
-	public long getDescription() {
+	public String getDescription() {
 		return description;
 	}
-	public void setDescription(long description) {
+	public void setDescription(String description) {
 		this.description = description;
 	}
 	public String getHoraireOuverture() {
