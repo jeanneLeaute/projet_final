@@ -10,7 +10,10 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.ForeignKey;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -52,6 +55,9 @@ public class Restaurant {
 	private Categorie categories;
 	@OneToMany(mappedBy = "restaurant")
 	private Set<ItemMenu> itemMenus;
+	@ManyToOne
+	@JoinColumn(name = "restaurateur_restaurant_id", foreignKey = @ForeignKey(name="restaurateur_restaurant_id_fk"))
+	private Restaurateur restaurateur;
 	
 	
 	
