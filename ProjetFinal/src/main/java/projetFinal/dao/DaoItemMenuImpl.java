@@ -6,12 +6,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
-import projetFinal.entities.Restaurant;
+import projetFinal.entities.ItemMenu;
 
-public class DaoRestaurantImpl implements DaoRestaurant {
+public class DaoItemMenuImpl implements DaoItemMenu{
 
 	@Override
-	public Restaurant save(Restaurant obj) {
+	public ItemMenu save(ItemMenu obj) {
 		EntityManager em = Contexte.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
@@ -22,7 +22,7 @@ public class DaoRestaurantImpl implements DaoRestaurant {
 	}
 
 	@Override
-	public void delete(Restaurant obj) {
+	public void delete(ItemMenu obj) {
 		EntityManager em = Contexte.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
@@ -32,31 +32,31 @@ public class DaoRestaurantImpl implements DaoRestaurant {
 	}
 
 	@Override
-	public void deleteByKey(String key) {
+	public void deleteByKey(Long key) {
 		EntityManager em = Contexte.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		em.remove(em.find(Restaurant.class, key));
+		em.remove(em.find(ItemMenu.class, key));
 		tx.commit();
 		em.close();
 	}
 
 	@Override
-	public Restaurant findByKey(String key) {
-		Restaurant restaurant = null;
+	public ItemMenu findByKey(Long key) {
+		ItemMenu itemMenu = null;
 		EntityManager em = Contexte.getInstance().getEntityManagerFactory().createEntityManager();
-		restaurant  = em.find(Restaurant .class, key);
+		itemMenu  = em.find(ItemMenu.class, key);
 		em.close();
-		return restaurant ;
+		return itemMenu;
 	}
 
 	@Override
-	public List<Restaurant> findAll() {
+	public List<ItemMenu> findAll() {
 		EntityManager em = Contexte.getInstance().getEntityManagerFactory().createEntityManager();
-		TypedQuery<Restaurant> query = em.createQuery("from Restaurant r", Restaurant.class);
-		List<Restaurant> restaurants = query.getResultList();
+		TypedQuery<ItemMenu> query = em.createQuery("from ItemMenu i", ItemMenu.class);
+		List<ItemMenu> itemsMenu = query.getResultList();
 		em.close();
-		return restaurants;
+		return itemsMenu;
 	}
 
 }
