@@ -74,7 +74,7 @@ public class DaoRestaurantImpl implements DaoRestaurant {
 	@Override
 	public List<Restaurant> findByCategorie(Categorie categorie) {
 		EntityManager em = Contexte.getInstance().getEntityManagerFactory().createEntityManager();
-		TypedQuery<Restaurant> query = em.createQuery("from Restaurant r where r.categorie like :categorie", Restaurant.class);
+		TypedQuery<Restaurant> query = em.createQuery("from Restaurant r where r.categories like :categorie", Restaurant.class);
 		query.setParameter("categorie", categorie);
 		List<Restaurant> restaurants = query.getResultList();
 		em.close();
@@ -84,10 +84,10 @@ public class DaoRestaurantImpl implements DaoRestaurant {
 	@Override
 	public List<Restaurant> findByCategorieVille(Categorie categorie, String ville) {
 		EntityManager em = Contexte.getInstance().getEntityManagerFactory().createEntityManager();
-		TypedQuery<Restaurant> query = em.createQuery("from Restaurant r where r.categorie like :categorie "
-				                                      + "and r.adresse.ville like :ville", Restaurant.class);
-		query.setParameter("categorie", categorie);
+		TypedQuery<Restaurant> query = em.createQuery("from Restaurant r left join fetch r.adresse a where a.ville like :ville"
+				                                       + " and r.categories like :categorie ", Restaurant.class);
 		query.setParameter("ville", ville);
+		query.setParameter("categorie", categorie);
 		List<Restaurant> restaurants = query.getResultList();
 		em.close();
 		return restaurants;
