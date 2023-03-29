@@ -1,19 +1,14 @@
 package projetFinal.entities;
 
 import java.io.Serializable;
+import java.util.Objects;
 
-import javax.persistence.Embeddable;
-import javax.persistence.ForeignKey;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
-@Embeddable
+
 public class ClientRestaurantKey implements Serializable {
-	@ManyToOne
-	@JoinColumn(name="",foreignKey = @ForeignKey(name=""))
+	
 	private Client client;
-	@ManyToOne
-	@JoinColumn(name="",foreignKey = @ForeignKey(name=""))
+	
 	private Restaurant restaurant;
 	
 	public ClientRestaurantKey () {
@@ -40,6 +35,23 @@ public class ClientRestaurantKey implements Serializable {
 
 	public void setRestaurant(Restaurant restaurant) {
 		this.restaurant = restaurant;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(client, restaurant);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ClientRestaurantKey other = (ClientRestaurantKey) obj;
+		return Objects.equals(client, other.client) && Objects.equals(restaurant, other.restaurant);
 	}
 	
 }
