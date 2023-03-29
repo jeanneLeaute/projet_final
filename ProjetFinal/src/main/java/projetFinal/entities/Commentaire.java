@@ -35,9 +35,28 @@ public class Commentaire {
 
 	}
 
-	public Commentaire(String texte) {
+	public Commentaire(String texte, Client client, Restaurant restaurant) {
 		super();
 		this.texte = texte;
+		this.client = client;
+		this.restaurant = restaurant;
+	}
+
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public Restaurant getRestaurant() {
+		return restaurant;
+	}
+
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
 	}
 
 	public String getTexte() {
