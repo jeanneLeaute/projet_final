@@ -3,11 +3,38 @@ package projetFinal.entities;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "reservation")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "reservation_type",discriminatorType = DiscriminatorType.STRING,length = 100)
 public abstract class Reservation {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_reservation;
+	@ManyToOne
+	@JoinColumn(name = "reservation_client_id", foreignKey = @ForeignKey(name = "reservation_client_id_fk"))
 	private Client client;
+	@ManyToOne
+	@JoinColumn(name = "reservation_restaurant_id", foreignKey = @ForeignKey(name = "reservation_restaurant_id_fk"))
 	private Restaurant restaurant;
+	@Column(name="date_reservation")
 	private LocalDate date = LocalDate.now();
+	@Column(name="specification_reservation")
 	private String specification;
 	
 	

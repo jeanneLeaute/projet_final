@@ -3,8 +3,26 @@ package projetFinal.entities;
 import java.time.LocalDate;
 import java.util.Set;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+
+@DiscriminatorValue("a_domicile")
+@Entity
 public class CommandeADomicile extends Reservation{
+	@Embedded
+	@AttributeOverrides({
+			@AttributeOverride(name = "numero", column = @Column(name = "commande_adresse_numero", length = 50)),
+			@AttributeOverride(name = "rue", column = @Column(name = "commande_adresse_rue")),
+			@AttributeOverride(name = "codePostal", column = @Column(name = "commande_adresse_codePostal", length = 20)),
+			@AttributeOverride(name = "ville", column = @Column(name = "commande_adresse_ville")),
+			@AttributeOverride(name = "complementAdresse", column = @Column(name = "commande_adresse_complementAdresse"))})
 	private Adresse adresse;
+	@ManyToMany(mappedBy = "commandesADomicile")
 	private Set<ItemMenu> itemsMenu;
 	
 	public CommandeADomicile() {

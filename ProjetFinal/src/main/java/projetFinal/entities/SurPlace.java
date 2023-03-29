@@ -3,10 +3,21 @@ package projetFinal.entities;
 import java.time.LocalDate;
 import java.util.Set;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
+@DiscriminatorValue("sur_place")
+@Entity
 public class SurPlace extends Reservation{
 	private int nbPersonne;
 	private String choixTables;
+	@ManyToMany(mappedBy = "surPlaces")
 	private Set<ItemMenu> itemsMenu=null;
+	@Enumerated(EnumType.STRING)
 	private HeureReservation heureReservation;
 	
 	public SurPlace() {
