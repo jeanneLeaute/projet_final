@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
+import projetFinal.entities.Categorie;
 import projetFinal.entities.Restaurant;
 
 public class DaoRestaurantImpl implements DaoRestaurant {
@@ -54,6 +55,39 @@ public class DaoRestaurantImpl implements DaoRestaurant {
 	public List<Restaurant> findAll() {
 		EntityManager em = Contexte.getInstance().getEntityManagerFactory().createEntityManager();
 		TypedQuery<Restaurant> query = em.createQuery("from Restaurant r", Restaurant.class);
+		List<Restaurant> restaurants = query.getResultList();
+		em.close();
+		return restaurants;
+	}
+
+	@Override
+	public List<Restaurant> findByVille(String ville) {
+		EntityManager em = Contexte.getInstance().getEntityManagerFactory().createEntityManager();
+		//TypedQuery<Restaurant> query = em.createQuery("from Restaurant r where r.adresse.ville like :ville", Restaurant.class);
+		TypedQuery<Restaurant> query = em.createQuery("from Restaurant r left join fetch r.adresse a where a.ville like :ville", Restaurant.class);
+		query.setParameter("ville", ville);
+		List<Restaurant> restaurants = query.getResultList();
+		em.close();
+		return restaurants;
+	}
+	
+	@Override
+	public List<Restaurant> findByCategorie(Categorie categorie) {
+		EntityManager em = Contexte.getInstance().getEntityManagerFactory().createEntityManager();
+		TypedQuery<Restaurant> query = em.createQuery("from Restaurant r where r.categorie like :categorie", Restaurant.class);
+		query.setParameter("categorie", categorie);
+		List<Restaurant> restaurants = query.getResultList();
+		em.close();
+		return restaurants;
+	}
+	
+	@Override
+	public List<Restaurant> findByCategorieVille(Categorie categorie, String ville) {
+		EntityManager em = Contexte.getInstance().getEntityManagerFactory().createEntityManager();
+		TypedQuery<Restaurant> query = em.createQuery("from Restaurant r where r.categorie like :categorie "
+				                                      + "and r.adresse.ville like :ville", Restaurant.class);
+		query.setParameter("categorie", categorie);
+		query.setParameter("ville", ville);
 		List<Restaurant> restaurants = query.getResultList();
 		em.close();
 		return restaurants;
