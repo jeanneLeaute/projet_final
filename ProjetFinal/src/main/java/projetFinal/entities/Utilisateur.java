@@ -4,17 +4,15 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
+@MappedSuperclass
 public abstract class Utilisateur {
 	
 	@Id
-	@Column(name = "eMail", nullable = false)
 	private String eMail;
-	@Column(name = "nom", nullable = false)
 	private String nom;
-	@Column(name = "prenom", nullable = false)
 	private String prenom;
-	@Column(name = "mot_de_passe", nullable = false)
 	private String motDePasse;
 	
 	public Utilisateur() {
