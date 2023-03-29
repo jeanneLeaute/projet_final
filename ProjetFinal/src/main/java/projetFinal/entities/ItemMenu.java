@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ForeignKey;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -15,6 +16,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "item_menu")
 public class ItemMenu {
+	@Id
+	@Column(name = "id_item")
+	private String id_item;
 	@Column(name = "urlImage")
 	private String urlImage;
 	@Column(name = "nom")
@@ -33,6 +37,9 @@ public class ItemMenu {
 	@ManyToMany
 	@JoinColumn(name = "commande_item_id", foreignKey = @ForeignKey(name="commande_item_id_fk"))
 	private Set<CommandeADomicile> commandesAdomicile;
+	@ManyToOne
+	@JoinColumn(name = "restaurateur_restaurant_id", foreignKey = @ForeignKey(name="restaurateur_restaurant_id_fk"))
+	private Restaurateur restaurateur;
 	
 	public ItemMenu() {
 		super();
