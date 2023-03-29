@@ -2,10 +2,12 @@ package projetFinal.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Embeddable;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+@Embeddable
 public class ClientRestaurantKey implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="",foreignKey = @ForeignKey(name=""))
@@ -14,7 +16,7 @@ public class ClientRestaurantKey implements Serializable {
 	@JoinColumn(name="",foreignKey = @ForeignKey(name=""))
 	private Restaurant restaurant;
 	
-	public ClientRestaurantKey clientRestaurantKey() {
+	public ClientRestaurantKey () {
 
 	}
 
