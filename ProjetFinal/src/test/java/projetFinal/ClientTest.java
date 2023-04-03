@@ -26,8 +26,8 @@ class ClientTest {
 
 //	@Disabled
 	@Test
-//	@Commit
-	void initProduit() {
+	@Commit
+	void initClient() {
 		clientService.createOrUpdate(new Client("Paillat", "Léo", "léoemail", "léomotdepasse"));
 		clientService.createOrUpdate(new Client("Bedy", "Mohameden", "mohamedenemail", "Mohamedenmotdepasse"));
 		clientService.createOrUpdate(new Client("Kumeka", "Richard", "richardemail", "richardmotdepasse"));
