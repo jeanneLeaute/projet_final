@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import projetFinal.entities.Client;
+import projetFinal.entities.ClientRestaurantKey;
 import projetFinal.entities.Commentaire;
 import projetFinal.entities.Restaurant;
 import projetFinal.exceptions.CommentaireException;
@@ -21,7 +22,7 @@ public class CommentaireService {
 		return commentaireRepo.findAll();
 	}
 
-	public Commentaire getById(Long id) {
+	public Commentaire getById(ClientRestaurantKey id) {
 		if (id == null) {
 			throw new CommentaireException("id obligatoire");
 		}
@@ -40,14 +41,14 @@ public class CommentaireService {
 	public List<Commentaire> getByRestaurant(Restaurant restaurant) {
 		return commentaireRepo.findByRestaurantContaining(restaurant);
 	}
-//	public List<Commentaire> getByRestaurantAndClient(Restaurant restaurant) {
-//		return commentaireRepo.findByRestaurantAndClientContaining(restaurant,client);
-	
+	public List<Commentaire> getByRestaurantAndClient(Restaurant restaurant, Client client) {
+		return commentaireRepo.findByRestaurantAndClient(restaurant,client);
+	}
 	public void delete(Commentaire commentaire) {
 		deleteById(commentaire.getId());
 	}
 
-	public void deleteById(Long id) {
+	public void deleteById(ClientRestaurantKey id) {
 		commentaireRepo.delete(getById(id));
 	}
 

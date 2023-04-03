@@ -84,14 +84,11 @@ public class Commentaire {
 		return Objects.equals(client, other.client) && Objects.equals(restaurant, other.restaurant);
 	}
 
-	public Long getId() {
+	public ClientRestaurantKey getId() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public Object getLibelle() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 	
 }
