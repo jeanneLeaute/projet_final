@@ -52,11 +52,11 @@ public class RestaurantService {
     }
     
     public List<Restaurant> findByCategorie(Categorie categorie) {
-    	return restaurantRepo.findByCategorie(categorie);
+    	return restaurantRepo.findByCategories(categorie);
     }
     
     public List<Restaurant> findByCategorieAndVille(Categorie categorie, String ville) {
-    	return restaurantRepo.findByCategorieAndVille(categorie, ville);
+    	return restaurantRepo.findByCategoriesAndVille(categorie, ville);
     }
     
     public Optional<Restaurant> findByIdAvecMenu(Long id){
