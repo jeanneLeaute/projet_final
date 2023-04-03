@@ -53,6 +53,12 @@ public class ItemMenu {
 	public ItemMenu() {
 		super();
 	}
+	
+
+	public ItemMenu(String nom) {
+		super();
+		this.nom = nom;
+	}
 
 	public ItemMenu(String urlImage, String nom, String description, CategoriePlat categoriePlat) {
 		super();

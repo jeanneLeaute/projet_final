@@ -21,6 +21,18 @@ public class Adresse {
 	public Adresse() {
 
 	}
+	
+	
+
+	public Adresse(String numero, String rue, String codePostal, String ville) {
+		super();
+		this.numero = numero;
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.ville = ville;
+	}
+
+
 
 	public Adresse(String numero, String rue, String codePostal, String ville, String complementAdresse) {
 		super();
