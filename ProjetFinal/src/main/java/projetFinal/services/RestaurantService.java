@@ -17,13 +17,13 @@ public class RestaurantService {
 	private RestaurantRepository restaurantRepo;
 	
 	public void createOrUpdate(Restaurant restaurant) {
-		if(restaurant.getEmail()==null || restaurant.getEmail().isBlank()) {
-			throw new RestaurantException("Email obligatoire !");
+		if(restaurant.getId()==null) {
+			throw new RestaurantException("Id obligatoire !");
 		}
 		restaurantRepo.save(restaurant);
 	}
 	
-	public Restaurant getById(String id) {
+	public Restaurant getById(Long id) {
 		if(id==null) {
 			throw new RestaurantException("id obligatoire");
 		}
@@ -32,13 +32,13 @@ public class RestaurantService {
 		});
 	}
 	
-	public void deleteByKey(String id) {
+	public void deleteByKey(Long id) {
 		Restaurant restaurant=getById(id);
 		restaurantRepo.delete(restaurant);
 	}
 	
     public void delete(Restaurant restaurant) {
-    	deleteByKey(restaurant.getEmail());
+    	deleteByKey(restaurant.getId());
 	}
     
     public List<Restaurant> getAll(){

@@ -21,8 +21,8 @@ import javax.persistence.Table;
 @Table(name = "restaurant")
 public class Restaurant {
 	@Id
-	@Column(name = "email", nullable = false, length = 255)
-	private String email;
+	@Column(name = "id", nullable = false, length = 255)
+	private Long id;
 	@Column(name = "nom")
 	private String nom;
 	@Column(name = "nom")
@@ -68,20 +68,20 @@ public class Restaurant {
 	}
 	
 	
-	public Restaurant(String email, String nom, Adresse adresse) {
+	public Restaurant(Long id, String nom, Adresse adresse) {
 		super();
-		this.email = email;
+		this.id = id;
 		this.nom = nom;
 		this.adresse = adresse;
 	}
 	
 
 
-	public Restaurant(String email, String nom, Adresse adresse, String description, String horaireOuverture,
+	public Restaurant(Long id, String nom, Adresse adresse, String description, String horaireOuverture,
 			String urlImage, Set<ItemMenu> menu, boolean aEmporter, boolean peutReserver, Categorie categories,
 			Set<ItemMenu> itemMenus, Restaurateur restaurateur) {
 		super();
-		this.email = email;
+		this.id = id;
 		this.nom = nom;
 		this.adresse = adresse;
 		this.description = description;
@@ -99,11 +99,11 @@ public class Restaurant {
 
 
 
-	public Restaurant(String email, String nom, Adresse adresse, String description,
+	public Restaurant(Long id, String nom, Adresse adresse, String description,
 			String horaireOuverture, String urlImage, boolean aEmporter, boolean peutReserver,
 			Set<Commentaire> commentaires, Categorie categories) {
 		super();
-		this.email = email;
+		this.id = id;
 		this.nom = nom;
 		this.adresse = adresse;
 		this.description = description;
@@ -117,11 +117,11 @@ public class Restaurant {
 
 
 
-	public String getEmail() {
-		return email;
+	public Long getId() {
+		return id;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getNom() {
 		return nom;
@@ -182,7 +182,7 @@ public class Restaurant {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(email);
+		return Objects.hash(id);
 	}
 
 
@@ -196,7 +196,7 @@ public class Restaurant {
 		if (getClass() != obj.getClass())
 			return false;
 		Restaurant other = (Restaurant) obj;
-		return email == other.email;
+		return id == other.id;
 	}
 	
 	

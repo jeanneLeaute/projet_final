@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import projetFinal.entities.Categorie;
 import projetFinal.entities.Restaurant;
 
-public interface RestaurantRepository extends JpaRepository<Restaurant, String>{
+public interface RestaurantRepository extends JpaRepository<Restaurant, Long>{
 	
 	List<Restaurant> findByVille(String ville);
 	
