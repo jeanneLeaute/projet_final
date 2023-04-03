@@ -11,7 +11,7 @@ import projetFinal.entities.Restaurant;
 
 public interface CommentaireRepository extends JpaRepository<Commentaire, ClientRestaurantKey>{
 
-	Optional<Commentaire> findById(Long ClientRestaurantKey);
+	Optional<Commentaire> findById(ClientRestaurantKey id);
 
 	List<Commentaire> findByTexteContaining(String libelle);
 
