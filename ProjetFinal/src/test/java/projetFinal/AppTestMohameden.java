@@ -10,8 +10,6 @@ import projetFinal.entities.Categorie;
 import projetFinal.entities.Restaurant;
 import projetFinal.repositories.RestaurantRepository;
 import projetFinal.services.RestaurantService;
-import quest.config.JpaConfig;
-import quest.dao.DaoStagiaire;
 
 public class AppTestMohameden {
 	public static void main(String[] args) {

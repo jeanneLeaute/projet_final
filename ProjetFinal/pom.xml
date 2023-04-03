@@ -58,11 +58,6 @@
 			<version>5.9.2</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>ajc.formation.soprasteria</groupId>
-			<artifactId>eshopSpring</artifactId>
-			<version>1.0</version>
-		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
