@@ -9,6 +9,7 @@ import projetFinal.entities.Adresse;
 import projetFinal.entities.Categorie;
 import projetFinal.entities.Restaurant;
 import projetFinal.repositories.RestaurantRepository;
+import projetFinal.services.RestaurantService;
 import quest.config.JpaConfig;
 import quest.dao.DaoStagiaire;
 
@@ -17,17 +18,20 @@ public class AppTestMohameden {
 		
 //		DaoItemMenu daoItemMenu = Contexte.getDaoItemMenu();
 //		DaoRestaurant daoRestaurant = Contexte.getDaoRestaurant();
-//		Adresse adresse = new Adresse("11", "rue Maurice", "92500", "Rueil-Malmaison", null);
+		Adresse adresse = new Adresse("11", "rue Maurice", "92500", "Rueil-Malmaison", null);
 //		Categorie categorie = Categorie.Br;
-//		Restaurant restaurant = new Restaurant("restau", adresse);
-//	    restaurant.setCategories(Categorie.Br);
+		Restaurant restaurant = new Restaurant("restau", adresse);
+	    restaurant.setCategories(Categorie.Br);
 //		restaurant=daoRestaurant.save(restaurant);
 //		System.out.println(daoRestaurant.findByVille("Rueil-Malmaison"));
 //		System.out.println(daoRestaurant.findByCategorie(categorie));
 //		System.out.println(daoRestaurant.findByCategorieVille(Categorie.Br, "Rueil-Malmaison"));
 		
-		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(JpaConfig.class);
-		RestaurantRepository restauRepo = ctx.getBean(RestaurantRepository.class);
+		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(projetFinal.config.JpaConfig.class);
+		RestaurantService restauSer = ctx.getBean(RestaurantService.class);
+		
+		restauSer.createOrUpdate(restaurant);
+		
 		
 		
 		

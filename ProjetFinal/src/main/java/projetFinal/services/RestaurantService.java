@@ -19,9 +19,7 @@ public class RestaurantService {
 	private RestaurantRepository restaurantRepo;
 	
 	public void createOrUpdate(Restaurant restaurant) {
-		if(restaurant.getId()==null) {
-			throw new RestaurantException("Id obligatoire !");
-		}
+		
 		restaurantRepo.save(restaurant);
 	}
 	
