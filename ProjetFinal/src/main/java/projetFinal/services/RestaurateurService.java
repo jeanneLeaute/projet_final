@@ -32,10 +32,10 @@ public class RestaurateurService {
 	
 	public Restaurateur getByEMailWithRestaurants(String eMail) {
 		if (eMail == null) {
-			throw new ClientException("email obligatoire");
+			throw new RestaurateurException("email obligatoire");
 		}
 		return restaurateuRepo.findByEMailFetchRestaurants(eMail).orElseThrow(() -> {
-			throw new ClientException("email inconnu");
+			throw new RestaurateurException("email inconnu");
 		});
 	}
 	
@@ -49,16 +49,16 @@ public class RestaurateurService {
 	
 	public void createOrUpdate(Restaurateur restaurateur) {
 		if (restaurateur.getEMail() == null || restaurateur.getEMail().isBlank()) {
-			throw new ClientException("email obligatoire");
+			throw new RestaurateurException("email obligatoire");
 		}
 		if (restaurateur.getNom() == null || restaurateur.getNom().isBlank()) {
-			throw new ClientException("nom obligatoire");
+			throw new RestaurateurException("nom obligatoire");
 		}
 		if (restaurateur.getPrenom() == null || restaurateur.getPrenom().isBlank()) {
-			throw new ClientException("prenom obligatoire");
+			throw new RestaurateurException("prenom obligatoire");
 		}
 		if (restaurateur.getMotDePasse().length() < 5) {
-			throw new ClientException("mot de passe trop faible (minimum 5 caractères");
+			throw new RestaurateurException("mot de passe trop faible (minimum 5 caractères");
 		}
 		restaurateuRepo.save(restaurateur);
 	}

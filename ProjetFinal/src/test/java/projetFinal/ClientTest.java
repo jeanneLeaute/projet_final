@@ -24,14 +24,14 @@ class ClientTest {
 	@Autowired
 	ClientService clientService;
 
-//	@Disabled
+	@Disabled
 	@Test
 	@Commit
 	void initClient() {
-		clientService.createOrUpdate(new Client("Paillat", "Léo", "léoemail", "léomotdepasse"));
-		clientService.createOrUpdate(new Client("Bedy", "Mohameden", "mohamedenemail", "Mohamedenmotdepasse"));
-		clientService.createOrUpdate(new Client("Kumeka", "Richard", "richardemail", "richardmotdepasse"));
-		clientService.createOrUpdate(new Client("Leaute", "Jeanne", "jeanneemail", "jeannemotdepasse"));
+		clientService.createOrUpdate(new Client("Paillat", "Léo", "léoclientemail", "léomotdepasse"));
+		clientService.createOrUpdate(new Client("Bedy", "Mohameden", "mohamedenclientemail", "Mohamedenmotdepasse"));
+		clientService.createOrUpdate(new Client("Kumeka", "Richard", "richardeclientmail", "richardmotdepasse"));
+		clientService.createOrUpdate(new Client("Leaute", "Jeanne", "jeanneclientemail", "jeannemotdepasse"));
 	}
 	
 	@Test
@@ -41,39 +41,39 @@ class ClientTest {
 	
 	@Test
 	void getByEMailTest() {
-		assertNotNull(clientService.getByEMail("léoemail"));
-		assertNotNull(clientService.getByEMail("mohamedenemail"));
-		assertNotNull(clientService.getByEMail("richardemail"));
-		assertNotNull(clientService.getByEMail("jeanneemail"));
+		assertNotNull(clientService.getByEMail("léoclientemail"));
+		assertNotNull(clientService.getByEMail("mohamedenclientemail"));
+		assertNotNull(clientService.getByEMail("richardeclientmail"));
+		assertNotNull(clientService.getByEMail("jeanneclientemail"));
 	}
 	
 	@Test
 	void getByEMailWithReservationTest() {
-		assertNotNull(clientService.getByEMail("léoemail").getReservations());
-		assertNotNull(clientService.getByEMail("mohamedenemail").getReservations());
-		assertNotNull(clientService.getByEMail("richardemail").getReservations());
-		assertNotNull(clientService.getByEMail("jeanneemail").getReservations());
+		assertNotNull(clientService.getByEMailWithReservation("léoclientemail").getReservations());
+		assertNotNull(clientService.getByEMailWithReservation("mohamedenclientemail").getReservations());
+		assertNotNull(clientService.getByEMailWithReservation("richardeclientmail").getReservations());
+		assertNotNull(clientService.getByEMailWithReservation("jeanneclientemail").getReservations());
 	}
 	
 	@Test
 	void getByEMailWithCommentairesTest() {
-		assertNotNull(clientService.getByEMail("léoemail").getCommentaires());
-		assertNotNull(clientService.getByEMail("mohamedenemail").getCommentaires());
-		assertNotNull(clientService.getByEMail("richardemail").getCommentaires());
-		assertNotNull(clientService.getByEMail("jeanneemail").getCommentaires());
+		assertNotNull(clientService.getByEMailWithCommentaires("léoclientemail").getCommentaires());
+		assertNotNull(clientService.getByEMailWithCommentaires("mohamedenclientemail").getCommentaires());
+		assertNotNull(clientService.getByEMailWithCommentaires("richardeclientmail").getCommentaires());
+		assertNotNull(clientService.getByEMailWithCommentaires("jeanneclientemail").getCommentaires());
 	}
 	
 	@Test
 	void getByEMailWithReservationsWithCommentairesTest() {
-		assertNotNull(clientService.getByEMail("léoemail").getReservations());
-		assertNotNull(clientService.getByEMail("mohamedenemail").getReservations());
-		assertNotNull(clientService.getByEMail("richardemail").getReservations());
-		assertNotNull(clientService.getByEMail("jeanneemail").getReservations());
+		assertNotNull(clientService.getByEMailWithReservationsWithCommentaires("léoclientemail").getReservations());
+		assertNotNull(clientService.getByEMailWithReservationsWithCommentaires("mohamedenclientemail").getReservations());
+		assertNotNull(clientService.getByEMailWithReservationsWithCommentaires("richardeclientmail").getReservations());
+		assertNotNull(clientService.getByEMailWithReservationsWithCommentaires("jeanneclientemail").getReservations());
 		
-		assertNotNull(clientService.getByEMail("léoemail").getCommentaires());
-		assertNotNull(clientService.getByEMail("mohamedenemail").getCommentaires());
-		assertNotNull(clientService.getByEMail("richardemail").getCommentaires());
-		assertNotNull(clientService.getByEMail("jeanneemail").getCommentaires());
+		assertNotNull(clientService.getByEMailWithReservationsWithCommentaires("léoclientemail").getCommentaires());
+		assertNotNull(clientService.getByEMailWithReservationsWithCommentaires("mohamedenclientemail").getCommentaires());
+		assertNotNull(clientService.getByEMailWithReservationsWithCommentaires("richardeclientmail").getCommentaires());
+		assertNotNull(clientService.getByEMailWithReservationsWithCommentaires("jeanneclientemail").getCommentaires());
 	}
 	
 	@Test
