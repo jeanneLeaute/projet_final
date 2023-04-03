@@ -1,47 +1,77 @@
 package projetFinal;
 
-import java.time.LocalDate;
-import java.util.List;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import projetFinal.dao.Contexte;
-import projetFinal.dao.DaoClient;
-import projetFinal.dao.DaoCommentaire;
-import projetFinal.dao.DaoItemMenu;
-import projetFinal.dao.DaoReservation;
-import projetFinal.dao.DaoRestaurant;
-import projetFinal.dao.DaoRestaurateur;
+import java.time.LocalDate;
+
+import javax.transaction.Transactional;
+
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Commit;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+
+import projetFinal.config.JpaConfig;
 import projetFinal.entities.Client;
-import projetFinal.entities.Commentaire;
+import projetFinal.entities.CommandeADomicile;
+import projetFinal.entities.HeureReservation;
 import projetFinal.entities.Reservation;
 import projetFinal.entities.Restaurant;
 import projetFinal.entities.SurPlace;
-import projetFinal.entities.Adresse;
+import projetFinal.services.ClientService;
+import projetFinal.services.ReservationService;
+import projetFinal.services.RestaurantService;
 
+import projetFinal.exceptions.ReservationException;
+
+@SpringJUnitConfig(JpaConfig.class)
+@Transactional
+@Rollback
 public class AppTestJeanne {
-	public static void main(String[] args) {
-		test1();
-		Contexte.destroy();
+	@Autowired
+	ReservationService reservationService;
+	@Autowired
+	RestaurantService restaurantService;
+	@Autowired
+	ClientService clientService;
+
+	@Disabled
+	@Test
+	@Commit
+	void initReservation() {
+		Restaurant restau1 = new Restaurant("restau1", null);
+		restaurantService.createOrUpdate(restau1);
+		Client client = new Client("cl1", "cl1", "cl1", "cl1");
+		clientService.createOrUpdate(client);
+		reservationService.createOrUpdate(new SurPlace(client, restau1,LocalDate.now()," ",2,
+				"bleu", null, HeureReservation.H11));
+		reservationService.createOrUpdate(new SurPlace(client, restau1,LocalDate.now()," ",4,"rouge",null,HeureReservation.H19));
+		reservationService.createOrUpdate(new CommandeADomicile(client, restau1,LocalDate.now()," ",
+				null, null));
 	}
 
-	public static void test1() {
-		DaoClient daoClient = Contexte.getDaoClient();
-		DaoCommentaire daoCommentaire = Contexte.getDaoCommentaire();
-		DaoItemMenu daoItemMenu = Contexte.getDaoItemMenu();
-		DaoReservation daoReservation = Contexte.getDaoReservation();
-		DaoRestaurant daoRestaurant = Contexte.getDaoRestaurant();
-		DaoRestaurateur daoRestaurateur = Contexte.getDaoRestaurateur();
-		Client client = new Client("Léo", "Paillat", "email", "motdepasse");
-		client = daoClient.save(client);
+	@Test
+	void injectionReservationServiceTest() {
+		assertNotNull(reservationService);
+	}
 
-		Adresse adresse = new Adresse(null, null, null, null, null);
+	@Test
+	void insertReservationTest() {
+		Restaurant restau1 = new Restaurant("restau1", null);
+		restaurantService.createOrUpdate(restau1);
+		Client client = new Client("cl1", "cl1", "cl1", "cl1");
+		clientService.createOrUpdate(client);
+		Reservation r = new SurPlace(client, restau1,LocalDate.now()," ",2,
+				"bleu", null, HeureReservation.H11);
+		reservationService.createOrUpdate(r);
+		assertNotNull(reservationService.getById(r.getId_reservation()));
+	}
 
-		Restaurant restau1 = new Restaurant("email1", "nom1", adresse);
-		restau1 = daoRestaurant.save(restau1);
-
-		Reservation reservation1 = new SurPlace(client, restau1, LocalDate.now(), "none", 0, null, null, null);
-		reservation1 = daoReservation.save(reservation1);
-
-		List<Reservation> reser = daoReservation.findByRestaurant(restau1);
-		System.out.println(reser);
+	@Test
+	void getByIdWithReservationException() {
+		assertThrows(ReservationException.class, () -> reservationService.getById(9999L));
 	}
 }
