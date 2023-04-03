@@ -1,8 +1,10 @@
 package projetFinal.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import projetFinal.entities.Categorie;
@@ -55,6 +57,11 @@ public class RestaurantService {
     
     public List<Restaurant> findByCategorieAndVille(Categorie categorie, String ville) {
     	return restaurantRepo.findByCategorieAndVille(categorie, ville);
+    }
+    
+    public Optional<Restaurant> findByIdAvecMenu(Long id){
+    	Restaurant restaurant = getById(id);
+    	return restaurantRepo.findByIdAvecMenu(restaurant.getId());
     }
 
 }

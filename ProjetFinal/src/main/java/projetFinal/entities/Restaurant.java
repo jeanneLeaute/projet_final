@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,6 +23,7 @@ import javax.persistence.Table;
 @Table(name = "restaurant")
 public class Restaurant {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false, length = 255)
 	private Long id;
 	@Column(name = "nom")
@@ -68,6 +71,19 @@ public class Restaurant {
 	}
 	
 	
+	public Restaurant(String nom) {
+		super();
+		this.nom = nom;
+	}
+	
+	
+	public Restaurant(String nom, Adresse adresse) {
+		super();
+		this.nom = nom;
+		this.adresse = adresse;
+	}
+
+
 	public Restaurant(Long id, String nom, Adresse adresse) {
 		super();
 		this.id = id;
