@@ -61,6 +61,8 @@ public class ItemMenu {
 		this.description = description;
 		this.categoriePlat = categoriePlat;
 	}
+	
+	
 
 	public String getUrlImage() {
 		return urlImage;

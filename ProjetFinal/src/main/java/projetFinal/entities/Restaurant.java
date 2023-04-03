@@ -82,22 +82,13 @@ public class Restaurant {
 		this.nom = nom;
 		this.adresse = adresse;
 	}
-
-
-	public Restaurant(Long id, String nom, Adresse adresse) {
-		super();
-		this.id = id;
-		this.nom = nom;
-		this.adresse = adresse;
-	}
 	
 
 
-	public Restaurant(Long id, String nom, Adresse adresse, String description, String horaireOuverture,
+	public Restaurant(String nom, Adresse adresse, String description, String horaireOuverture,
 			String urlImage, Set<ItemMenu> menu, boolean aEmporter, boolean peutReserver, Categorie categories,
 			Set<ItemMenu> itemMenus, Restaurateur restaurateur) {
 		super();
-		this.id = id;
 		this.nom = nom;
 		this.adresse = adresse;
 		this.description = description;
@@ -115,11 +106,10 @@ public class Restaurant {
 
 
 
-	public Restaurant(Long id, String nom, Adresse adresse, String description,
+	public Restaurant(String nom, Adresse adresse, String description,
 			String horaireOuverture, String urlImage, boolean aEmporter, boolean peutReserver,
 			Set<Commentaire> commentaires, Categorie categories) {
 		super();
-		this.id = id;
 		this.nom = nom;
 		this.adresse = adresse;
 		this.description = description;
