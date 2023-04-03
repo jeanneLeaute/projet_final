@@ -1,6 +1,5 @@
 package projetFinal.entities;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -9,7 +8,6 @@ import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.EntityManager;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ForeignKey;
@@ -18,9 +16,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.TypedQuery;
-
-import projetFinal.dao.Contexte;
 
 @Entity
 @Table(name = "restaurant")
@@ -138,7 +133,7 @@ public class Restaurant {
 		return adresse;
 	}
 	public void setAdresse(Adresse adresse) {
-		adresse = adresse;
+		this.adresse = adresse;
 	}
 	public String getDescription() {
 		return description;
