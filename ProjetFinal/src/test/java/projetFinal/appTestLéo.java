@@ -35,10 +35,10 @@ public class appTestLéo {
 	 Restaurateur restaurateurLeo = new Restaurateur("Léo", "Paillat", "emailLéo", "motdepasse");
 	 restaurateurLeo = daoRestaurateur.save(restaurateurLeo);
 	 
-//	 System.out.println(daoClient.findAll());
-//	 System.out.println(daoRestaurateur.findAll());
-//	 System.out.println(daoClient.findByKey("emailJeanne"));
-//	 System.out.println(daoRestaurateur.findByKey("emailLéo"));
+	 System.out.println(daoClient.findAll());
+	 System.out.println(daoRestaurateur.findAll());
+	 System.out.println(daoClient.findByKey("emailJeanne"));
+	 System.out.println(daoRestaurateur.findByKey("emailLéo"));
 	 
 	 Contexte.destroy();
  	}
