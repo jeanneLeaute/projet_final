@@ -83,5 +83,15 @@ public class Commentaire {
 		Commentaire other = (Commentaire) obj;
 		return Objects.equals(client, other.client) && Objects.equals(restaurant, other.restaurant);
 	}
+
+	public Long getId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object getLibelle() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }
