@@ -25,7 +25,6 @@ public class Client extends Utilisateur {
 		
 	}
 
-
 	public Client(String nom, String prenom, String eMail, String motDePasse, Set<Reservation> reservations, Set<Commentaire> commentaires) {
 		super(nom, prenom, eMail, motDePasse);
 		this.reservations = reservations;

@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import projetFinal.exceptions.ClientException;
+
 @Entity
 @Table(name = "restaurateur")
 @AttributeOverride(name = "eMail", column = @Column(name="restaurateur_email"))
