@@ -35,11 +35,11 @@ public class CommentaireService {
 	}
 
 	public List<Commentaire> getByClient(Client client) {
-		return commentaireRepo.findByClientContaining(client);
+		return commentaireRepo.findByClient(client);
 	}
 
 	public List<Commentaire> getByRestaurant(Restaurant restaurant) {
-		return commentaireRepo.findByRestaurantContaining(restaurant);
+		return commentaireRepo.findByRestaurant(restaurant);
 	}
 	public List<Commentaire> getByRestaurantAndClient(Restaurant restaurant, Client client) {
 		return commentaireRepo.findByRestaurantAndClient(restaurant,client);

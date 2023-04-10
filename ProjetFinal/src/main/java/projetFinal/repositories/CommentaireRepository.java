@@ -13,11 +13,11 @@ public interface CommentaireRepository extends JpaRepository<Commentaire, Client
 
 	Optional<Commentaire> findById(ClientRestaurantKey id);
 
-	List<Commentaire> findByTexteContaining(String libelle);
+	List<Commentaire> findByTexteContaining(String Texte);
 
-	List<Commentaire> findByClientContaining(Client client);
+	List<Commentaire> findByClient(Client client);
 
-	List<Commentaire> findByRestaurantContaining(Restaurant restaurant);
+	List<Commentaire> findByRestaurant(Restaurant restaurant);
 
 	List<Commentaire> findByRestaurantAndClient(Restaurant restaurant, Client client);
 
