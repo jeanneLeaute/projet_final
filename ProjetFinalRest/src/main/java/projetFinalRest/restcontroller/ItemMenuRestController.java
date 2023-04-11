@@ -19,7 +19,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import projetFinal.entities.Client;
 import projetFinal.entities.ItemMenu;
 import projetFinal.entities.views.JsonViews;
 import projetFinal.services.ItemMenuService;

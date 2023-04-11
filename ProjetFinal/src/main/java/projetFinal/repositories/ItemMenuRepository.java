@@ -10,10 +10,10 @@ import projetFinal.entities.ItemMenu;
 
 public interface ItemMenuRepository extends JpaRepository<ItemMenu, Long>{
 
-	@Query("select i from ItemMenu i left join fetch SurPlaces s where i.id=:id")
+	@Query("select i from ItemMenu i left join fetch i.surPlaces s where i.id=:id")
 	Optional<ItemMenu> findByIdFetchSurPlace(@Param("id") Long id);
 	
-	@Query("select i from ItemMenu i left join fetch commandesAdomicile c where i.id=:id")
+	@Query("select i from ItemMenu i left join fetch i.commandesAdomicile c where i.id=:id")
 	Optional<ItemMenu> findByIdFetchCommandesADomicile(@Param("id") Long id);
 
 }
