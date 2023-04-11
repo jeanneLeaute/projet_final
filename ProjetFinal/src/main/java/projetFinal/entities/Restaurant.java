@@ -157,6 +157,36 @@ public class Restaurant {
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
 	}
+	public Set<ItemMenu> getMenu() {
+		return menu;
+	}
+
+
+	public void setMenu(Set<ItemMenu> menu) {
+		this.menu = menu;
+	}
+
+
+	public Set<ItemMenu> getItemMenus() {
+		return itemMenus;
+	}
+
+
+	public void setItemMenus(Set<ItemMenu> itemMenus) {
+		this.itemMenus = itemMenus;
+	}
+
+
+	public Restaurateur getRestaurateur() {
+		return restaurateur;
+	}
+
+
+	public void setRestaurateur(Restaurateur restaurateur) {
+		this.restaurateur = restaurateur;
+	}
+
+
 	public String getDescription() {
 		return description;
 	}
@@ -220,13 +250,6 @@ public class Restaurant {
 		Restaurant other = (Restaurant) obj;
 		return id == other.id;
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 	
 

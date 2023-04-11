@@ -24,6 +24,11 @@ public class RestaurantService {
 		restaurantRepo.save(restaurant);
 	}
 	
+	
+	public Restaurateur getRestaurateur() {
+		Restaurant restaurant=getById(id);
+		restaurantRepo.delete(restaurant);
+	}
 	public Restaurant getById(Long id) {
 		if(id==null) {
 			throw new RestaurantException("id obligatoire");
