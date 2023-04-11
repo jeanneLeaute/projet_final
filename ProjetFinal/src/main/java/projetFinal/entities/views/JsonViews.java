@@ -34,11 +34,11 @@ public class JsonViews {
 
 	}
 	
-	public static class ADomicile extends Simple {
+	public static class CommandeADomicile extends Simple {
 
 	}
 	
-	public static class ADomicileWithItemsMenu extends ADomicile {
+	public static class ADomicileWithItemsMenu extends CommandeADomicile {
 
 	}
 	
@@ -55,6 +55,10 @@ public class JsonViews {
 	}
 	
 	public static class RestaurantWithRestaurateur extends Restaurant {
+
+	}
+	
+	public static class Reservation extends Simple {
 
 	}
 

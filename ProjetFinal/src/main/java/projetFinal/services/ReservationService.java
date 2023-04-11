@@ -37,19 +37,6 @@ public class ReservationService {
 		reservationRepo.delete(getById(id));
 	}
 
-	// creation et mise a ensemble ou pas???
-	public void createOrUpdate(Reservation reservation) {
-		if (reservation.getClient() == null) {
-			throw new ReservationException("client obligatoire");
-		}
-		if (reservation.getRestaurant() == null) {
-			throw new ReservationException("restaurant obligatoire");
-		}
-		if (reservation.getDate() == null) {
-			throw new ReservationException("date obligatoire");
-		}
-		reservationRepo.save(reservation);
-	}
 	
 	public List<Reservation> getByClient(Client client) {
 		if (client == null) {
@@ -57,7 +44,7 @@ public class ReservationService {
 		}
 		
 		if (reservationRepo.findByClient(client)==null) {
-			throw new ReservationException("restaurant inconnu");
+			throw new ReservationException("client inconnu");
 		}
 		return reservationRepo.findByClient(client);
 	}
@@ -72,4 +59,5 @@ public class ReservationService {
 		}
 		return reservationRepo.findByRestaurant(restaurant);
 	}
+
 }
