@@ -22,7 +22,6 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import projetFinal.entities.Client;
 import projetFinal.entities.CommandeADomicile;
-import projetFinal.entities.Reservation;
 import projetFinal.entities.Restaurant;
 import projetFinal.entities.views.JsonViews;
 import projetFinal.services.CommandeADomicileService;
@@ -98,13 +97,13 @@ public class CommandeADomicileRestController {
 		commandeADomicileService.delete(CommandeADomicile);
 	}
 	
-	@GetMapping("")
+	@GetMapping("/getByClient")
 	@JsonView(JsonViews.CommandeADomicile.class)
 	public List<CommandeADomicile> getByClient(@RequestBody Client client) {
 		return commandeADomicileService.getByClient(client);
 	}
 	
-	@GetMapping("")
+	@GetMapping("/getByRestaurant")
 	@JsonView(JsonViews.CommandeADomicile.class)
 	public List<CommandeADomicile> getByRestaurant(@RequestBody Restaurant restaurant) {
 		return commandeADomicileService.getByRestaurant(restaurant);

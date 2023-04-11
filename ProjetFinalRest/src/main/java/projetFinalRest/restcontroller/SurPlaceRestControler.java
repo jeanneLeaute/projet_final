@@ -103,13 +103,13 @@ public class SurPlaceRestControler {
 		surPlaceService.delete(surPlace);
 	}
 	
-	@GetMapping("")
+	@GetMapping("/getByClient")
 	@JsonView(JsonViews.SurPlace.class)
 	public List<SurPlace> getByClient(@RequestBody Client client) {
 		return surPlaceService.getByClient(client);
 	}
 	
-	@GetMapping("")
+	@GetMapping("/getByRestaurant")
 	@JsonView(JsonViews.SurPlace.class)
 	public List<SurPlace> getByRestaurant(@RequestBody Restaurant restaurant) {
 		return surPlaceService.getByRestaurant(restaurant);
