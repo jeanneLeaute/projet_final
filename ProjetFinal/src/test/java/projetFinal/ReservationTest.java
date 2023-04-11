@@ -22,7 +22,6 @@ import projetFinal.entities.Adresse;
 import projetFinal.entities.CommandeADomicile;
 import projetFinal.entities.HeureReservation;
 import projetFinal.entities.ItemMenu;
-import projetFinal.entities.Reservation;
 import projetFinal.entities.Restaurant;
 import projetFinal.entities.SurPlace;
 import projetFinal.services.ClientService;
