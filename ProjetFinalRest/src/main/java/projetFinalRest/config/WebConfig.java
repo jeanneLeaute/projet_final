@@ -9,8 +9,8 @@ import projetFinal.config.JpaConfig;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("ProjetFinal.restcontroller")
+@ComponentScan("projetFinalRest.restcontroller")
 @Import(JpaConfig.class)
-public class Config {
+public class WebConfig {
 
 }
