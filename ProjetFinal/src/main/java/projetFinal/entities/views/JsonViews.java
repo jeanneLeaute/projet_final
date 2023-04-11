@@ -26,6 +26,7 @@ public class JsonViews {
 
 	}
 	
+	
 	public static class SurPlace extends Simple {
 
 	}

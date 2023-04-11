@@ -24,11 +24,6 @@ public class RestaurantService {
 		restaurantRepo.save(restaurant);
 	}
 	
-	
-	public Restaurateur getRestaurateur() {
-		Restaurant restaurant=getById(id);
-		restaurantRepo.delete(restaurant);
-	}
 	public Restaurant getById(Long id) {
 		if(id==null) {
 			throw new RestaurantException("id obligatoire");
@@ -70,6 +65,11 @@ public class RestaurantService {
     public Optional<Restaurant> findByIdAvecMenu(Long id){
     	Restaurant restaurant = getById(id);
     	return restaurantRepo.findByIdAvecMenu(restaurant.getId());
+    }
+    
+    public Optional<Restaurant> findByIdAvecCommentaires(Long id){
+    	Restaurant restaurant = getById(id);
+    	return restaurantRepo.findByIdAvecCommentaire(restaurant.getId());
     }
 
 }

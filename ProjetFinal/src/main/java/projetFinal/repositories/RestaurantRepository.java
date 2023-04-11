@@ -19,6 +19,7 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long>{
 	
 	List<Restaurant> findByCategories(Categorie categories);
 	List<Restaurant> findByRestaurateur(Restaurateur restaurateur);
+	
 
 	@Query("from Restaurant r left join fetch r.adresse a where a.ville like :ville and r.categories like :categories")
 	List<Restaurant> findByCategoriesAndVille(@Param("categories") Categorie categories, @Param("ville") String ville);
