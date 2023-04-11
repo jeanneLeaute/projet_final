@@ -30,8 +30,8 @@
 		</dependency>
 		<dependency>
 			<groupId>ajc.formation.soprasteria</groupId>
-	<artifactId>projetFinal</artifactId>
-	<version>1.0-SNAPSHOT</version>
+			<artifactId>projetFinal</artifactId>
+			<version>1.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	<build>

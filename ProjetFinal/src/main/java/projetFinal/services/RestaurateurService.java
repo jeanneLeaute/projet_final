@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import projetFinal.entities.Client;
+import projetFinal.entities.Restaurant;
 import projetFinal.entities.Restaurateur;
 import projetFinal.exceptions.ClientException;
 import projetFinal.exceptions.RestaurateurException;
@@ -38,6 +39,15 @@ public class RestaurateurService {
 			throw new RestaurateurException("email inconnu");
 		});
 	}
+	
+//	public Restaurateur getByRestaurant(Restaurant restaurant) {
+//		if (restaurant == null) {
+//			throw new RestaurateurException("restaurant obligatoire");
+//		}
+//		return restaurateuRepo.findByRestaurant(restaurant).orElseThrow(() -> {
+//			throw new RestaurateurException("restaurant inconnu");
+//		});
+//	}
 	
 	public void deleteByEMail(String eMail) {
 		restaurateuRepo.delete(getByEMail(eMail));

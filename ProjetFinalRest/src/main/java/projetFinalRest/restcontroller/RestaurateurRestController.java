@@ -20,8 +20,10 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import projetFinal.entities.Restaurant;
 import projetFinal.entities.Restaurateur;
 import projetFinal.entities.views.JsonViews;
+import projetFinal.services.RestaurantService;
 import projetFinal.services.RestaurateurService;
 
 @RestController
@@ -30,6 +32,9 @@ public class RestaurateurRestController {
 	
 	@Autowired
 	private RestaurateurService restaurateurSrv;
+	
+	@Autowired
+	private RestaurantService restaurantSrv;
 	
 	@GetMapping("")
 	@JsonView(JsonViews.Restaurateur.class)
@@ -50,6 +55,14 @@ public class RestaurateurRestController {
 	public Restaurateur getByEMailWithRestaurants(@PathVariable String email) {
 		Restaurateur restaurateur = null;
 		restaurateur = restaurateurSrv.getByEMailWithRestaurants(email);
+		return restaurateur;
+	}
+	
+	@GetMapping("/getByRestaurant")
+	@JsonView(JsonViews.Restaurateur.class)
+	public Restaurateur getByrestaurant(@RequestBody Restaurant  restaurant) {
+		Restaurateur restaurateur = null;
+		restaurateur = restaurantSrv.get;
 		return restaurateur;
 	}
 	
