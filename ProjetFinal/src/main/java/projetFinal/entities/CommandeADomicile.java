@@ -11,6 +11,10 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import projetFinal.entities.views.JsonViews;
+
 @DiscriminatorValue("a_domicile")
 @Entity
 public class CommandeADomicile extends Reservation{
@@ -21,8 +25,10 @@ public class CommandeADomicile extends Reservation{
 			@AttributeOverride(name = "codePostal", column = @Column(name = "commande_adresse_codePostal", length = 20)),
 			@AttributeOverride(name = "ville", column = @Column(name = "commande_adresse_ville")),
 			@AttributeOverride(name = "complementAdresse", column = @Column(name = "commande_adresse_complementAdresse"))})
+	@JsonView(JsonViews.Simple.class)
 	private Adresse adresse;
 	@ManyToMany(mappedBy = "commandesAdomicile")
+	@JsonView(JsonViews.ADomicileWithItemsMenu.class)
 	private Set<ItemMenu> itemsMenu;
 	
 	public CommandeADomicile() {

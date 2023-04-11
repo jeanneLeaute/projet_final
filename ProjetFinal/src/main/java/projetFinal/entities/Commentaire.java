@@ -11,12 +11,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import projetFinal.entities.views.JsonViews;
+
 @Entity
 @Table(name = "commentaire")
 @IdClass(ClientRestaurantKey.class)
 public class Commentaire {
 	
-	
+	@JsonView(JsonViews.Simple.class)
 	@Column(name = "texte")
 	private String texte;
 	
@@ -24,11 +28,13 @@ public class Commentaire {
 	@Id
 	@ManyToOne
 	@JoinColumn(name="commentaire_client",foreignKey = @ForeignKey(name="commentaire_client_fk"))
+	@JsonView(JsonViews.Simple.class)
 	private Client client;
 	
 	@Id
 	@ManyToOne
 	@JoinColumn(name="commentaire_restaurant",foreignKey = @ForeignKey(name="commentaire_restaurant_fk"))
+	@JsonView(JsonViews.Simple.class)
 	private Restaurant restaurant;
 
 	public Commentaire() {

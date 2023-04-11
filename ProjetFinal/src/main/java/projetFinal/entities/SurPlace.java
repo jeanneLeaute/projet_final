@@ -10,14 +10,22 @@ import javax.persistence.Enumerated;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import projetFinal.entities.views.JsonViews;
+
 @DiscriminatorValue("sur_place")
 @Entity
 public class SurPlace extends Reservation{
+	@JsonView(JsonViews.Simple.class)
 	private int nbPersonne;
+	@JsonView(JsonViews.Simple.class)
 	private String choixTables;
 	@ManyToMany(mappedBy = "surPlaces")
+	@JsonView(JsonViews.SurPlaceWithItemsMenu.class)
 	private Set<ItemMenu> itemsMenu=null;
 	@Enumerated(EnumType.STRING)
+	@JsonView(JsonViews.Simple.class)
 	private HeureReservation heureReservation;
 	
 	public SurPlace() {

@@ -8,6 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import projetFinal.entities.views.JsonViews;
+
 @Entity
 @Table(name = "client")
 @AttributeOverride(name = "eMail", column = @Column(name="client_email"))
@@ -17,8 +21,10 @@ import javax.persistence.Table;
 public class Client extends Utilisateur {
 	
 	@OneToMany(mappedBy = "client")
+	@JsonView(JsonViews.ClientWithReservation.class)
 	private Set<Reservation> reservations;
 	@OneToMany(mappedBy = "client")
+	@JsonView(JsonViews.ClientWithCommentaire.class)
 	private Set<Commentaire> commentaires;
 	
 	public Client() {

@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import projetFinal.entities.views.JsonViews;
 import projetFinal.exceptions.ClientException;
 
 @Entity
@@ -19,6 +22,7 @@ import projetFinal.exceptions.ClientException;
 public class Restaurateur extends Utilisateur {
 	
 	@OneToMany(mappedBy = "restaurateur")
+	@JsonView(JsonViews.RestaurateurWithRestaurant.class)
 	private Set<Restaurant> restaurants;
 
 	public Restaurateur() {

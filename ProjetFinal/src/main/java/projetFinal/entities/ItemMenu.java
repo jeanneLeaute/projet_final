@@ -15,12 +15,17 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import projetFinal.entities.views.JsonViews;
+
 @Entity
 @Table(name = "item_menu")
 public class ItemMenu {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_item")
+	@JsonView(JsonViews.Simple.class)
 	private Long id_item;
 	public Long getId_item() {
 		return id_item;

@@ -41,5 +41,21 @@ public class JsonViews {
 	public static class ADomicileWithItemsMenu extends ADomicile {
 
 	}
+	
+	public static class Restaurant extends Simple {
+
+	}
+	
+	public static class RestaurantWithCommentaire extends Restaurant {
+
+	}
+	
+	public static class RestaurantWithItemsMenu extends Restaurant {
+
+	}
+	
+	public static class RestaurantWithRestaurateur extends Restaurant {
+
+	}
 
 }

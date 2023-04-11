@@ -18,6 +18,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import projetFinal.entities.views.JsonViews;
+
 @Entity
 @Table(name = "reservation")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -25,16 +29,21 @@ import javax.persistence.Table;
 public abstract class Reservation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(JsonViews.Simple.class)
 	private Long id_reservation;
 	@ManyToOne
 	@JoinColumn(name = "reservation_client_id", foreignKey = @ForeignKey(name = "reservation_client_id_fk"))
+	@JsonView(JsonViews.Simple.class)
 	private Client client;
 	@ManyToOne
 	@JoinColumn(name = "reservation_restaurant_id", foreignKey = @ForeignKey(name = "reservation_restaurant_id_fk"))
+	@JsonView(JsonViews.Simple.class)
 	private Restaurant restaurant;
 	@Column(name="date_reservation")
+	@JsonView(JsonViews.Simple.class)
 	private LocalDate date = LocalDate.now();
 	@Column(name="specification_reservation")
+	@JsonView(JsonViews.Simple.class)
 	private String specification;
 	
 	

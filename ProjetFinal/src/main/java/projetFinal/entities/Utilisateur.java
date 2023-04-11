@@ -10,14 +10,19 @@ import org.springframework.data.web.JsonPath;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import projetFinal.entities.views.JsonViews;
+
 @MappedSuperclass
 public abstract class Utilisateur {
 	
 	@Id
-	@JsonView
+	@JsonView(JsonViews.Simple.class)
 	private String eMail;
+	@JsonView(JsonViews.Simple.class)
 	private String nom;
+	@JsonView(JsonViews.Simple.class)
 	private String prenom;
+	@JsonView(JsonViews.Simple.class)
 	private String motDePasse;
 	
 	public Utilisateur() {

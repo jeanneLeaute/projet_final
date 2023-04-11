@@ -19,14 +19,20 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import projetFinal.entities.views.JsonViews;
+
 @Entity
 @Table(name = "restaurant")
 public class Restaurant {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false, length = 255)
+	@JsonView(JsonViews.Simple.class)    
 	private Long id;
 	@Column(name = "nom")
+	@JsonView(JsonViews.Simple.class)
 	private String nom;
 	@Column(name = "nom")
 	@Embedded
@@ -36,31 +42,41 @@ public class Restaurant {
 			@AttributeOverride(name = "codePostal", column = @Column(name = "restaurant_cp", length = 50)),
 			@AttributeOverride(name = "ville", column = @Column(name = "restaurant_ville")),
 			@AttributeOverride(name = "complementAdresse", column = @Column(name = "restaurant_complementAdresse"))})
-	        
+	@JsonView(JsonViews.Simple.class)       
 	private Adresse adresse;
 	@Column(name = "description_restau")
+	@JsonView(JsonViews.Simple.class)
 	private String description;
 	@Column(name = "horaire_ouverture")
+	@JsonView(JsonViews.Simple.class)
 	private String horaireOuverture;
 	@Column(name = "urlImage")
+	@JsonView(JsonViews.Simple.class)
 	private String urlImage;
 	@Column(name = "menu")
+	@JsonView(JsonViews.Simple.class)
 	@OneToMany(mappedBy = "restaurant")
 	private Set<ItemMenu> menu;
 	@Column(name = "aEmporter")
+	@JsonView(JsonViews.Simple.class)
 	private boolean aEmporter;
 	@Column(name = "peutResrver")
+	@JsonView(JsonViews.Simple.class)
 	private boolean peutReserver;
 	@Column(name = "commentaires")
 	@OneToMany(mappedBy = "restaurant")
+	@JsonView(JsonViews.RestaurantWithCommentaire.class)
 	private Set<Commentaire> commentaires;
 	@Column(name = "categories")
 	@Enumerated(EnumType.STRING)
+	@JsonView(JsonViews.Simple.class)
 	private Categorie categories;
 	@OneToMany(mappedBy = "restaurant")
+	@JsonView(JsonViews.RestaurantWithItemsMenu.class)
 	private Set<ItemMenu> itemMenus;
 	@ManyToOne
 	@JoinColumn(name = "restaurateur_restaurant_id", foreignKey = @ForeignKey(name="restaurateur_restaurant_id_fk"))
+	@JsonView(JsonViews.RestaurantWithRestaurateur.class)
 	private Restaurateur restaurateur;
 	
 	
