@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import projetFinal.entities.Categorie;
 import projetFinal.entities.Restaurant;
+import projetFinal.entities.Restaurateur;
 import projetFinal.exceptions.RestaurantException;
 import projetFinal.repositories.RestaurantRepository;
 
@@ -43,6 +44,10 @@ public class RestaurantService {
     
     public List<Restaurant> getAll(){
     	return restaurantRepo.findAll();
+    }
+    
+    public List<Restaurant> findByRestaurateur(Restaurateur restaurateur) {
+    	return restaurantRepo.findByRestaurateur(restaurateur);
     }
     
     public List<Restaurant> findByVille(String ville) {
