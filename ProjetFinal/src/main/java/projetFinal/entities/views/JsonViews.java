@@ -61,5 +61,15 @@ public class JsonViews {
 	public static class Reservation extends Simple {
 
 	}
+	
+	public static class Commentaire extends Simple {
+
+	}	
+	public static class CommentaireWithRestaurant extends Commentaire {
+		
+	}
+	public static class CommentaireWithClient extends Commentaire {
+		
+	}
 
 }

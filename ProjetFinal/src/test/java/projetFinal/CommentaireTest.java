@@ -13,7 +13,9 @@ import projetFinal.config.JpaConfig;
 import projetFinal.entities.Client;
 import projetFinal.entities.Commentaire;
 import projetFinal.entities.Restaurant;
+import projetFinal.services.ClientService;
 import projetFinal.services.CommentaireService;
+import projetFinal.services.RestaurantService;
 
 @SpringJUnitConfig(JpaConfig.class)
 @Transactional
@@ -23,9 +25,9 @@ class CommentaireTest {
 	@Autowired
 	CommentaireService commentaireService;
 	@Autowired
-	Client client;
+	ClientService clientService;
 	@Autowired
-	Restaurant restaurant;
+	RestaurantService restaurantService;
 
 	@Disabled
 	@Test
