@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import javax.transaction.Transactional;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ class RestaurateurTest {
 	@Disabled
 	@Test
 	@Commit
+	@BeforeAll
 	void initRestaurateur() {
 		restaurateurService.createOrUpdate(new Restaurateur("Paillat", "Léo", "léorestaurateuremail", "léomotdepasse"));
 		restaurateurService.createOrUpdate(new Restaurateur("Bedy", "Mohameden", "mohamedenrestaurateuremail", "Mohamedenmotdepasse"));

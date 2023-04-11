@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import javax.transaction.Transactional;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ class ClientTest {
 	@Disabled
 	@Test
 	@Commit
+	@BeforeAll
 	void initClient() {
 		clientService.createOrUpdate(new Client("Paillat", "Léo", "léoclientemail", "léomotdepasse"));
 		clientService.createOrUpdate(new Client("Bedy", "Mohameden", "mohamedenclientemail", "Mohamedenmotdepasse"));
