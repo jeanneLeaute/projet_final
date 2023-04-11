@@ -39,12 +39,12 @@ public class CommentaireRestController {
 	public List<Commentaire> getAll() {
 		return commentaireService.getAll();
 	}
-
-	@GetMapping("/{texte}")
-	@JsonView(JsonViews.Commentaire.class)
-	public List<Commentaire> getByTexteContaining(@PathVariable String texte) {
-		return commentaireService.getByTexte(texte);
-	}
+//D'après éclipse de la ligne 43-46 est la même méthode qu'à la ligne 72-77 --> mis en commentaire
+//	@GetMapping("/{texte}")
+//	@JsonView(JsonViews.Commentaire.class)
+//	public List<Commentaire> getByTexteContaining(@PathVariable String texte) {
+//		return commentaireService.getByTexte(texte);
+//	}
 
 	//!!!!
 	@GetMapping("/{client}")
