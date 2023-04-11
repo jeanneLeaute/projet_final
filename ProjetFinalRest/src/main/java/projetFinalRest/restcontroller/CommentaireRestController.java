@@ -36,28 +36,33 @@ public class CommentaireRestController {
 		return commentaireService.getAll();
 	}
 
-	@GetMapping("")
+	@GetMapping("/{texte}")
 	@JsonView(JsonViews.Commentaire.class)
-	public List<Commentaire> getByTexteContaining() {
-		return commentaireService.getByTexte(null);
+	public List<Commentaire> getByTexteContaining(@PathVariable String texte) {
+		return commentaireService.getByTexte(texte);
 	}
 
+	//!!!!
 	@GetMapping("/{client}")
 	@JsonView(JsonViews.Commentaire.class)
-	public List<Commentaire> getByClient(@PathVariable Client client) {
+	public List<Commentaire> getByClient(@Valid @RequestBody Client client, BindingResult br) {
+		if (br.hasErrors()) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+		}
 		return commentaireService.getByClient(client);
 	}
 
 	@GetMapping("/{restaurant}")
 	@JsonView(JsonViews.Commentaire.class)
-	public List<Commentaire> getByRestaurant(@PathVariable Restaurant restaurant) {
+	public List<Commentaire> getByRestaurant(@RequestBody Restaurant restaurant) {
 		return commentaireService.getByRestaurant(restaurant);
 	}
 
 	@GetMapping("/{client}/{restaurant}")
 	@JsonView(JsonViews.Commentaire.class)
-	public List<Commentaire> getByRestaurantAndClient(@PathVariable Client client,@PathVariable Restaurant restaurant) {
-		return commentaireService.getByRestaurantAndClient(restaurant,client);
+	public List<Commentaire> getByRestaurantAndClient(@PathVariable Client client,
+			@PathVariable Restaurant restaurant) {
+		return commentaireService.getByRestaurantAndClient(restaurant, client);
 	}
 
 	@GetMapping("/{id}")
@@ -67,7 +72,6 @@ public class CommentaireRestController {
 		commentaire = commentaireService.getById(id);
 		return commentaire;
 	}
-
 
 	@PostMapping("")
 	@JsonView(JsonViews.Commentaire.class)
@@ -93,7 +97,7 @@ public class CommentaireRestController {
 		if (commentaire.getRestaurant() != null) {
 			commentaireEnBase.setRestaurant(commentaire.getRestaurant());
 		}
-		
+
 		return commentaireEnBase;
 	}
 
