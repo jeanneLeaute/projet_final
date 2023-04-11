@@ -5,11 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import projetFinal.entities.Client;
 import projetFinal.entities.Reservation;
 import projetFinal.entities.views.JsonViews;
 import projetFinal.services.ReservationService;
@@ -33,4 +35,15 @@ public class ReservationRestController {
 		return reservationService.getById(id);
 	}
 
+	@GetMapping("")
+	@JsonView(JsonViews.Reservation.class)
+	public List<Reservation> getByClient(@RequestBody Client client) {
+		return reservationService.getByClient(client);
+	}
+	
+	@GetMapping("")
+	@JsonView(JsonViews.Reservation.class)
+	public List<Reservation> getByRestaurant(@RequestBody Client client) {
+		return reservationService.getByClient(client);
+	}
 }

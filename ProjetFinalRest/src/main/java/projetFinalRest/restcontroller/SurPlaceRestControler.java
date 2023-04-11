@@ -20,6 +20,9 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import projetFinal.entities.Client;
+import projetFinal.entities.Reservation;
+import projetFinal.entities.Restaurant;
 import projetFinal.entities.SurPlace;
 import projetFinal.entities.views.JsonViews;
 import projetFinal.services.SurPlaceService;
@@ -100,4 +103,15 @@ public class SurPlaceRestControler {
 		surPlaceService.delete(surPlace);
 	}
 	
+	@GetMapping("")
+	@JsonView(JsonViews.SurPlace.class)
+	public List<SurPlace> getByClient(@RequestBody Client client) {
+		return surPlaceService.getByClient(client);
+	}
+	
+	@GetMapping("")
+	@JsonView(JsonViews.SurPlace.class)
+	public List<SurPlace> getByRestaurant(@RequestBody Restaurant restaurant) {
+		return surPlaceService.getByRestaurant(restaurant);
+	}
 }

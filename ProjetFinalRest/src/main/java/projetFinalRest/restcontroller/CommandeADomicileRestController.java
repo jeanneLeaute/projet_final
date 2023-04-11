@@ -20,7 +20,10 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import projetFinal.entities.Client;
 import projetFinal.entities.CommandeADomicile;
+import projetFinal.entities.Reservation;
+import projetFinal.entities.Restaurant;
 import projetFinal.entities.views.JsonViews;
 import projetFinal.services.CommandeADomicileService;
 
@@ -93,5 +96,17 @@ public class CommandeADomicileRestController {
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void delete(@RequestBody CommandeADomicile CommandeADomicile) {
 		commandeADomicileService.delete(CommandeADomicile);
+	}
+	
+	@GetMapping("")
+	@JsonView(JsonViews.CommandeADomicile.class)
+	public List<CommandeADomicile> getByClient(@RequestBody Client client) {
+		return commandeADomicileService.getByClient(client);
+	}
+	
+	@GetMapping("")
+	@JsonView(JsonViews.CommandeADomicile.class)
+	public List<CommandeADomicile> getByRestaurant(@RequestBody Restaurant restaurant) {
+		return commandeADomicileService.getByRestaurant(restaurant);
 	}
 }
