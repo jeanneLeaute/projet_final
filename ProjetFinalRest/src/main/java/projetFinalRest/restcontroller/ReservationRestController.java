@@ -35,13 +35,13 @@ public class ReservationRestController {
 		return reservationService.getById(id);
 	}
 
-	@GetMapping("")
+	@GetMapping("/getByClient")
 	@JsonView(JsonViews.Reservation.class)
 	public List<Reservation> getByClient(@RequestBody Client client) {
 		return reservationService.getByClient(client);
 	}
 	
-	@GetMapping("")
+	@GetMapping("/getByRestaurant")
 	@JsonView(JsonViews.Reservation.class)
 	public List<Reservation> getByRestaurant(@RequestBody Client client) {
 		return reservationService.getByClient(client);
