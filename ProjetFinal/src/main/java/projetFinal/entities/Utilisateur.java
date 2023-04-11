@@ -6,10 +6,15 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+import org.springframework.data.web.JsonPath;
+
+import com.fasterxml.jackson.annotation.JsonView;
+
 @MappedSuperclass
 public abstract class Utilisateur {
 	
 	@Id
+	@JsonView
 	private String eMail;
 	private String nom;
 	private String prenom;
