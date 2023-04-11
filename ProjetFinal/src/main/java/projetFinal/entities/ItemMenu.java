@@ -36,22 +36,29 @@ public class ItemMenu {
 	}
 
 	@Column(name = "urlImage")
+	@JsonView(JsonViews.Simple.class)
 	private String urlImage;
 	@Column(name = "nom")
+	@JsonView(JsonViews.Simple.class)
 	private String nom;
 	@Column(name = "description_menu")
+	@JsonView(JsonViews.Simple.class)
 	private String description;
 	@Column(name = "categoriePlat")
 	@Enumerated(EnumType.STRING)
+	@JsonView(JsonViews.Simple.class)
 	private CategoriePlat categoriePlat;
 	@ManyToOne
 	@JoinColumn(name = "restaurant_item_id", foreignKey = @ForeignKey(name="restaurant_item_id_fk"))
+	@JsonView(JsonViews.ItemMenuWithRestaurant.class)
 	private Restaurant restaurant;
 	@ManyToMany
 	@JoinColumn(name = "surPlace_item_id", foreignKey = @ForeignKey(name="surPlace_item_id_fk"))
+	@JsonView(JsonViews.ItemMenuWithSurPlaces.class)
 	private Set<SurPlace> surPlaces;
 	@ManyToMany
 	@JoinColumn(name = "commande_item_id", foreignKey = @ForeignKey(name="commande_item_id_fk"))
+	@JsonView(JsonViews.ItemMenuWithCommandesADomicile.class)
 	private Set<CommandeADomicile> commandesAdomicile;
 	
 	

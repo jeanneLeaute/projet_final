@@ -28,6 +28,24 @@ public class ItemMenuService {
 		});
 	}
 	
+	public ItemMenu getByIdWithSurPlaces(Long id) {
+		if(id==null) {
+			throw new ItemMenuException("id obligatoire");
+		}
+		return itemMenuRepo.findByIdFetchSurPlace(id).orElseThrow(() -> {
+			throw new ItemMenuException("id inconnu");
+		});
+	}
+	
+	public ItemMenu getByIdWithCommandeADomicile(Long id) {
+		if(id==null) {
+			throw new ItemMenuException("id obligatoire");
+		}
+		return itemMenuRepo.findByIdFetchCommandesADomicile(id).orElseThrow(() -> {
+			throw new ItemMenuException("id inconnu");
+		});
+	}
+	
 	public void deleteByKey(Long id) {
 		ItemMenu itemMenu=getById(id);
 		itemMenuRepo.delete(itemMenu);

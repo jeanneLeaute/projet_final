@@ -58,11 +58,11 @@ public class RestaurateurRestController {
 		return restaurateur;
 	}
 	
-	@GetMapping("/getByRestaurant")
+	@GetMapping("/{IdRestaurant}")
 	@JsonView(JsonViews.Restaurateur.class)
-	public Restaurateur getByrestaurant(@RequestBody Restaurant  restaurant) {
+	public Restaurateur getByIdRestaurant(@PathVariable Long  IdRestaurant) {
 		Restaurateur restaurateur = null;
-		restaurateur = restaurantSrv.get;
+		restaurateur = restaurantSrv.getById(IdRestaurant).getRestaurateur();
 		return restaurateur;
 	}
 	

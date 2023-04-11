@@ -72,5 +72,21 @@ public class JsonViews {
 	public static class CommentaireWithClient extends Commentaire {
 		
 	}
+	
+	public static class ItemMenu extends Simple {
+
+	}
+	
+	public static class ItemMenuWithRestaurant extends ItemMenu {
+
+	}
+	
+	public static class ItemMenuWithSurPlaces extends ItemMenu {
+
+	}
+	
+	public static class ItemMenuWithCommandesADomicile extends ItemMenu {
+
+	}
 
 }
