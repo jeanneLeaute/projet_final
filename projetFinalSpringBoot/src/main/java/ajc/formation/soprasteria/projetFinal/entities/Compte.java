@@ -40,7 +40,8 @@ public class Compte implements UserDetails {
 	@JsonView(JsonViews.Simple.class)
 	@Enumerated(EnumType.STRING)
 	private Role role;
-	@OneToOne(mappedBy = "compte")
+	@OneToOne(mappedBy ="compte")
+	@JsonView(JsonViews.CompteWithUtilisateur.class)
 	private Utilisateur utilisateur;
 	
 	public Compte() {

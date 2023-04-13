@@ -14,10 +14,11 @@ import ajc.formation.soprasteria.projetFinal.entities.views.JsonViews;
 
 @Entity
 @Table(name = "client")
-@AttributeOverride(name = "eMail", column = @Column(name="client_email"))
+@AttributeOverride(name = "id", column = @Column(name="client_id"))
 @AttributeOverride(name = "nom", column = @Column(name="client_nom"))
 @AttributeOverride(name = "prenom", column = @Column(name="client_prenom"))
-@AttributeOverride(name = "motDePasse", column = @Column(name="client_mot_de_passe"))
+@AttributeOverride(name = "password", column = @Column(name="client_password"))
+@AttributeOverride(name = "role", column = @Column(name="client_role"))
 public class Client extends Utilisateur {
 	
 	@OneToMany(mappedBy = "client")
@@ -31,15 +32,24 @@ public class Client extends Utilisateur {
 		
 	}
 
-	public Client(String nom, String prenom, String eMail, String motDePasse, Set<Reservation> reservations, Set<Commentaire> commentaires) {
-		super(nom, prenom, eMail, motDePasse);
+
+
+
+	public Client(Long id, String nom, String prenom, String login, String password, Role role,
+			Set<Reservation> reservations, Set<Commentaire> commentaires) {
+		super(id, nom, prenom, login, password, role);
 		this.reservations = reservations;
 		this.commentaires = commentaires;
 	}
 
 
-	public Client(String nom, String prenom, String eMail, String motDePasse) {
-		super(nom, prenom, eMail, motDePasse);
+
+
+	public Client(String nom, String prenom, String login, String password, Role role, Set<Reservation> reservations,
+			Set<Commentaire> commentaires) {
+		super(nom, prenom, login, password, role);
+		this.reservations = reservations;
+		this.commentaires = commentaires;
 	}
 
 

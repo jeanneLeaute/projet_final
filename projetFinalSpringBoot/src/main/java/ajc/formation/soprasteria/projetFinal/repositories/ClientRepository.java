@@ -8,15 +8,15 @@ import org.springframework.data.repository.query.Param;
 
 import ajc.formation.soprasteria.projetFinal.entities.Client;
 
-public interface ClientRepository extends JpaRepository<Client, String>{
+public interface ClientRepository extends JpaRepository<Client, Long>{
 
-	@Query("select c from Client c left join fetch c.reservations where c.eMail=:eMail")
-	Optional<Client> findByEMailFetchReservations(@Param("eMail") String eMail);
+	@Query("select c from Client c left join fetch c.reservations where c.id=:id")
+	Optional<Client> findByIdFetchReservations(@Param("id") Long id);
 	
-	@Query("select c from Client c left join fetch c.commentaires where c.eMail=:eMail")
-	Optional<Client> findByEMailFetchCommentaires(@Param("eMail") String eMail);
+	@Query("select c from Client c left join fetch c.commentaires where id=:id")
+	Optional<Client> findByIdFetchCommentaires(@Param("id") Long id);
 	
-	@Query("select c from Client c left join fetch c.reservations left join fetch c.commentaires where c.eMail=:eMail")
-	Optional<Client> findByEMailFetchReservationsFetchCommentaires(@Param("eMail") String eMail);
+	@Query("select c from Client c left join fetch c.reservations left join fetch c.commentaires where id=:id")
+	Optional<Client> findByIdFetchReservationsFetchCommentaires(@Param("id") Long id);
 
 }

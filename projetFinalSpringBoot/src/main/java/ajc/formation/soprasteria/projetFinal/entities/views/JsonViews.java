@@ -2,6 +2,14 @@ package ajc.formation.soprasteria.projetFinal.entities.views;
 
 public class JsonViews {
 	
+	public class Compte extends Simple {
+
+	}
+	
+	public class CompteWithUtilisateur extends Compte {
+
+	}
+
 	public static class Simple {
 
 	}

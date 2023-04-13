@@ -14,10 +14,12 @@ import ajc.formation.soprasteria.projetFinal.entities.views.JsonViews;
 
 @Entity
 @Table(name = "restaurateur")
-@AttributeOverride(name = "eMail", column = @Column(name="restaurateur_email"))
+@AttributeOverride(name = "id", column = @Column(name="restaurateur_id"))
 @AttributeOverride(name = "nom", column = @Column(name="restaurateur_nom"))
 @AttributeOverride(name = "prenom", column = @Column(name="restaurateur_prenom"))
-@AttributeOverride(name = "motDePasse", column = @Column(name="restaurateur_mot_de_passe"))
+@AttributeOverride(name = "password", column = @Column(name="restaurateur_password"))
+@AttributeOverride(name = "role", column = @Column(name="restaurateur_role"))
+
 public class Restaurateur extends Utilisateur {
 	
 	@OneToMany(mappedBy = "restaurateur")
@@ -27,15 +29,24 @@ public class Restaurateur extends Utilisateur {
 	public Restaurateur() {
 		
 	}
+	
+	
 
-	public Restaurateur(String nom, String prenom, String eMail, String motDePasse, Set<Restaurant> restaurants) {
-		super(nom, prenom, eMail, motDePasse);
+	public Restaurateur(String nom, String prenom, String login, String password, Role role,
+			Set<Restaurant> restaurants) {
+		super(nom, prenom, login, password, role);
 		this.restaurants = restaurants;
 	}
 
-	public Restaurateur(String nom, String prenom, String eMail, String motDePasse) {
-		super(nom, prenom, eMail, motDePasse);
+
+
+	public Restaurateur(Long id, String nom, String prenom, String login, String password, Role role,
+			Set<Restaurant> restaurants) {
+		super(id, nom, prenom, login, password, role);
+		this.restaurants = restaurants;
 	}
+
+
 
 	public Set<Restaurant> getRestaurants() {
 		return restaurants;

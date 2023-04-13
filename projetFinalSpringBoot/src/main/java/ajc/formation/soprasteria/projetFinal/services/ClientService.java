@@ -27,48 +27,48 @@ public class ClientService {
 		return clientRepo.findAll();
 	}
 	
-	public Client getByEMail(String eMail) {
-		if (eMail == null) {
-			throw new ClientException("email obligatoire");
+	public Client getById(Long id) {
+		if (id == null) {
+			throw new ClientException("id obligatoire");
 		}
-		return clientRepo.findById(eMail).orElseThrow(() -> {
-			throw new ClientException("email inconnu");
+		return clientRepo.findById(id).orElseThrow(() -> {
+			throw new ClientException("id inconnu");
 		});
 	}
 	
-	public Client getByEMailWithReservation(String eMail) {
-		if (eMail == null) {
-			throw new ClientException("email obligatoire");
+	public Client getByIdWithReservation(String id) {
+		if (id == null) {
+			throw new ClientException("id obligatoire");
 		}
-		return clientRepo.findByEMailFetchReservations(eMail).orElseThrow(() -> {
-			throw new ClientException("email inconnu");
+		return clientRepo.findByIdFetchReservations(id).orElseThrow(() -> {
+			throw new ClientException("id inconnu");
 		});
 	}
 	
-	public Client getByEMailWithCommentaires(String eMail) {
-		if (eMail == null) {
-			throw new ClientException("email obligatoire");
+	public Client getByIdWithCommentaires(String id) {
+		if (id == null) {
+			throw new ClientException("id obligatoire");
 		}
-		return clientRepo.findByEMailFetchCommentaires(eMail).orElseThrow(() -> {
-			throw new ClientException("email inconnu");
+		return clientRepo.findByIdFetchCommentaires(id).orElseThrow(() -> {
+			throw new ClientException("id inconnu");
 		});
 	}
 	
-	public Client getByEMailWithReservationsWithCommentaires(String eMail) {
-		if (eMail == null) {
-			throw new ClientException("email obligatoire");
+	public Client getByIdWithReservationsWithCommentaires(Long id) {
+		if (id == null) {
+			throw new ClientException("id obligatoire");
 		}
-		return clientRepo.findByEMailFetchReservationsFetchCommentaires(eMail).orElseThrow(() -> {
-			throw new ClientException("email inconnu");
+		return clientRepo.findByIdFetchReservationsFetchCommentaires(id).orElseThrow(() -> {
+			throw new ClientException("id inconnu");
 		});
 	}
 	
-	public void deleteByEMail(String eMail) {
-		clientRepo.delete(getByEMail(eMail));
+	public void deleteById(Long id) {
+		clientRepo.delete(getById(id));
 	}
 	
 	public void delete(Client client) {
-		deleteByEMail(client.getEMail());
+		deleteById(client.getId());
 	}
 	
 	public Client create(Client client) {
@@ -86,7 +86,7 @@ public class ClientService {
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 		Set<ConstraintViolation<Client>> violations = validator.validate(client);
 		if (violations.isEmpty()) {
-			Client clientEnBase = getByEMail(client.geteMail());
+			Client clientEnBase = getById(client.getId());
 			clientEnBase.setNom(client.getNom());
 			clientEnBase.setPrenom(client.getPrenom());
 			return clientRepo.save(clientEnBase);
