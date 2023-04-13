@@ -88,5 +88,13 @@ public class JsonViews {
 	public static class ItemMenuWithCommandesADomicile extends ItemMenu {
 
 	}
+	
+	public static class Utilisateur extends Simple {
+
+	}
+	
+	public static class UtilisateurWithCompte extends Utilisateur {
+
+	}
 
 }

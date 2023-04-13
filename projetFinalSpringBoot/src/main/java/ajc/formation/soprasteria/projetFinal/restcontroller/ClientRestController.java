@@ -61,14 +61,14 @@ public class ClientRestController {
 		return client;
 	}
 	
-	@PostMapping("")
+	@PostMapping({"", "/inscription"})
 	@JsonView(JsonViews.ClientWithReservation.class)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Client create(@Valid @RequestBody Client client, BindingResult br) {
 		if (br.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		}
-		clientSrv.createOrUpdate(client);
+		clientSrv.create(client);
 		return client;
 	}
 	
@@ -88,7 +88,7 @@ public class ClientRestController {
 		if (client.getMotDePasse() != null) {
 			clientEnBase.setMotDePasse(client.getMotDePasse());
 		}
-		clientSrv.createOrUpdate(clientEnBase);
+		clientSrv.update(clientEnBase);
 		return clientEnBase;
 	}
 	

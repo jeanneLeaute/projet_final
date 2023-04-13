@@ -2,8 +2,11 @@ package ajc.formation.soprasteria.projetFinal.entities;
 
 import java.util.Objects;
 
+import javax.persistence.ForeignKey;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -21,6 +24,10 @@ public abstract class Utilisateur {
 	private String prenom;
 	@JsonView(JsonViews.Simple.class)
 	private String motDePasse;
+	@OneToOne
+	@JoinColumn(name = "utilisateur_compte_id", foreignKey = @ForeignKey(name = "utilisateur_compte_id_fk"))
+	@JsonView(JsonViews.UtilisateurWithCompte.class)
+	private Compte compte;
 	
 	public Utilisateur() {
 		
@@ -64,6 +71,22 @@ public abstract class Utilisateur {
 
 	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = motDePasse;
+	}
+
+	public String geteMail() {
+		return eMail;
+	}
+
+	public void seteMail(String eMail) {
+		this.eMail = eMail;
+	}
+
+	public Compte getCompte() {
+		return compte;
+	}
+
+	public void setCompte(Compte compte) {
+		this.compte = compte;
 	}
 
 	@Override

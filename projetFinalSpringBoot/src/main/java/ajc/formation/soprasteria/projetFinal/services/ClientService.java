@@ -1,6 +1,11 @@
 package ajc.formation.soprasteria.projetFinal.services;
 
 import java.util.List;
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +19,9 @@ public class ClientService {
 	
 	@Autowired
 	ClientRepository clientRepo;
+	
+	@Autowired
+	CompteService compteSrv;
 	
 	public List<Client> getAll() {
 		return clientRepo.findAll();
@@ -63,20 +71,28 @@ public class ClientService {
 		deleteByEMail(client.getEMail());
 	}
 	
-	public void createOrUpdate(Client client) {
-		if (client.getEMail() == null || client.getEMail().isBlank()) {
-			throw new ClientException("email obligatoire");
+	public Client create(Client client) {
+		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+		Set<ConstraintViolation<Client>> violations = validator.validate(client);
+		if (violations.isEmpty()) {
+			compteSrv.createClient(client.getCompte());
+			return clientRepo.save(client);
+		} else {
+			throw new ClientException();
 		}
-		if (client.getNom() == null || client.getNom().isBlank()) {
-			throw new ClientException("nom obligatoire");
+	}
+	
+	public Client update(Client client) {
+		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+		Set<ConstraintViolation<Client>> violations = validator.validate(client);
+		if (violations.isEmpty()) {
+			Client clientEnBase = getByEMail(client.geteMail());
+			clientEnBase.setNom(client.getNom());
+			clientEnBase.setPrenom(client.getPrenom());
+			return clientRepo.save(clientEnBase);
+		} else {
+			throw new ClientException();
 		}
-		if (client.getPrenom() == null || client.getPrenom().isBlank()) {
-			throw new ClientException("prenom obligatoire");
-		}
-		if (client.getMotDePasse().length() < 5) {
-			throw new ClientException("mot de passe trop faible (minimum 5 caractères");
-		}
-		clientRepo.save(client);
 	}
 
 }

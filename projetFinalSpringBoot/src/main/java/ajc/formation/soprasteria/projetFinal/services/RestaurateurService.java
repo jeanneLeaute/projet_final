@@ -1,11 +1,17 @@
 package ajc.formation.soprasteria.projetFinal.services;
 
 import java.util.List;
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ajc.formation.soprasteria.projetFinal.entities.Restaurateur;
+import ajc.formation.soprasteria.projetFinal.exception.ClientException;
 import ajc.formation.soprasteria.projetFinal.exception.RestaurateurException;
 import ajc.formation.soprasteria.projetFinal.repositories.RestaurateurRepository;
 
@@ -13,7 +19,10 @@ import ajc.formation.soprasteria.projetFinal.repositories.RestaurateurRepository
 public class RestaurateurService {
 	
 	@Autowired
-	RestaurateurRepository restaurateuRepo;
+	private RestaurateurRepository restaurateuRepo;
+	
+	@Autowired
+	private CompteService compteSrv;
 	
 	public List<Restaurateur> getAll() {
 		return restaurateuRepo.findAll();
@@ -54,20 +63,28 @@ public class RestaurateurService {
 		deleteByEMail(restaurateur.getEMail());
 	}
 	
-	public void createOrUpdate(Restaurateur restaurateur) {
-		if (restaurateur.getEMail() == null || restaurateur.getEMail().isBlank()) {
-			throw new RestaurateurException("email obligatoire");
+	public Restaurateur create(Restaurateur restaurateur) {
+		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+		Set<ConstraintViolation<Restaurateur>> violations = validator.validate(restaurateur);
+		if (violations.isEmpty()) {
+			compteSrv.createRestaurateur(restaurateur.getCompte());
+			return restaurateuRepo.save(restaurateur);
+		} else {
+			throw new RestaurateurException();
 		}
-		if (restaurateur.getNom() == null || restaurateur.getNom().isBlank()) {
-			throw new RestaurateurException("nom obligatoire");
+	}
+	
+	public Restaurateur update(Restaurateur restaurateur) {
+		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+		Set<ConstraintViolation<Restaurateur>> violations = validator.validate(restaurateur);
+		if (violations.isEmpty()) {
+			Restaurateur restaurateurEnBase = getByEMail(restaurateur.geteMail());
+			restaurateurEnBase.setNom(restaurateur.getNom());
+			restaurateurEnBase.setPrenom(restaurateur.getPrenom());
+			return restaurateuRepo.save(restaurateurEnBase);
+		} else {
+			throw new RestaurateurException();
 		}
-		if (restaurateur.getPrenom() == null || restaurateur.getPrenom().isBlank()) {
-			throw new RestaurateurException("prenom obligatoire");
-		}
-		if (restaurateur.getMotDePasse().length() < 5) {
-			throw new RestaurateurException("mot de passe trop faible (minimum 5 caractères");
-		}
-		restaurateuRepo.save(restaurateur);
 	}
 
 }

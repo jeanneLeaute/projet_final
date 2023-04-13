@@ -65,14 +65,14 @@ public class RestaurateurRestController {
 		return restaurateur;
 	}
 	
-	@PostMapping("")
+	@PostMapping({"", "/inscription"})
 	@JsonView(JsonViews.RestaurateurWithRestaurant.class)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Restaurateur create(@Valid @RequestBody Restaurateur restaurateur, BindingResult br) {
 		if (br.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		}
-		restaurateurSrv.createOrUpdate(restaurateur);
+		restaurateurSrv.create(restaurateur);
 		return restaurateur;
 	}
 	
@@ -92,7 +92,7 @@ public class RestaurateurRestController {
 		if (restaurateur.getMotDePasse() != null) {
 			restaurateurEnBase.setMotDePasse(restaurateur.getMotDePasse());
 		}
-		restaurateurSrv.createOrUpdate(restaurateurEnBase);
+		restaurateurSrv.update(restaurateurEnBase);
 		return restaurateurEnBase;
 	}
 	
