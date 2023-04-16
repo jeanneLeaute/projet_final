@@ -17,6 +17,7 @@ import ajc.formation.soprasteria.projetFinal.entities.views.JsonViews;
 @AttributeOverride(name = "id", column = @Column(name="client_id"))
 @AttributeOverride(name = "nom", column = @Column(name="client_nom"))
 @AttributeOverride(name = "prenom", column = @Column(name="client_prenom"))
+@AttributeOverride(name = "login", column = @Column(name="client_login"))
 @AttributeOverride(name = "password", column = @Column(name="client_password"))
 @AttributeOverride(name = "role", column = @Column(name="client_role"))
 public class Client extends Utilisateur {
@@ -32,18 +33,12 @@ public class Client extends Utilisateur {
 		
 	}
 
-
-
-
 	public Client(Long id, String nom, String prenom, String login, String password, Role role,
 			Set<Reservation> reservations, Set<Commentaire> commentaires) {
 		super(id, nom, prenom, login, password, role);
 		this.reservations = reservations;
 		this.commentaires = commentaires;
 	}
-
-
-
 
 	public Client(String nom, String prenom, String login, String password, Role role, Set<Reservation> reservations,
 			Set<Commentaire> commentaires) {
@@ -52,11 +47,9 @@ public class Client extends Utilisateur {
 		this.commentaires = commentaires;
 	}
 
-
 	public Set<Reservation> getReservations() {
 		return reservations;
 	}
-
 
 	public void setReservations(Set<Reservation> reservations) {
 		this.reservations = reservations;

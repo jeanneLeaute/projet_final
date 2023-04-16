@@ -28,21 +28,30 @@ public class RestaurateurService {
 		return restaurateuRepo.findAll();
 	}
 	
-	public Restaurateur getByEMail(String eMail) {
-		if (eMail == null) {
-			throw new RestaurateurException("email obligatoire");
+	public Restaurateur getById(Long id) {
+		if (id == null) {
+			throw new RestaurateurException("id obligatoire");
 		}
-		return restaurateuRepo.findById(eMail).orElseThrow(() -> {
-			throw new RestaurateurException("email inconnu");
+		return restaurateuRepo.findById(id).orElseThrow(() -> {
+			throw new RestaurateurException("id inconnu");
 		});
 	}
 	
-	public Restaurateur getByEMailWithRestaurants(String eMail) {
-		if (eMail == null) {
-			throw new RestaurateurException("email obligatoire");
+	public Restaurateur getByIdWithRestaurants(Long id) {
+		if (id == null) {
+			throw new RestaurateurException("id obligatoire");
 		}
-		return restaurateuRepo.findByEMailFetchRestaurants(eMail).orElseThrow(() -> {
-			throw new RestaurateurException("email inconnu");
+		return restaurateuRepo.findByIdFetchRestaurants(id).orElseThrow(() -> {
+			throw new RestaurateurException("id inconnu");
+		});
+	}
+	
+	public Restaurateur getByLogin(String login) {
+		if (login == null) {
+			throw new RestaurateurException("login obligatoire");
+		}
+		return restaurateuRepo.findByLogin(login).orElseThrow(() -> {
+			throw new RestaurateurException("login inconnu");
 		});
 	}
 	
@@ -55,20 +64,23 @@ public class RestaurateurService {
 //		});
 //	}
 	
-	public void deleteByEMail(String eMail) {
-		restaurateuRepo.delete(getByEMail(eMail));
+	public void deleteById(Long id) {
+		restaurateuRepo.delete(getById(id));
 	}
 	
 	public void delete(Restaurateur restaurateur) {
-		deleteByEMail(restaurateur.getEMail());
+		deleteById(restaurateur.getId());
 	}
 	
 	public Restaurateur create(Restaurateur restaurateur) {
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 		Set<ConstraintViolation<Restaurateur>> violations = validator.validate(restaurateur);
 		if (violations.isEmpty()) {
-			compteSrv.createRestaurateur(restaurateur.getCompte());
-			return restaurateuRepo.save(restaurateur);
+			if (restaurateuRepo.findByLogin(restaurateur.getLogin()) != null) {
+				throw new ClientException("login déjà utilisé");
+			} else {
+				return restaurateuRepo.save(restaurateur);
+			}
 		} else {
 			throw new RestaurateurException();
 		}
@@ -78,9 +90,10 @@ public class RestaurateurService {
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 		Set<ConstraintViolation<Restaurateur>> violations = validator.validate(restaurateur);
 		if (violations.isEmpty()) {
-			Restaurateur restaurateurEnBase = getByEMail(restaurateur.geteMail());
+			Restaurateur restaurateurEnBase = getById(restaurateur.getId());
 			restaurateurEnBase.setNom(restaurateur.getNom());
 			restaurateurEnBase.setPrenom(restaurateur.getPrenom());
+			restaurateurEnBase.setPassword(restaurateur.getPassword());
 			return restaurateuRepo.save(restaurateurEnBase);
 		} else {
 			throw new RestaurateurException();

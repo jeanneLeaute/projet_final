@@ -34,7 +34,6 @@ public abstract class Utilisateur implements UserDetails {
 	@JsonView(JsonViews.Simple.class)
 	private String login;
 	private String password;
-	@Column(name = "role", nullable = false)
 	@JsonView(JsonViews.Simple.class)
 	@Enumerated(EnumType.STRING)
 	private Role role;
@@ -102,8 +101,8 @@ public abstract class Utilisateur implements UserDetails {
 		this.login = login;
 	}
 
-	public void setMotDePasse(String motDePasse) {
-		this.password = motDePasse;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public Role getRole() {

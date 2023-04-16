@@ -18,5 +18,7 @@ public interface ClientRepository extends JpaRepository<Client, Long>{
 	
 	@Query("select c from Client c left join fetch c.reservations left join fetch c.commentaires where id=:id")
 	Optional<Client> findByIdFetchReservationsFetchCommentaires(@Param("id") Long id);
+	
+	Optional<Client> findByLogin(String login);
 
 }

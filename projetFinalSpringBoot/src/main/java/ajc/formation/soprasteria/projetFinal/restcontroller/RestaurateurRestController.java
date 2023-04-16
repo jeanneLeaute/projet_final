@@ -41,29 +41,53 @@ public class RestaurateurRestController {
 		return restaurateurSrv.getAll();
 	}
 	
-	@GetMapping("/{email}")
+	@GetMapping("/{id}")
 	@JsonView(JsonViews.Restaurateur.class)
-	public Restaurateur getByEMail(@PathVariable String email) {
+	public Restaurateur getById(@PathVariable Long id) {
 		Restaurateur restaurateur = null;
-		restaurateur = restaurateurSrv.getByEMail(email);
+		restaurateur = restaurateurSrv.getById(id);
 		return restaurateur;
 	}
 	
-	@GetMapping("/{email}/restaurants")
+	@GetMapping("/{id}/restaurants")
 	@JsonView(JsonViews.RestaurateurWithRestaurant.class)
-	public Restaurateur getByEMailWithRestaurants(@PathVariable String email) {
+	public Restaurateur getByIdWithRestaurants(@PathVariable Long id) {
 		Restaurateur restaurateur = null;
-		restaurateur = restaurateurSrv.getByEMailWithRestaurants(email);
+		restaurateur = restaurateurSrv.getByIdWithRestaurants(id);
 		return restaurateur;
 	}
 	
-	@GetMapping("/{IdRestaurant}")
+	@GetMapping("/{login}")
 	@JsonView(JsonViews.Restaurateur.class)
-	public Restaurateur getByIdRestaurant(@PathVariable Long  IdRestaurant) {
+	public Restaurateur getByLogin(@PathVariable String login) {
 		Restaurateur restaurateur = null;
-		restaurateur = restaurantSrv.getById(IdRestaurant).getRestaurateur();
+		restaurateur = restaurateurSrv.getByLogin(login);
 		return restaurateur;
 	}
+	
+	@GetMapping("/{login}/restaurants")
+	@JsonView(JsonViews.RestaurateurWithRestaurant.class)
+	public Restaurateur getByLoginWithRestaurants(@PathVariable String login) {
+		Restaurateur restaurateur = null;
+		restaurateur = restaurateurSrv.getByIdWithRestaurants(restaurateurSrv.getByLogin(login).getId());
+		return restaurateur;
+	}
+	
+	@GetMapping("/{idRestaurant}")
+	@JsonView(JsonViews.Restaurateur.class)
+	public Restaurateur getByIdRestaurant(@PathVariable Long  idRestaurant) {
+		Restaurateur restaurateur = null;
+		restaurateur = restaurantSrv.getById(idRestaurant).getRestaurateur();
+		return restaurateur;
+	}
+	
+//	@GetMapping("/{nomRestaurant}")
+//	@JsonView(JsonViews.Restaurateur.class)
+//	public Restaurateur getByNomRestaurant(@PathVariable String  nomRestaurant) {
+//		Restaurateur restaurateur = null;
+//		restaurateur = restaurantSrv.getByNom(nomRestaurant).getRestaurateur();
+//		return restaurateur;
+//	}
 	
 	@PostMapping({"", "/inscription"})
 	@JsonView(JsonViews.RestaurateurWithRestaurant.class)
@@ -76,30 +100,27 @@ public class RestaurateurRestController {
 		return restaurateur;
 	}
 	
-	@PutMapping("/{email}")
+	@PutMapping("/{id}")
 	@JsonView(JsonViews.Client.class)
-	public Restaurateur update(@RequestBody Restaurateur restaurateur, @PathVariable String email) {
-		Restaurateur restaurateurEnBase = restaurateurSrv.getByEMail(email);
-		if (restaurateur.getEMail() != null) {
-			restaurateurEnBase.setEMail(restaurateur.getEMail());
-		}
+	public Restaurateur update(@RequestBody Restaurateur restaurateur, @PathVariable Long id) {
+		Restaurateur restaurateurEnBase = restaurateurSrv.getById(id);
 		if (restaurateur.getNom() != null) {
 			restaurateurEnBase.setNom(restaurateur.getNom());
 		}
 		if (restaurateur.getPrenom() != null) {
 			restaurateurEnBase.setPrenom(restaurateur.getPrenom());
 		}
-		if (restaurateur.getMotDePasse() != null) {
-			restaurateurEnBase.setMotDePasse(restaurateur.getMotDePasse());
+		if (restaurateur.getPassword() != null) {
+			restaurateurEnBase.setPassword(restaurateur.getPassword());
 		}
 		restaurateurSrv.update(restaurateurEnBase);
 		return restaurateurEnBase;
 	}
 	
-	@DeleteMapping("/{email}")
+	@DeleteMapping("/{id}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void delete(@PathVariable String email) {
-		restaurateurSrv.deleteByEMail(email);
+	public void delete(@PathVariable Long id) {
+		restaurateurSrv.deleteById(id);
 	}
 
 }

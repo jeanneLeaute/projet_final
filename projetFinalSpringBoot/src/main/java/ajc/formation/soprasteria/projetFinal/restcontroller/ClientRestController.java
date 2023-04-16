@@ -37,27 +37,43 @@ public class ClientRestController {
 		return clientSrv.getAll();
 	}
 	
-	@GetMapping("/{email}")
+	@GetMapping("/{id}")
 	@JsonView(JsonViews.Client.class)
-	public Client getByEMail(@PathVariable String email) {
+	public Client getById(@PathVariable Long id) {
 		Client client = null;
-		client = clientSrv.getByEMail(email);
+		client = clientSrv.getById(id);
 		return client;
 	}
 	
-	@GetMapping("/{email}/commentaires")
+	@GetMapping("/{id}/commentaires")
 	@JsonView(JsonViews.ClientWithCommentaire.class)
-	public Client getByEMailWithCommentaires(@PathVariable String email) {
+	public Client getByIdWithCommentaires(@PathVariable Long id) {
 		Client client = null;
-		client = clientSrv.getByEMailWithCommentaires(email);
+		client = clientSrv.getByIdWithCommentaires(id);
 		return client;
 	}
 	
-	@GetMapping("/{email}/reservations")
+	@GetMapping("/{id}/reservations")
 	@JsonView(JsonViews.ClientWithReservation.class)
-	public Client getByEMailWithReservations(@PathVariable String email) {
+	public Client getByIdWithReservations(@PathVariable Long id) {
 		Client client = null;
-		client = clientSrv.getByEMailWithReservation(email);
+		client = clientSrv.getByIdWithReservation(id);
+		return client;
+	}
+	
+	@GetMapping("/{login}/commentaires")
+	@JsonView(JsonViews.ClientWithCommentaire.class)
+	public Client getByLoginWithCommentaires(@PathVariable String login) {
+		Client client = null;
+		client = clientSrv.getByIdWithCommentaires(clientSrv.getByLogin(login).getId());
+		return client;
+	}
+	
+	@GetMapping("/{login}/reservations")
+	@JsonView(JsonViews.ClientWithReservation.class)
+	public Client getByLoginWithReservations(@PathVariable String login) {
+		Client client = null;
+		client = clientSrv.getByIdWithReservation(clientSrv.getByLogin(login).getId());
 		return client;
 	}
 	
@@ -72,30 +88,27 @@ public class ClientRestController {
 		return client;
 	}
 	
-	@PutMapping("/{email}")
+	@PutMapping("/{id}")
 	@JsonView(JsonViews.Client.class)
-	public Client update(@RequestBody Client client, @PathVariable String email) {
-		Client clientEnBase = clientSrv.getByEMail(email);
-		if (client.getEMail() != null) {
-			clientEnBase.setEMail(client.getEMail());
-		}
+	public Client update(@RequestBody Client client, @PathVariable Long id) {
+		Client clientEnBase = clientSrv.getById(id);
 		if (client.getNom() != null) {
 			clientEnBase.setNom(client.getNom());
 		}
 		if (client.getPrenom() != null) {
 			clientEnBase.setPrenom(client.getPrenom());
 		}
-		if (client.getMotDePasse() != null) {
-			clientEnBase.setMotDePasse(client.getMotDePasse());
+		if (client.getPassword() != null) {
+			clientEnBase.setPassword(client.getPassword());
 		}
 		clientSrv.update(clientEnBase);
 		return clientEnBase;
 	}
 	
-	@DeleteMapping("/{email}")
+	@DeleteMapping("/{id}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void delete(@PathVariable String email) {
-		clientSrv.deleteByEMail(email);
+	public void delete(@PathVariable Long id) {
+		clientSrv.deleteById(id);
 	}
 
 }
