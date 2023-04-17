@@ -77,7 +77,7 @@ public class ClientRestController {
 		return client;
 	}
 	
-	@PostMapping({"", "/inscription"})
+	@PostMapping("/inscription")
 	@JsonView(JsonViews.ClientWithReservation.class)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Client create(@Valid @RequestBody Client client, BindingResult br) {

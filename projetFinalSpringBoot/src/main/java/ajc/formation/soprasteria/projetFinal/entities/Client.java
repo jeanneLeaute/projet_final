@@ -46,6 +46,12 @@ public class Client extends Utilisateur {
 		this.reservations = reservations;
 		this.commentaires = commentaires;
 	}
+	
+	
+
+	public Client(String nom, String prenom, String login, String password) {
+		super(nom, prenom, login, password);
+	}
 
 	public Set<Reservation> getReservations() {
 		return reservations;

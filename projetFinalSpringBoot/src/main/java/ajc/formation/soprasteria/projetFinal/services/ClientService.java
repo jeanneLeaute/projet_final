@@ -8,9 +8,11 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import ajc.formation.soprasteria.projetFinal.entities.Client;
+import ajc.formation.soprasteria.projetFinal.entities.Role;
 import ajc.formation.soprasteria.projetFinal.exception.ClientException;
 import ajc.formation.soprasteria.projetFinal.repositories.ClientRepository;
 
@@ -21,7 +23,10 @@ public class ClientService {
 	ClientRepository clientRepo;
 
 	@Autowired
-	CompteService compteSrv;
+	private Validator validator;
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	public List<Client> getAll() {
 		return clientRepo.findAll();
@@ -81,32 +86,23 @@ public class ClientService {
 	}
 
 	public Client create(Client client) {
-		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
-		Set<ConstraintViolation<Client>> violations = validator.validate(client);
-		if (violations.isEmpty()) {
-			if (clientRepo.findByLogin(client.getLogin()) != null) {
-				throw new ClientException("login déjà utilisé");
-			} else {
-				return clientRepo.save(client);
-			}
-
-		} else {
+		if (!validator.validate(client).isEmpty()) {
 			throw new ClientException();
 		}
+		client.setPassword(passwordEncoder.encode(client.getPassword()));
+		client.setRole(Role.ROLE_CLIENT);
+		return clientRepo.save(client);
 	}
 
 	public Client update(Client client) {
-		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
-		Set<ConstraintViolation<Client>> violations = validator.validate(client);
-		if (violations.isEmpty()) {
-			Client clientEnBase = getById(client.getId());
-			clientEnBase.setNom(client.getNom());
-			clientEnBase.setPrenom(client.getPrenom());
-			clientEnBase.setPassword(client.getPassword());
-			return clientRepo.save(clientEnBase);
-		} else {
+		if (!validator.validate(client).isEmpty()) {
 			throw new ClientException();
 		}
+		Client clientEnBase = getById(client.getId());
+		clientEnBase.setNom(client.getNom());
+		clientEnBase.setPrenom(client.getPrenom());
+		clientEnBase.setPassword(client.getPassword());
+		return clientRepo.save(clientEnBase);
 	}
 
 }

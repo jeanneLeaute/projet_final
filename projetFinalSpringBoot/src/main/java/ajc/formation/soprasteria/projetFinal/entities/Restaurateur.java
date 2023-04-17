@@ -43,6 +43,10 @@ public class Restaurateur extends Utilisateur {
 		this.restaurants = restaurants;
 	}
 
+	public Restaurateur(String nom, String prenom, String login, String password) {
+		super(nom, prenom, login, password);
+	}
+
 	public Set<Restaurant> getRestaurants() {
 		return restaurants;
 	}

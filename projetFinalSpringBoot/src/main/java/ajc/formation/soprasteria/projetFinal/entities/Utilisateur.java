@@ -32,7 +32,9 @@ public abstract class Utilisateur implements UserDetails {
 	@JsonView(JsonViews.Simple.class)
 	private String prenom;
 	@JsonView(JsonViews.Simple.class)
+	@Column(nullable=false, unique = true)
 	private String login;
+	@Column(nullable=false, unique = true)
 	private String password;
 	@JsonView(JsonViews.Simple.class)
 	@Enumerated(EnumType.STRING)
@@ -67,6 +69,14 @@ public abstract class Utilisateur implements UserDetails {
 		this.login = login;
 		this.password = password;
 		this.role = role;
+	}
+
+	public Utilisateur(String nom, String prenom, String login, String password) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.login = login;
+		this.password = password;
 	}
 
 	public Long getId() {

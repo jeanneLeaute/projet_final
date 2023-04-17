@@ -1,4 +1,4 @@
-package ajc.formation.soprasteria.projetFinal;
+package ajc.formation.soprasteria.projetFinal.configurations;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,11 +9,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+
+
 @Configuration
 public class ApiSecurityConfig {
 	
+	  
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+
 		//@formatter:off
 		return http.antMatcher("/api/**")
 				.csrf().disable()
@@ -21,12 +25,12 @@ public class ApiSecurityConfig {
 				.and()
 				.authorizeRequests()
 					.antMatchers(HttpMethod.POST, "/api/**/inscription").anonymous()
-					.antMatchers(HttpMethod.POST, "/api/reservation").hasAnyRole("Client")
-					.antMatchers(HttpMethod.GET, "/api/restaurant").hasAnyRole("Client")
-					.antMatchers(HttpMethod.POST, "/api/restaurant").hasAnyRole("Restaurateur")
-					.antMatchers(HttpMethod.GET, "/api/reservation").hasAnyRole("Restaurateur")
+					.antMatchers(HttpMethod.POST, "/api/reservation").hasAnyRole("CLIENT")
+					.antMatchers(HttpMethod.GET, "/api/restaurant").hasAnyRole("CLIENT")
+					.antMatchers(HttpMethod.POST, "/api/restaurant").hasAnyRole("RESTAURATEUR")
+					.antMatchers(HttpMethod.GET, "/api/reservation").hasAnyRole("RESTAURATEUR")
 					/*.antMatchers(HttpMethod.GET).permitAll()*/
-					.anyRequest().hasAnyRole("ADMIN")
+					.anyRequest().hasAnyRole("ADMIN")	
 				.and()
 				.httpBasic()
 				.and()
@@ -36,6 +40,7 @@ public class ApiSecurityConfig {
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
+
 		return new BCryptPasswordEncoder();
 	}
 
