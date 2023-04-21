@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Client } from '../model/client';
 import { Observable } from 'rxjs';
 import { ObjectToJsonService } from './object-to-json.service';
+import { Utilisateur } from '../model/utilisateur';
 
 @Injectable({
   providedIn: 'root',
@@ -13,8 +14,8 @@ export class ClientService {
     private convert: ObjectToJsonService
   ) {}
 
-  public allClient(): Observable<Client[]> {
-    return this.httpClient.get<Client[]>(
+  public allClient(): Observable<Utilisateur[]> {
+    return this.httpClient.get<Utilisateur[]>(
       'http://localhost:8080/projetFinal/api/client'
     );
   }
@@ -25,29 +26,29 @@ export class ClientService {
     );
   }
 
-  public create(client: Client): Observable<Client> {
+  public create(client: Utilisateur): Observable<Utilisateur> {
     console.debug(client);
-    return this.httpClient.post<Client>(
+    return this.httpClient.post<Utilisateur>(
       'http://localhost:8080/eshop/api/client/inscription',
-      this.convert.clientToJson(client)
+      this.convert.utilisateurToJson(client)
     );
   }
 
-  public update(client: Client): Observable<Client> {
-    return this.httpClient.put<Client>(
+  public update(client: Utilisateur): Observable<Utilisateur> {
+    return this.httpClient.put<Utilisateur>(
       `http://localhost:8080/eshop/api/client/${client.id}`,
-      this.convert.clientToJson(client)
+      this.convert.utilisateurToJson(client)
     );
   }
 
-  public getById(id: number): Observable<Client> {
-    return this.httpClient.get<Client>(
+  public getById(id: number): Observable<Utilisateur> {
+    return this.httpClient.get<Utilisateur>(
       `http://localhost:8080/eshop/api/client/${id}`
     );
   }
 
-  public getByLogin(login: string): Observable<Client> {
-    return this.httpClient.get<Client>(
+  public getByLogin(login: string): Observable<Utilisateur> {
+    return this.httpClient.get<Utilisateur>(
       `http://localhost:8080/eshop/api/client/${login}`
     );
   }

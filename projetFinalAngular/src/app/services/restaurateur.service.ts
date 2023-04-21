@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Restaurateur } from '../model/restaurateur';
 import { Observable } from 'rxjs';
 import { ObjectToJsonService } from './object-to-json.service';
+import { Utilisateur } from '../model/utilisateur';
 
 @Injectable({
   providedIn: 'root',
@@ -13,8 +14,8 @@ export class RestaurateurService {
     private convert: ObjectToJsonService
   ) {}
 
-  public allClient(): Observable<Restaurateur[]> {
-    return this.httpClient.get<Restaurateur[]>(
+  public allClient(): Observable<Utilisateur[]> {
+    return this.httpClient.get<Utilisateur[]>(
       'http://localhost:8080/projetFinal/api/client'
     );
   }
@@ -25,18 +26,18 @@ export class RestaurateurService {
     );
   }
 
-  public create(restaurateur: Restaurateur): Observable<Restaurateur> {
+  public create(restaurateur: Utilisateur): Observable<Utilisateur> {
     console.debug(restaurateur);
-    return this.httpClient.post<Restaurateur>(
+    return this.httpClient.post<Utilisateur>(
       'http://localhost:8080/eshop/api/client/inscription',
-      this.convert.restaurateurToJson(restaurateur)
+      this.convert.utilisateurToJson(restaurateur)
     );
   }
 
-  public update(restaurateur: Restaurateur): Observable<Restaurateur> {
-    return this.httpClient.put<Restaurateur>(
+  public update(restaurateur: Utilisateur): Observable<Utilisateur> {
+    return this.httpClient.put<Utilisateur>(
       `http://localhost:8080/eshop/api/client/${restaurateur.id}`,
-      this.convert.restaurateurToJson(restaurateur)
+      this.convert.utilisateurToJson(restaurateur)
     );
   }
 

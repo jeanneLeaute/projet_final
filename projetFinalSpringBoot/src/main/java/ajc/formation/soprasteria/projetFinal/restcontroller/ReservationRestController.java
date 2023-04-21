@@ -3,6 +3,7 @@ package ajc.formation.soprasteria.projetFinal.restcontroller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +19,7 @@ import ajc.formation.soprasteria.projetFinal.services.ReservationService;
 
 @RestController
 @RequestMapping("/api/Reservation")
+@CrossOrigin(origins = "*")
 public class ReservationRestController {
 	
 	@Autowired

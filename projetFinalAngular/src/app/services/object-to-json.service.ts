@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Client } from '../model/client';
-import { Restaurateur } from '../model/restaurateur';
-import { Reservation } from '../model/reservation';
 import { Restaurant } from '../model/restaurant';
+import { Utilisateur } from '../model/utilisateur';
 
 @Injectable({
   providedIn: 'root',
@@ -24,29 +23,16 @@ export class ObjectToJsonService {
     return obj;
   }
 
-  public restaurateurToJson(restaurateur: Restaurateur): any {
+  public utilisateurToJson(utilisateur: Utilisateur): any {
     let obj = {
-      nom: restaurateur.nom,
-      prenom: restaurateur.prenom,
-      login: restaurateur.login,
-      password: restaurateur.password,
-      role: restaurateur.role,
+      nom: utilisateur.nom,
+      prenom: utilisateur.prenom,
+      login: utilisateur.login,
+      password: utilisateur.password,
+      role: utilisateur.role,
     };
-    if (restaurateur.id) {
-      Object.assign(obj, { id: restaurateur.id });
-    }
-    return obj;
-  }
-
-  public reservationToJson(reservation: Reservation): any {
-    let obj = {
-      client: reservation.client,
-      restaurant: reservation.restaurant,
-      date: reservation.date,
-      specification: reservation.specification,
-    };
-    if (reservation.id) {
-      Object.assign(obj, { id: reservation.id });
+    if (utilisateur.id) {
+      Object.assign(obj, { id: utilisateur.id });
     }
     return obj;
   }

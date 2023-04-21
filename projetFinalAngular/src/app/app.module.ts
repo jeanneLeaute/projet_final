@@ -7,7 +7,10 @@ import { HomeComponent } from './components/home/home.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { LinkComponent } from './components/link/link.component';
 import { InscriptionComponent } from './components/inscription/inscription.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './components/login/login.component';
+import { AuthInterceptor } from './interceptor/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -16,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     NavBarComponent,
     LinkComponent,
     InscriptionComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +30,7 @@ import { HttpClientModule } from '@angular/common/http';
   ],
 
   providers: [
-    // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })
