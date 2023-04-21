@@ -17,10 +17,10 @@ export class InscriptionRestaurateurComponent {
     this.form = new FormGroup({
       prenom: new FormControl('', Validators.required),
       nom: new FormControl('', Validators.required),
-      numero: new FormControl(''),
-      rue: new FormControl(),
-      codePostal: new FormControl(),
-      ville: new FormControl(),
+      numero: new FormControl('', Validators.required),
+      rue: new FormControl('', Validators.required),
+      codePostal: new FormControl('', Validators.required),
+      ville: new FormControl('', Validators.required),
       compteGroup: new FormGroup(
         {
           login: new FormControl(
