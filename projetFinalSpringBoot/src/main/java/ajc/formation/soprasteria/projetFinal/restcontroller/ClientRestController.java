@@ -61,6 +61,14 @@ public class ClientRestController {
 		return client;
 	}
 	
+	@GetMapping("/{login}")
+	@JsonView(JsonViews.Client.class)
+	public Client getByLogin(@PathVariable String login) {
+		Client client = null;
+		client = clientSrv.getByLogin(login);
+		return client;
+	}
+	
 	@GetMapping("/{login}/commentaires")
 	@JsonView(JsonViews.ClientWithCommentaire.class)
 	public Client getByLoginWithCommentaires(@PathVariable String login) {

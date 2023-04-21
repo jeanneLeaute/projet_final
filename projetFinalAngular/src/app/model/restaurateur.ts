@@ -1,6 +1,6 @@
 import { Role } from './role';
 
-export class Client {
+export class Restaurateur {
   public get id(): number | undefined {
     return this._id;
   }
