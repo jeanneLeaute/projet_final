@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Client } from '../model/client';
 import { Restaurateur } from '../model/restaurateur';
 import { Reservation } from '../model/reservation';
+import { Restaurant } from '../model/restaurant';
 
 @Injectable({
   providedIn: 'root',
@@ -46,6 +47,29 @@ export class ObjectToJsonService {
     };
     if (reservation.id) {
       Object.assign(obj, { id: reservation.id });
+    }
+    return obj;
+  }
+
+  public restaurantToJson(restaurant: Restaurant): any {
+    let obj = {
+      nom: restaurant.nom,
+      description: restaurant.description,
+      horaireOuverture: restaurant.horaireOuverture,
+      urlImage: restaurant.urlImage,
+      aEmporter: restaurant.aEmporter,
+      peutReserver: restaurant.peutReserver,
+      categories: restaurant.categories,
+      restaurateur: restaurant.restaurateur,
+      adresse: {
+        numero: restaurant.adresse?.numero,
+        rue: restaurant.adresse?.rue,
+        codePostal: restaurant.adresse?.codePostal,
+        ville: restaurant.adresse?.ville,
+      },
+    };
+    if (restaurant.id) {
+      Object.assign(obj, { id: restaurant.id });
     }
     return obj;
   }

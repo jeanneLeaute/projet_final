@@ -39,11 +39,11 @@ export class Restaurant {
   public set aEmportern(value: boolean | undefined) {
     this._aEmporter = value;
   }
-  public get peutResrver(): boolean | undefined {
-    return this._peutResrver;
+  public get peutReserver(): boolean | undefined {
+    return this._peutReserver;
   }
-  public set peutResrver(value: boolean | undefined) {
-    this._peutResrver = value;
+  public set peutReserver(value: boolean | undefined) {
+    this._peutReserver = value;
   }
   public get categories(): Categorie | undefined {
     return this._categories;
@@ -71,7 +71,7 @@ export class Restaurant {
     private _horaireOuverture?: string,
     private _urlImage?: string,
     private _aEmporter?: boolean,
-    private _peutResrver?: boolean,
+    private _peutReserver?: boolean,
     private _categories?: Categorie,
     private _adresse?: Adresse,
     private _restaurateur?: Restaurateur
