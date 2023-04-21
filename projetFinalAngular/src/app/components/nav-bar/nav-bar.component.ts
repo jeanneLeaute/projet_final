@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Role } from 'src/app/model/role';
+import { Utilisateur } from 'src/app/model/utilisateur';
 
 @Component({
   selector: 'app-nav-bar',
@@ -17,23 +19,33 @@ export class NavBarComponent {
     return sessionStorage.getItem('token') ? true : false;
   }
 
-  // get admin(): boolean {
-  //   if (sessionStorage.getItem('compte')) {
-  //     let compte: Compte = JSON.parse(
-  //       sessionStorage.getItem('compte')!
-  //     ) as Compte;
-  //     return compte.role == Role.ROLE_ADMIN;
-  //   }
-  //   return false;
-  // }
+  get admin(): boolean {
+    if (sessionStorage.getItem('utilisateur')) {
+      let compte: Utilisateur = JSON.parse(
+        sessionStorage.getItem('utilisateur')!
+      ) as Utilisateur;
+      return compte.role == Role.ROLE_ADMIN;
+    }
+    return false;
+  }
 
-  // get user(): boolean {
-  //   if (sessionStorage.getItem('compte')) {
-  //     let compte: Compte = JSON.parse(
-  //       sessionStorage.getItem('compte')!
-  //     ) as Compte;
-  //     return compte.role == Role.ROLE_USER;
-  //   }
-  //   return false;
-  // }
+  get client(): boolean {
+    if (sessionStorage.getItem('utilisateur')) {
+      let compte: Utilisateur = JSON.parse(
+        sessionStorage.getItem('utilisateur')!
+      ) as Utilisateur;
+      return compte.role == Role.ROLE_CLIENT;
+    }
+    return false;
+  }
+
+  get restaurateur(): boolean {
+    if (sessionStorage.getItem('utilisateur')) {
+      let compte: Utilisateur = JSON.parse(
+        sessionStorage.getItem('utilisateur')!
+      ) as Utilisateur;
+      return compte.role == Role.ROLE_RESTAURATEUR;
+    }
+    return false;
+  }
 }

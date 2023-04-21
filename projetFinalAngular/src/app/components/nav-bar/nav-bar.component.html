@@ -1,9 +1,9 @@
 <nav>
   <app-link etiquetteLien="home" lien="/home"></app-link>
-  <!-- <ng-container *ngIf="admin">
+  <ng-container *ngIf="admin">
     <app-link etiquetteLien="client" lien="/client"></app-link>
-  </ng-container> -->
-  <!-- <ng-container *ngIf="user"> </ng-container>-->
+  </ng-container>
+  <ng-container *ngIf="client || restaurateur"> </ng-container>
   <ng-container *ngIf="!logged">
     <app-link etiquetteLien="inscription" lien="/inscription"></app-link>
     <app-link etiquetteLien="connexion" lien="/login"></app-link>

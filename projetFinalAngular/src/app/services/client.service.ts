@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Client } from '../model/client';
 import { Observable } from 'rxjs';
 import { ObjectToJsonService } from './object-to-json.service';
 import { Utilisateur } from '../model/utilisateur';
