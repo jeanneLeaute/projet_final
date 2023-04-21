@@ -1,0 +1,14 @@
+<nav>
+  <app-link etiquetteLien="home" lien="/home"></app-link>
+  <!-- <ng-container *ngIf="admin">
+    <app-link etiquetteLien="client" lien="/client"></app-link>
+  </ng-container> -->
+  <!-- <ng-container *ngIf="user"> </ng-container>
+  <ng-container *ngIf="!logged">
+    <app-link etiquetteLien="inscription" lien="/inscription"></app-link>
+    <app-link etiquetteLien="connexion" lien="/login"></app-link>
+  </ng-container> -->
+  <button *ngIf="logged" class="btn btn-link" (click)="logout()">
+    deconnexion
+  </button>
+</nav>
