@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-inscription',
@@ -13,7 +13,7 @@ export class InscriptionComponent {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      civilite: new FormControl(),
+      typeCompte: new FormControl('', Validators.required),
       prenom: new FormControl('', Validators.required),
       nom: new FormControl('', Validators.required),
       numero: new FormControl(''),
