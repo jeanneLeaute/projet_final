@@ -11,6 +11,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { AuthInterceptor } from './interceptor/auth-interceptor';
+import { InscriptionClientComponent } from './components/inscription/inscription-client/inscription-client.component';
+import { InscriptionRestaurateurComponent } from './components/inscription/inscription-restaurateur/inscription-restaurateur.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { AuthInterceptor } from './interceptor/auth-interceptor';
     LinkComponent,
     InscriptionComponent,
     LoginComponent,
+    InscriptionClientComponent,
+    InscriptionRestaurateurComponent,
   ],
   imports: [
     BrowserModule,
