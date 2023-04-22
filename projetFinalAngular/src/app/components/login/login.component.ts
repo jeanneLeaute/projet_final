@@ -1,7 +1,7 @@
+import { Utilisateur } from './../../model/utilisateur';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Compte } from 'src/app/model/compte';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -19,13 +19,13 @@ export class LoginComponent {
   check(form: NgForm) {
     if (form.valid) {
       this.loginSrv.login(this.login, this.password).subscribe({
-        next: (infos: Compte) => {
+        next: (infos: Utilisateur) => {
           this.showError = false;
           sessionStorage.setItem(
             'token',
             'Basic ' + window.btoa(this.login + ':' + this.password)
           );
-          sessionStorage.setItem('compte', JSON.stringify(infos));
+          sessionStorage.setItem('utilisateur', JSON.stringify(infos));
           this.router.navigateByUrl('/home');
         },
         error: (error: any) => {

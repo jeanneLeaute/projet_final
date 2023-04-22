@@ -16,7 +16,7 @@ import ajc.formation.soprasteria.projetFinal.entities.views.JsonViews;
 @CrossOrigin(origins = "*")
 public class AuthentificationRestController {
 	
-	@GetMapping
+	@GetMapping("")
 	@JsonView(JsonViews.Utilisateur.class)
 	public Utilisateur authentification(@AuthenticationPrincipal Utilisateur utilisateur) {
 		return utilisateur;
