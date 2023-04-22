@@ -1,14 +1,18 @@
-<nav>
-  <app-link etiquetteLien="home" lien="/home"></app-link>
-  <ng-container *ngIf="admin">
-    <app-link etiquetteLien="client" lien="/client"></app-link>
-  </ng-container>
-  <ng-container *ngIf="client || restaurateur"> </ng-container>
-  <ng-container *ngIf="!logged">
-    <app-link etiquetteLien="inscription" lien="/inscription"></app-link>
-    <app-link etiquetteLien="connexion" lien="/login"></app-link>
-  </ng-container>
-  <button *ngIf="logged" class="btn btn-link" (click)="logout()">
-    deconnexion
-  </button>
-</nav>
+<div class="m-3 p-3 bg-dark position-relative center rounded">
+  <div class="center position-absolute top-50 start-50 translate-middle">
+    <nav>
+      <app-link etiquetteLien="home" lien="/home"></app-link>
+      <ng-container *ngIf="admin">
+        <app-link etiquetteLien="client" lien="/client"></app-link>
+      </ng-container>
+      <ng-container *ngIf="client || restaurateur"> </ng-container>
+      <ng-container *ngIf="!logged">
+        <app-link etiquetteLien="inscription" lien="/inscription"></app-link>
+        <app-link etiquetteLien="connexion" lien="/login"></app-link>
+      </ng-container>
+      <button *ngIf="logged" class="btn btn-link" (click)="logout()">
+        deconnexion
+      </button>
+    </nav>
+  </div>
+</div>

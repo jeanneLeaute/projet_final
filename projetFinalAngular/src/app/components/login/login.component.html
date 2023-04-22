@@ -1,10 +1,12 @@
-<h2>identifiez vous</h2>
-<div>
+<div class="bg-dark position-absolute top-50 start-50 translate-middle rounded">
+  <div class="text-light text-center">
+    <h2>identifiez vous</h2>
+  </div>
   <form (ngSubmit)="check(form)" #form="ngForm">
     <div class="alert alert-danger" *ngIf="showError">
       informations incorrectes
     </div>
-    <div class="form-group">
+    <div class="m-3 text-light form-group">
       <label
         >login:<input
           class="form-control"
@@ -14,9 +16,11 @@
           #loginCtrl="ngModel"
         />
       </label>
+    </div>
+    <div class="m-3 text-danger">
       <span *ngIf="loginCtrl.dirty && loginCtrl.invalid">*obligatoire</span>
     </div>
-    <div class="form-group">
+    <div class="m-3 text-light form-group">
       <label
         >mot de passe:<input
           type="password"
@@ -24,12 +28,18 @@
           class="form-control"
           [(ngModel)]="password"
           required
+          #passwordCtrl="ngModel"
       /></label>
     </div>
-    <div class="form-group">
+    <div class="m-3 text-danger">
+      <span *ngIf="passwordCtrl.dirty && passwordCtrl.invalid"
+        >*obligatoire</span
+      >
+    </div>
+    <div class="m-3 form-group">
       <button
         type="submit"
-        class="btn btn-outline-primary"
+        class="btn btn-outline-primary btn-primary text-light"
         [disabled]="form.invalid"
       >
         envoyer</button
