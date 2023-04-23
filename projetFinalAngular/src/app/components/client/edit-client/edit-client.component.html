@@ -1,0 +1,39 @@
+<div>
+  <h2>client</h2>
+  <div>
+    <div class="form-group">
+      <label
+        >id :<input [(ngModel)]="client.id" readonly class="form-control" />
+      </label>
+    </div>
+    <div class="form-group">
+      <label
+        >nom :<input [(ngModel)]="client.nom" class="form-control" />
+      </label>
+    </div>
+    <div class="form-group">
+      <label
+        >prenom :<input [(ngModel)]="client.prenom" class="form-control" />
+      </label>
+    </div>
+    <div class="form-group">
+      <label
+        >login :<input [(ngModel)]="client.login" class="form-control" />
+      </label>
+    </div>
+    <div class="form-group">
+      <label
+        >mot de passe :<input
+          [(ngModel)]="client.password"
+          class="form-control"
+        />
+      </label>
+    </div>
+    <div class="form-group">
+      <button (click)="save()" class="btn btn-outline-primary">
+        enregistrer les modifications
+      </button>
+      <a routerLink="/list-client" class="btn btn-outline-warning">annuler</a>
+    </div>
+  </div>
+</div>

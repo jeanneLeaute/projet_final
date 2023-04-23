@@ -21,31 +21,41 @@ export class NavBarComponent {
 
   get admin(): boolean {
     if (sessionStorage.getItem('utilisateur')) {
-      let compte: Utilisateur = JSON.parse(
+      let utilisateur: Utilisateur = JSON.parse(
         sessionStorage.getItem('utilisateur')!
       ) as Utilisateur;
-      return compte.role == Role.ROLE_ADMIN;
+      return utilisateur.role == Role.ROLE_ADMIN;
     }
     return false;
   }
 
   get client(): boolean {
     if (sessionStorage.getItem('utilisateur')) {
-      let compte: Utilisateur = JSON.parse(
+      let utilisateur: Utilisateur = JSON.parse(
         sessionStorage.getItem('utilisateur')!
       ) as Utilisateur;
-      return compte.role == Role.ROLE_CLIENT;
+      return utilisateur.role == Role.ROLE_CLIENT;
     }
     return false;
   }
 
   get restaurateur(): boolean {
     if (sessionStorage.getItem('utilisateur')) {
-      let compte: Utilisateur = JSON.parse(
+      let utilisateur: Utilisateur = JSON.parse(
         sessionStorage.getItem('utilisateur')!
       ) as Utilisateur;
-      return compte.role == Role.ROLE_RESTAURATEUR;
+      return utilisateur.role == Role.ROLE_RESTAURATEUR;
     }
     return false;
+  }
+
+  get IdUtilisateur(): number {
+    if (sessionStorage.getItem('utilisateur')) {
+      let utilisateur: Utilisateur = JSON.parse(
+        sessionStorage.getItem('utilisateur')!
+      ) as Utilisateur;
+      return utilisateur.id!;
+    }
+    return 0;
   }
 }
