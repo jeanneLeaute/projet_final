@@ -29,8 +29,8 @@ public class ClientService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	@Autowired
-	private RestaurateurService restaurateurSrv;
+//	@Autowired
+//	private RestaurateurService restaurateurSrv;
 
 	public List<Client> getAll() {
 		return clientRepo.findAll();
@@ -93,14 +93,15 @@ public class ClientService {
 		if (!validator.validate(client).isEmpty()) {
 			throw new ClientException();
 		}
-		Restaurateur restaurateur = restaurateurSrv.getByLogin(client.getLogin());
-		if (restaurateur != null) {
-			throw new ClientException();
-		}
+//		Restaurateur restaurateur = restaurateurSrv.getByLogin(client.getLogin());
+//		if (restaurateur != null) {
+//			throw new ClientException();
+//		}
 		client.setPassword(passwordEncoder.encode(client.getPassword()));
 		client.setRole(Role.ROLE_CLIENT);
 		return clientRepo.save(client);
 	}
+	
 
 	public Client update(Client client) {
 		if (!validator.validate(client).isEmpty()) {
