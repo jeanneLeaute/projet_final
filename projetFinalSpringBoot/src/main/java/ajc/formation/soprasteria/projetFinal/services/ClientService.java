@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import ajc.formation.soprasteria.projetFinal.entities.Client;
+import ajc.formation.soprasteria.projetFinal.entities.Restaurateur;
 import ajc.formation.soprasteria.projetFinal.entities.Role;
 import ajc.formation.soprasteria.projetFinal.exception.ClientException;
 import ajc.formation.soprasteria.projetFinal.repositories.ClientRepository;
@@ -27,6 +28,9 @@ public class ClientService {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+
+//	@Autowired
+//	private RestaurateurService restaurateurSrv;
 
 	public List<Client> getAll() {
 		return clientRepo.findAll();
@@ -89,10 +93,15 @@ public class ClientService {
 		if (!validator.validate(client).isEmpty()) {
 			throw new ClientException();
 		}
+//		Restaurateur restaurateur = restaurateurSrv.getByLogin(client.getLogin());
+//		if (restaurateur != null) {
+//			throw new ClientException();
+//		}
 		client.setPassword(passwordEncoder.encode(client.getPassword()));
 		client.setRole(Role.ROLE_CLIENT);
 		return clientRepo.save(client);
 	}
+	
 
 	public Client update(Client client) {
 		if (!validator.validate(client).isEmpty()) {
@@ -104,5 +113,4 @@ public class ClientService {
 		clientEnBase.setPassword(client.getPassword());
 		return clientRepo.save(clientEnBase);
 	}
-
 }

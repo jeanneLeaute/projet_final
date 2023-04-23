@@ -10,7 +10,7 @@ import { ObjectToJsonService } from './object-to-json.service';
 export class ReservationService {
   private url: string = 'http://localhost:8080/projetfinal/api/reservation';
 
-  constructor(private http: HttpClient, private convert: ObjectToJsonService) {}
+  constructor(private httpClient: HttpClient, private convert: ObjectToJsonService) {}
 
   public allReservation(): Observable<Reservation[]> {
     return this.httpClient.get<Reservation[]>(
