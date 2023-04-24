@@ -9,7 +9,10 @@
           lien="/list-restaurateur"
         ></app-link>
         <app-link etiquetteLien="restaurant" lien="/restaurant"></app-link>
-        <app-link etiquetteLien="commentaire" lien="/commentaire"></app-link>
+        <app-link
+          etiquetteLien="commentaire"
+          lien="/list-commentaire"
+        ></app-link>
         <app-link etiquetteLien="reservation" lien="/reservation"></app-link>
         <app-link
           etiquetteLien="mon compte"
@@ -24,8 +27,8 @@
         ><app-link
           etiquetteLien="mon compte"
           lien="/client/detail/{{ IdUtilisateur }}"
-        ></app-link
-      ></ng-container>
+        ></app-link>
+      </ng-container>
       <ng-container *ngIf="restaurateur"
         ><app-link
           etiquetteLien="mon compte"
