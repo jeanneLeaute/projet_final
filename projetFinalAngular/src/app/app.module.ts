@@ -23,6 +23,7 @@ import { DetailRestaurateurComponent } from './components/restaurateur/detail-re
 import { RestaurateurService } from './services/restaurateur.service';
 import { EditRestaurantComponent } from './components/restaurant/edit-restaurant/edit-restaurant.component';
 import { ListRestaurantComponent } from './components/restaurant/list-restaurant/list-restaurant.component';
+import { DetailAdminComponent } from './components/admin/detail-admin/detail-admin.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { ListRestaurantComponent } from './components/restaurant/list-restaurant
     NotFoundComponent,
     DetailClientComponent,
     DetailRestaurateurComponent,
+    DetailAdminComponent,
   ],
   imports: [
     BrowserModule,

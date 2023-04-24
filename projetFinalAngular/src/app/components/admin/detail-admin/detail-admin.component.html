@@ -1,0 +1,15 @@
+<div class="p-3 m-3 center bg-dark text-light rounded">
+  <div class="m-3">
+    <h2>informations :</h2>
+  </div>
+  <div class="m-3">
+    <div>nom : {{ admin.nom }}</div>
+    <div>prenom : {{ admin.prenom }}</div>
+    <div>login : {{ admin.login }}</div>
+  </div>
+  <div class="m-3">
+    <button class="btn btn-danger" (click)="delete(admin.id!)">
+      supprimer le compte
+    </button>
+  </div>
+</div>

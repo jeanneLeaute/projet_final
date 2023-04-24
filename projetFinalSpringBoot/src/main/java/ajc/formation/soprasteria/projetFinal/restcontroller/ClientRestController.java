@@ -63,7 +63,7 @@ public class ClientRestController {
 		return client;
 	}
 	
-	@GetMapping("/{login}")
+	@GetMapping("/login/{login}")
 	@JsonView(JsonViews.Client.class)
 	public Client getByLogin(@PathVariable String login) {
 		Client client = null;
