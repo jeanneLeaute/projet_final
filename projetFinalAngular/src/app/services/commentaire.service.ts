@@ -20,7 +20,7 @@ export class CommentaireService {
     return this.http.get<Commentaire>(url);
   }
 
-  addCommentaire(commentaire: Commentaire): Observable<Commentaire> {
+  createCommentaire(commentaire: Commentaire): Observable<Commentaire> {
     return this.http.post<Commentaire>(this.baseUrl, commentaire);
   }
 
