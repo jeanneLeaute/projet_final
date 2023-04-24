@@ -14,6 +14,8 @@ import { DetailRestaurateurComponent } from './components/restaurateur/detail-re
 import { ListRestaurateurComponent } from './components/restaurateur/list-restaurateur/list-restaurateur.component';
 import { ListRestaurantComponent } from './components/restaurant/list-restaurant/list-restaurant.component';
 import { EditRestaurantComponent } from './components/restaurant/edit-restaurant/edit-restaurant.component';
+import { ListCommentaireComponent } from './components/commentaire/list-commentaire/list-commentaire.component';
+import { EditCommentaireComponent } from './components/commentaire/edit-commentaire/edit-commentaire.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -39,6 +41,8 @@ const routes: Routes = [
   { path: 'list-restaurateur', component: ListRestaurateurComponent },
   { path: 'restaurateur/edit/:id', component: EditRestaurateurComponent },
   { path: 'restaurateur/detail/:id', component: DetailRestaurateurComponent },
+  { path: 'list-commentaire', component: ListCommentaireComponent },
+  { path: 'commentaire/edit/:id', component: EditCommentaireComponent },
   { path: '**', component: NotFoundComponent },
 ];
 
