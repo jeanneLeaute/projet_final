@@ -44,4 +44,14 @@ export class EditRestaurateurComponent {
       });
     }
   }
+
+  get IdUtilisateur(): number {
+    if (sessionStorage.getItem('utilisateur')) {
+      let utilisateur: Utilisateur = JSON.parse(
+        sessionStorage.getItem('utilisateur')!
+      ) as Utilisateur;
+      return utilisateur.id!;
+    }
+    return 0;
+  }
 }
