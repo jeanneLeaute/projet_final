@@ -88,9 +88,8 @@ export class InscriptionClientComponent implements OnInit {
     let clientJson = {
       nom: this.form.get('nom')?.value,
       prenom: this.form.get('prenom')?.value,
-      login: this.form.get('login')?.value,
-      password: this.form.get('password')?.value,
-      role: 'client'
+      login: this.form.get('compteGroup')?.get('login')?.value,
+      password: this.form.get('compteGroup')?.get('passwordGrp')?.get('password')?.value,
       // adresse: {
       //   numero: this.form.get('numero')?.value,
       //   rue: this.form.get('rue')?.value,

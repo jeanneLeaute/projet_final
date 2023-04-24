@@ -18,10 +18,6 @@ export class InscriptionRestaurateurComponent {
     this.form = new FormGroup({
       prenom: new FormControl('', Validators.required),
       nom: new FormControl('', Validators.required),
-      numero: new FormControl('', Validators.required),
-      rue: new FormControl('', Validators.required),
-      codePostal: new FormControl('', Validators.required),
-      ville: new FormControl('', Validators.required),
       compteGroup: new FormGroup(
         {
           login: new FormControl(
@@ -79,18 +75,10 @@ export class InscriptionRestaurateurComponent {
 
   submit() {
     let restaurateurJson = {
-      prenom: this.form.get('prenom')?.value,
       nom: this.form.get('nom')?.value,
-      adresse: {
-        numero: this.form.get('numero')?.value,
-        rue: this.form.get('rue')?.value,
-        codePostal: this.form.get('codePostal')?.value,
-        ville: this.form.get('ville')?.value,
-      },
-      compte: {
-        login: this.form.get('compteGroup.login')?.value,
-        password: this.form.get('compteGroup.passwordGrp.password')?.value,
-      },
+      prenom: this.form.get('prenom')?.value,
+      login: this.form.get('compteGroup')?.get('login')?.value,
+      password: this.form.get('compteGroup')?.get('passwordGrp')?.get('password')?.value,
     };
     this.restaurateurSrv.inscription(restaurateurJson).subscribe((restaurateur) => {
       console.debug(restaurateur);

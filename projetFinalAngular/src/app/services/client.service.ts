@@ -54,7 +54,7 @@ export class ClientService {
   }
 
   public inscription(client: any): Observable<any> {
-    return this.httpClient.post('http://localhost:8080/projetFinal/api/client//inscription', client);
+    return this.httpClient.post('http://localhost:8080/projetFinal/api/client/inscription', client);
   }
 
   public checkLogin(login: string): Observable<boolean> {
