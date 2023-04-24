@@ -14,6 +14,10 @@ public class JsonViews {
 
 	}
 	
+	public static class Admin extends Simple {
+
+	}
+	
 	public static class Client extends Simple {
 
 	}
