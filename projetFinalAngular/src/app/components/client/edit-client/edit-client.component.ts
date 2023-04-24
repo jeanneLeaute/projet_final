@@ -34,12 +34,12 @@ export class EditClientComponent {
     if (this.client.id) {
       //update
       this.clientSrv.update(this.client).subscribe(() => {
-        this.router.navigateByUrl('/client');
+        this.router.navigateByUrl('/list-client');
       });
     } else {
       //create
       this.clientSrv.create(this.client).subscribe(() => {
-        this.router.navigateByUrl('/client');
+        this.router.navigateByUrl('/list-client');
       });
     }
   }

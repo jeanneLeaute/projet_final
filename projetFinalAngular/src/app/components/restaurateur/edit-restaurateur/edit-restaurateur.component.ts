@@ -35,12 +35,12 @@ export class EditRestaurateurComponent {
     if (this.restaurateur.id) {
       //update
       this.restaurateurSrv.update(this.restaurateur).subscribe(() => {
-        this.router.navigateByUrl('/client');
+        this.router.navigateByUrl('/list-restaurateur');
       });
     } else {
       //create
       this.restaurateurSrv.create(this.restaurateur).subscribe(() => {
-        this.router.navigateByUrl('/client');
+        this.router.navigateByUrl('/list-restaurateur');
       });
     }
   }

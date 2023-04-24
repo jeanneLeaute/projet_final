@@ -8,6 +8,10 @@
     <div>login : {{ client.login }}</div>
   </div>
   <div class="m-3">
+    <app-link
+      lien="/client/edit/{{ IdUtilisateur }}"
+      etiquetteLien="éditer le compte"
+    ></app-link>
     <button class="btn btn-danger" (click)="delete(client.id!)">
       supprimer le compte
     </button>
