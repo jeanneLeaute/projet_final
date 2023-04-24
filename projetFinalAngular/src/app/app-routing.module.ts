@@ -83,16 +83,36 @@ const routes: Routes = [
     component: ListClientComponent,
     canActivate: [AdminGuardService],
   },
-  { path: 'client/edit/:id', component: EditClientComponent },
-  { path: 'client/detail/:id', component: DetailClientComponent },
+  {
+    path: 'client/edit/:id',
+    component: EditClientComponent,
+    canActivate: [ClientGuardService],
+  },
+  {
+    path: 'client/detail/:id',
+    component: DetailClientComponent,
+    canActivate: [ClientGuardService],
+  },
   {
     path: 'list-restaurateur',
     component: ListRestaurateurComponent,
     canActivate: [AdminGuardService],
   },
-  { path: 'restaurateur/edit/:id', component: EditRestaurateurComponent },
-  { path: 'restaurateur/detail/:id', component: DetailRestaurateurComponent },
-  { path: 'admin/detail/:id', component: DetailAdminComponent },
+  {
+    path: 'restaurateur/edit/:id',
+    component: EditRestaurateurComponent,
+    canActivate: [RestaurateurGuardService],
+  },
+  {
+    path: 'restaurateur/detail/:id',
+    component: DetailRestaurateurComponent,
+    canActivate: [RestaurateurGuardService],
+  },
+  {
+    path: 'admin/detail/:id',
+    component: DetailAdminComponent,
+    canActivate: [AdminGuardService],
+  },
   {
     path: 'list-commentaire',
     component: ListCommentaireComponent,
