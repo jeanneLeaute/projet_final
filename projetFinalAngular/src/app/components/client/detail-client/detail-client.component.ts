@@ -31,6 +31,7 @@ export class DetailClientComponent implements OnInit {
 
   delete(id: number) {
     this.clientSrv.delete(id).subscribe(() => {
+      sessionStorage.clear();
       this.router.navigateByUrl('/home');
     });
   }

@@ -1,3 +1,4 @@
+import { AdminGuardService } from './services/admin-guard.service';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
@@ -16,33 +17,74 @@ import { ListRestaurantComponent } from './components/restaurant/list-restaurant
 import { EditRestaurantComponent } from './components/restaurant/edit-restaurant/edit-restaurant.component';
 import { ListCommentaireComponent } from './components/commentaire/list-commentaire/list-commentaire.component';
 import { EditCommentaireComponent } from './components/commentaire/edit-commentaire/edit-commentaire.component';
+import { AnonymousGuardService } from './services/anonymous-guard.service';
+import { AuthGuardService } from './services/auth-guard.service';
+import { RestaurateurGuardService } from './services/restaurateur-guard.service';
+import { ClientGuardService } from './services/client-guard.service';
+import { DetailAdminComponent } from './components/admin/detail-admin/detail-admin.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'inscription', component: InscriptionComponent },
-  { path: 'inscription-client', component: InscriptionClientComponent },
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [AnonymousGuardService],
+  },
+  {
+    path: 'inscription',
+    component: InscriptionComponent,
+    canActivate: [AnonymousGuardService],
+  },
+  {
+    path: 'inscription-client',
+    component: InscriptionClientComponent,
+    canActivate: [AnonymousGuardService],
+  },
   {
     path: 'inscription-restaurateur',
     component: InscriptionRestaurateurComponent,
+    canActivate: [AnonymousGuardService],
   },
-  { path: 'restaurant', component: ListRestaurantComponent },
+  {
+    path: 'restaurant',
+    component: ListRestaurantComponent,
+    canActivate: [AuthGuardService],
+  },
   {
     path: 'restaurant/add',
     component: EditRestaurantComponent,
+    canActivate: [RestaurateurGuardService],
   },
   {
     path: 'restaurant/edit/:id',
     component: EditRestaurantComponent,
+    canActivate: [RestaurateurGuardService],
   },
-  { path: 'list-client', component: ListClientComponent },
+  {
+    path: 'list-client',
+    component: ListClientComponent,
+    canActivate: [AdminGuardService],
+  },
   { path: 'client/edit/:id', component: EditClientComponent },
   { path: 'client/detail/:id', component: DetailClientComponent },
-  { path: 'list-restaurateur', component: ListRestaurateurComponent },
+  {
+    path: 'list-restaurateur',
+    component: ListRestaurateurComponent,
+    canActivate: [AdminGuardService],
+  },
   { path: 'restaurateur/edit/:id', component: EditRestaurateurComponent },
   { path: 'restaurateur/detail/:id', component: DetailRestaurateurComponent },
-  { path: 'list-commentaire', component: ListCommentaireComponent },
-  { path: 'commentaire/edit/:id', component: EditCommentaireComponent },
+  { path: 'admin/detail/:id', component: DetailAdminComponent },
+  {
+    path: 'list-commentaire',
+    component: ListCommentaireComponent,
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: 'commentaire/edit/:id',
+    component: EditCommentaireComponent,
+    canActivate: [ClientGuardService],
+  },
   { path: '**', component: NotFoundComponent },
 ];
 

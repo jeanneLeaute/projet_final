@@ -32,6 +32,7 @@ export class DetailRestaurateurComponent {
 
   delete(id: number) {
     this.restaurateurSrv.delete(id).subscribe(() => {
+      sessionStorage.clear();
       this.router.navigateByUrl('/home');
     });
   }

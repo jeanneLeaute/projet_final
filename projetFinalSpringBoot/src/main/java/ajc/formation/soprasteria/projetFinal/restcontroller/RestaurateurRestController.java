@@ -59,7 +59,7 @@ public class RestaurateurRestController {
 		return restaurateur;
 	}
 	
-	@GetMapping("/{login}")
+	@GetMapping("/login/{login}")
 	@JsonView(JsonViews.Restaurateur.class)
 	public Restaurateur getByLogin(@PathVariable String login) {
 		Restaurateur restaurateur = null;
@@ -67,7 +67,7 @@ public class RestaurateurRestController {
 		return restaurateur;
 	}
 	
-	@GetMapping("/{login}/restaurants")
+	@GetMapping("/login/{login}/restaurants")
 	@JsonView(JsonViews.RestaurateurWithRestaurant.class)
 	public Restaurateur getByLoginWithRestaurants(@PathVariable String login) {
 		Restaurateur restaurateur = null;
@@ -75,7 +75,7 @@ public class RestaurateurRestController {
 		return restaurateur;
 	}
 	
-	@GetMapping("/{idRestaurant}")
+	@GetMapping("/restaurant/{idRestaurant}")
 	@JsonView(JsonViews.Restaurateur.class)
 	public Restaurateur getByIdRestaurant(@PathVariable Long  idRestaurant) {
 		Restaurateur restaurateur = null;
