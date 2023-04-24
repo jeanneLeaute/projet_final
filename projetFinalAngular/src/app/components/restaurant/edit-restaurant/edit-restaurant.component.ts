@@ -44,7 +44,7 @@ export class EditRestaurantComponent {
       obvResult = this.restaurantSrv.create(this.restaurant);
     }
     obvResult.subscribe(() => {
-      this.router.navigateByUrl('/produit');
+      this.router.navigateByUrl('/restaurant');
     });
   }
 

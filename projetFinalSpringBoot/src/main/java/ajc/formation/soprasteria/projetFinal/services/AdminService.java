@@ -13,6 +13,7 @@ import ajc.formation.soprasteria.projetFinal.entities.Client;
 import ajc.formation.soprasteria.projetFinal.entities.Restaurateur;
 import ajc.formation.soprasteria.projetFinal.entities.Role;
 import ajc.formation.soprasteria.projetFinal.exception.AdminException;
+import ajc.formation.soprasteria.projetFinal.exception.ClientException;
 import ajc.formation.soprasteria.projetFinal.repositories.AdminRepository;
 import ajc.formation.soprasteria.projetFinal.repositories.ClientRepository;
 import ajc.formation.soprasteria.projetFinal.repositories.RestaurateurRepository;
@@ -34,7 +35,14 @@ public class AdminService {
 	private PasswordEncoder passwordEncoder;
 	
 
-
+	public Admin getById(Long id) {
+		if (id == null) {
+			throw new ClientException("id obligatoire");
+		}
+		return adminRepo.findById(id).orElseThrow(() -> {
+			throw new ClientException("id inconnu");
+		});
+	}
 
 	public Admin create(Admin admin) {
 		if (!validator.validate(admin).isEmpty()) {
@@ -48,6 +56,14 @@ public class AdminService {
 		admin.setPassword(passwordEncoder.encode(admin.getPassword()));
 		admin.setRole(Role.ROLE_ADMIN);
 		return adminRepo.save(admin);
+	}
+	
+	public void deleteById(Long id) {
+		adminRepo.delete(getById(id));
+	}
+
+	public void delete(Admin admin) {
+		deleteById(admin.getId());
 	}
 
 
