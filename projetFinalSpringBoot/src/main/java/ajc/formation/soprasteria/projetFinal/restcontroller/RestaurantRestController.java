@@ -38,13 +38,13 @@ public class RestaurantRestController {
 	private RestaurantService restaurantSrv;
 	
 	@GetMapping("")
-	@JsonView(JsonViews.Simple.class)
+	@JsonView(JsonViews.RestaurantWithRestaurateur.class)
 	public List<Restaurant> getAll() {
 		return restaurantSrv.getAll();
 	}
 	
 	@GetMapping("/{id}")
-	@JsonView(JsonViews.Simple.class)
+	@JsonView(JsonViews.RestaurantWithRestaurateur.class)
 	public Restaurant getById(@PathVariable Long id) {
 		Restaurant restaurant=null;
 		try {
