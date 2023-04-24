@@ -20,6 +20,9 @@ import { EditRestaurateurComponent } from './components/restaurateur/edit-restau
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { DetailClientComponent } from './components/client/detail-client/detail-client.component';
 import { DetailRestaurateurComponent } from './components/restaurateur/detail-restaurateur/detail-restaurateur.component';
+import { RestaurateurService } from './services/restaurateur.service';
+import { EditRestaurantComponent } from './components/restaurant/edit-restaurant/edit-restaurant.component';
+import { ListRestaurantComponent } from './components/restaurant/list-restaurant/list-restaurant.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,9 @@ import { DetailRestaurateurComponent } from './components/restaurateur/detail-re
     ListClientComponent,
     EditClientComponent,
     ListRestaurateurComponent,
+    ListRestaurantComponent,
     EditRestaurateurComponent,
+    EditRestaurantComponent,
     NotFoundComponent,
     DetailClientComponent,
     DetailRestaurateurComponent,

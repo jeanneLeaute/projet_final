@@ -1,2 +1,1 @@
-export enum Categorie {
-}
+export enum Categorie {}

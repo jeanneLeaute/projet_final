@@ -1,10 +1,7 @@
 package ajc.formation.soprasteria.projetFinal.services;
 
 import java.util.List;
-import java.util.Set;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
 import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +13,7 @@ import ajc.formation.soprasteria.projetFinal.entities.Restaurateur;
 import ajc.formation.soprasteria.projetFinal.entities.Role;
 import ajc.formation.soprasteria.projetFinal.exception.ClientException;
 import ajc.formation.soprasteria.projetFinal.repositories.ClientRepository;
+import ajc.formation.soprasteria.projetFinal.repositories.RestaurateurRepository;
 
 @Service
 public class ClientService {
@@ -29,8 +27,8 @@ public class ClientService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-//	@Autowired
-//	private RestaurateurService restaurateurSrv;
+	@Autowired
+	private RestaurateurRepository restaurateurRepo;
 
 	public List<Client> getAll() {
 		return clientRepo.findAll();
@@ -93,15 +91,14 @@ public class ClientService {
 		if (!validator.validate(client).isEmpty()) {
 			throw new ClientException();
 		}
-//		Restaurateur restaurateur = restaurateurSrv.getByLogin(client.getLogin());
-//		if (restaurateur != null) {
-//			throw new ClientException();
-//		}
+		Restaurateur restaurateur = restaurateurRepo.findByLogin(client.getLogin()).orElse(null);
+		if (restaurateur != null) {
+			throw new ClientException();
+		}
 		client.setPassword(passwordEncoder.encode(client.getPassword()));
 		client.setRole(Role.ROLE_CLIENT);
 		return clientRepo.save(client);
 	}
-	
 
 	public Client update(Client client) {
 		if (!validator.validate(client).isEmpty()) {

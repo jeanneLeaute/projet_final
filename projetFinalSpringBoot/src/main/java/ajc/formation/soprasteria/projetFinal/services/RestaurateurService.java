@@ -1,10 +1,7 @@
 package ajc.formation.soprasteria.projetFinal.services;
 
 import java.util.List;
-import java.util.Set;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
 import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,33 +11,33 @@ import org.springframework.stereotype.Service;
 import ajc.formation.soprasteria.projetFinal.entities.Client;
 import ajc.formation.soprasteria.projetFinal.entities.Restaurateur;
 import ajc.formation.soprasteria.projetFinal.entities.Role;
-import ajc.formation.soprasteria.projetFinal.exception.ClientException;
 import ajc.formation.soprasteria.projetFinal.exception.RestaurateurException;
+import ajc.formation.soprasteria.projetFinal.repositories.ClientRepository;
 import ajc.formation.soprasteria.projetFinal.repositories.RestaurateurRepository;
 
 @Service
 public class RestaurateurService {
 
 	@Autowired
-	private RestaurateurRepository restaurateuRepo;
+	private RestaurateurRepository restaurateurRepo;
 	@Autowired
 	private Validator validator;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-//	@Autowired
-//	private ClientService clientSrv;
+	@Autowired
+	private ClientRepository clientRepo;
 
 	public List<Restaurateur> getAll() {
-		return restaurateuRepo.findAll();
+		return restaurateurRepo.findAll();
 	}
 
 	public Restaurateur getById(Long id) {
 		if (id == null) {
 			throw new RestaurateurException("id obligatoire");
 		}
-		return restaurateuRepo.findById(id).orElseThrow(() -> {
+		return restaurateurRepo.findById(id).orElseThrow(() -> {
 			throw new RestaurateurException("id inconnu");
 		});
 	}
@@ -49,7 +46,7 @@ public class RestaurateurService {
 		if (id == null) {
 			throw new RestaurateurException("id obligatoire");
 		}
-		return restaurateuRepo.findByIdFetchRestaurants(id).orElseThrow(() -> {
+		return restaurateurRepo.findByIdFetchRestaurants(id).orElseThrow(() -> {
 			throw new RestaurateurException("id inconnu");
 		});
 	}
@@ -58,7 +55,7 @@ public class RestaurateurService {
 		if (login == null) {
 			throw new RestaurateurException("login obligatoire");
 		}
-		return restaurateuRepo.findByLogin(login).orElseThrow(() -> {
+		return restaurateurRepo.findByLogin(login).orElseThrow(() -> {
 			throw new RestaurateurException("login inconnu");
 		});
 	}
@@ -73,7 +70,7 @@ public class RestaurateurService {
 //	}
 
 	public void deleteById(Long id) {
-		restaurateuRepo.delete(getById(id));
+		restaurateurRepo.delete(getById(id));
 	}
 
 	public void delete(Restaurateur restaurateur) {
@@ -84,13 +81,13 @@ public class RestaurateurService {
 		if (!validator.validate(restaurateur).isEmpty()) {
 			throw new RestaurateurException();
 		}
-//		Client client = clientSrv.getByLogin(restaurateur.getLogin());
-//		if (client != null) {
-//			throw new RestaurateurException();
-//		}
+		Client client = clientRepo.findByLogin(restaurateur.getLogin()).orElse(null);
+		if (client != null) {
+			throw new RestaurateurException();
+		}
 		restaurateur.setPassword(passwordEncoder.encode(restaurateur.getPassword()));
 		restaurateur.setRole(Role.ROLE_RESTAURATEUR);
-		return restaurateuRepo.save(restaurateur);
+		return restaurateurRepo.save(restaurateur);
 	}
 
 	public Restaurateur update(Restaurateur restaurateur) {
@@ -101,7 +98,7 @@ public class RestaurateurService {
 		restaurateurEnBase.setNom(restaurateur.getNom());
 		restaurateurEnBase.setPrenom(restaurateur.getPrenom());
 		restaurateurEnBase.setPassword(restaurateur.getPassword());
-		return restaurateuRepo.save(restaurateurEnBase);
+		return restaurateurRepo.save(restaurateurEnBase);
 	}
 
 }

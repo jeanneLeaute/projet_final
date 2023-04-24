@@ -12,6 +12,8 @@ import { DetailClientComponent } from './components/client/detail-client/detail-
 import { EditRestaurateurComponent } from './components/restaurateur/edit-restaurateur/edit-restaurateur.component';
 import { DetailRestaurateurComponent } from './components/restaurateur/detail-restaurateur/detail-restaurateur.component';
 import { ListRestaurateurComponent } from './components/restaurateur/list-restaurateur/list-restaurateur.component';
+import { ListRestaurantComponent } from './components/restaurant/list-restaurant/list-restaurant.component';
+import { EditRestaurantComponent } from './components/restaurant/edit-restaurant/edit-restaurant.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -21,6 +23,15 @@ const routes: Routes = [
   {
     path: 'inscription-restaurateur',
     component: InscriptionRestaurateurComponent,
+  },
+  { path: 'restaurant', component: ListRestaurantComponent },
+  {
+    path: 'restaurant/add',
+    component: EditRestaurantComponent,
+  },
+  {
+    path: 'restaurant/edit/:id',
+    component: EditRestaurantComponent,
   },
   { path: 'list-client', component: ListClientComponent },
   { path: 'client/edit/:id', component: EditClientComponent },

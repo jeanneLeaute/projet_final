@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
+import ajc.formation.soprasteria.projetFinal.entities.Admin;
 import ajc.formation.soprasteria.projetFinal.entities.Client;
 import ajc.formation.soprasteria.projetFinal.entities.Restaurateur;
 import ajc.formation.soprasteria.projetFinal.entities.Utilisateur;
+import ajc.formation.soprasteria.projetFinal.repositories.AdminRepository;
 import ajc.formation.soprasteria.projetFinal.repositories.ClientRepository;
 import ajc.formation.soprasteria.projetFinal.repositories.RestaurateurRepository;
 
@@ -17,17 +19,21 @@ public class UtilisateurService {
 	
 	
 	@Autowired
-	ClientRepository clientSrv;
+	AdminRepository adminRepo;
 	@Autowired
-	RestaurateurRepository restaurateurSrv;
+	ClientRepository clientRepo;
+	@Autowired
+	RestaurateurRepository restaurateurRepo;
 
 	public Utilisateur findByLogin(String login) {
-		Restaurateur restaurateur = restaurateurSrv.findByLogin(login).orElse(null);
-    	Client client = clientSrv.findByLogin(login).orElse(null);
-    	if(restaurateur!=null) {
+		Admin admin = adminRepo.findByLogin(login).orElse(null);
+		Restaurateur restaurateur = restaurateurRepo.findByLogin(login).orElse(null);
+    	Client client = clientRepo.findByLogin(login).orElse(null);
+    	if(admin!=null) {
+    		return admin;
+    	}else if(restaurateur!=null) {
     		return restaurateur;
-    	}
-    	else {
+    	}else {
     		return client;
     	}
 	

@@ -1,0 +1,58 @@
+<h2>restaurant</h2>
+
+<div>
+  <div>
+    <label for="id">id:</label>
+    <input id="id" [(ngModel)]="restaurant.id" readonly class="form-control" />
+  </div>
+  <div>
+    <label for="nom">nom:</label>
+    <input id="nom" [(ngModel)]="restaurant.nom" class="form-control" />
+  </div>
+  <div>
+    <label for="horaireOuverture">horaireOuverture:</label>
+    <input
+      id="horaireOuverture"
+      [(ngModel)]="restaurant.horaireOuverture"
+      class="form-control"
+    />
+  </div>
+  <div>
+    <label for="description">description:</label>
+    <textarea
+      id="description"
+      [(ngModel)]="restaurant.description"
+      class="form-control"
+    ></textarea>
+  </div>
+
+  <div>
+    <label for="peutReserver">peutReserver:</label>
+    <select
+      id="peutReserver"
+      [(ngModel)]="restaurant.peutReserver"
+      class="form-control"
+    >
+      <option value="TRUE">True</option>
+      <option value="FALSE">False</option>
+    </select>
+  </div>
+  <div>
+    <label for="restaurateur">restaurateur:</label>
+    <select
+      [(ngModel)]="restaurant.restaurateur"
+      class="form-control"
+      [compareWith]="compareById"
+    >
+      <option *ngFor="let r of obsRestaurateurs | async" [ngValue]="r">
+        {{ r.id }} {{ r.nom }}
+      </option>
+    </select>
+  </div>
+  <div class="form-group">
+    <button (click)="save()" class="btn btn-outline-primary">
+      enregistrer
+    </button>
+    <a routerLink="/restaurant" class="btn btn-outline-warning">annuler</a>
+  </div>
+</div>
