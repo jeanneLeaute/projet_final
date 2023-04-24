@@ -49,6 +49,11 @@ const routes: Routes = [
     canActivate: [AnonymousGuardService],
   },
   {
+    path: 'inscription',
+    component: InscriptionComponent,
+    canActivate: [AnonymousGuardService],
+  },
+  {
     path: 'inscription-client',
     component: InscriptionClientComponent,
     canActivate: [AnonymousGuardService],
