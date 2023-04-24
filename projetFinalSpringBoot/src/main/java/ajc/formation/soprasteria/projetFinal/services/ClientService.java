@@ -110,4 +110,8 @@ public class ClientService {
 		clientEnBase.setPassword(client.getPassword());
 		return clientRepo.save(clientEnBase);
 	}
+
+	public boolean loginExist(String login) {
+		return clientRepo.findByLogin(login).isPresent();
+	}
 }

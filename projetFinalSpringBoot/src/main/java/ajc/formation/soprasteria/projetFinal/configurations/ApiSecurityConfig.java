@@ -26,6 +26,8 @@ public class ApiSecurityConfig {
 				.authorizeRequests()
 					.antMatchers(HttpMethod.OPTIONS).permitAll()
 					.antMatchers(HttpMethod.POST, "/api/**/inscription").anonymous()
+					.antMatchers(HttpMethod.POST, "/api/client//inscription").anonymous()
+					.antMatchers(HttpMethod.GET, "/api/**/login/check/**").anonymous()
 					.antMatchers(HttpMethod.POST, "/api/reservation").hasAnyRole("CLIENT")
 					.antMatchers(HttpMethod.GET, "/api/restaurant").hasAnyRole("CLIENT")
 					.antMatchers(HttpMethod.POST, "/api/restaurant").hasAnyRole("RESTAURATEUR")

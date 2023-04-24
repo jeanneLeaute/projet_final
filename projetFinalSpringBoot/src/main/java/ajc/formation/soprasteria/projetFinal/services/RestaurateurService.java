@@ -101,4 +101,7 @@ public class RestaurateurService {
 		return restaurateurRepo.save(restaurateurEnBase);
 	}
 
+	public boolean loginExist(String login) {
+		return restaurateurRepo.findByLogin(login).isPresent();
+	}
 }

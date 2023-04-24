@@ -58,7 +58,7 @@ export class RestaurateurService {
 
   public checkLogin(login: string): Observable<boolean> {
     return this.httpClient.get<boolean>(
-      'http://localhost:8080/projetFinal/api/compte/login/check/' + login
+      'http://localhost:8080/projetFinal/api/restaurateur/login/check/' + login
     );
   }
 }

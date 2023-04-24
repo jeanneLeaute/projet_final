@@ -86,18 +86,17 @@ export class InscriptionClientComponent implements OnInit {
 
   submit() {
     let clientJson = {
-      prenom: this.form.get('prenom')?.value,
       nom: this.form.get('nom')?.value,
-      adresse: {
-        numero: this.form.get('numero')?.value,
-        rue: this.form.get('rue')?.value,
-        codePostal: this.form.get('codePostal')?.value,
-        ville: this.form.get('ville')?.value,
-      },
-      compte: {
-        login: this.form.get('compteGroup.login')?.value,
-        password: this.form.get('compteGroup.passwordGrp.password')?.value,
-      },
+      prenom: this.form.get('prenom')?.value,
+      login: this.form.get('login')?.value,
+      password: this.form.get('password')?.value,
+      role: 'client'
+      // adresse: {
+      //   numero: this.form.get('numero')?.value,
+      //   rue: this.form.get('rue')?.value,
+      //   codePostal: this.form.get('codePostal')?.value,
+      //   ville: this.form.get('ville')?.value,
+      // },
     };
     this.clientSrv.inscription(clientJson).subscribe((client) => {
       console.debug(client);
