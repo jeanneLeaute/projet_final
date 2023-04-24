@@ -59,7 +59,7 @@ export class ClientService {
 
   public checkLogin(login: string): Observable<boolean> {
     return this.httpClient.get<boolean>(
-      'http://localhost:8080/projetFinal/api/compte/login/check/' + login
+      'http://localhost:8080/projetFinal/api/client/login/check/' + login
     );
   }
 }

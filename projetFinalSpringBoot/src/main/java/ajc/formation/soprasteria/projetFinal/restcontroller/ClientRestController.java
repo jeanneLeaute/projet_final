@@ -121,4 +121,8 @@ public class ClientRestController {
 		clientSrv.deleteById(id);
 	}
 
+	@GetMapping("/login/check/{login}")
+	public boolean loginExist(@PathVariable String login) {
+		return clientSrv.loginExist(login);
+	} 
 }

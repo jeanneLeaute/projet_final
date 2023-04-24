@@ -125,4 +125,8 @@ public class RestaurateurRestController {
 		restaurateurSrv.deleteById(id);
 	}
 
+	@GetMapping("/login/check/{login}")
+	public boolean loginExist(@PathVariable String login) {
+		return restaurateurSrv.loginExist(login);
+	} 
 }
