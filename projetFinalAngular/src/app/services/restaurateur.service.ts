@@ -21,34 +21,44 @@ export class RestaurateurService {
 
   public delete(id: number): Observable<void> {
     return this.httpClient.delete<void>(
-      `http://localhost:8080/eshop/api/restaurateur/${id}`
+      `http://localhost:8080/projetFinal/api/restaurateur/${id}`
     );
   }
 
   public create(restaurateur: Utilisateur): Observable<Utilisateur> {
     console.debug(restaurateur);
     return this.httpClient.post<Utilisateur>(
-      'http://localhost:8080/eshop/api/restaurateur/inscription',
+      'http://localhost:8080/projetFinal/api/restaurateur/inscription',
       this.convert.utilisateurToJson(restaurateur)
     );
   }
 
   public update(restaurateur: Utilisateur): Observable<Utilisateur> {
     return this.httpClient.put<Utilisateur>(
-      `http://localhost:8080/eshop/api/restaurateur/${restaurateur.id}`,
+      `http://localhost:8080/projetFinal/api/restaurateur/${restaurateur.id}`,
       this.convert.utilisateurToJson(restaurateur)
     );
   }
 
   public getById(id: number): Observable<Utilisateur> {
     return this.httpClient.get<Utilisateur>(
-      `http://localhost:8080/eshop/api/restaurateur/${id}`
+      `http://localhost:8080/projetFinal/api/restaurateur/${id}`
     );
   }
 
   public getByLogin(login: string): Observable<Utilisateur> {
     return this.httpClient.get<Utilisateur>(
-      `http://localhost:8080/eshop/api/restaurateur/${login}`
+      `http://localhost:8080/projetFinal/api/restaurateur/${login}`
+    );
+  }
+
+  public inscription(client: any): Observable<any> {
+    return this.httpClient.post('http://localhost:8080/projetFinal/api/client//inscription', client);
+  }
+
+  public checkLogin(login: string): Observable<boolean> {
+    return this.httpClient.get<boolean>(
+      'http://localhost:8080/projetFinal/api/compte/login/check/' + login
     );
   }
 }

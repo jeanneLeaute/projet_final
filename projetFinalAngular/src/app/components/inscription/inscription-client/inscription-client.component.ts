@@ -34,7 +34,7 @@ export class InscriptionClientComponent implements OnInit {
           login: new FormControl(
             '',
             Validators.required,
-            // this.loginFree(this.clientSrv)
+            this.loginFree(this.clientSrv)
           ),
           passwordGrp: new FormGroup(
             {
@@ -52,16 +52,16 @@ export class InscriptionClientComponent implements OnInit {
     });
   }
 
-  // loginFree(srv: ClientService): AsyncValidatorFn {
-  //   return (control: AbstractControl): Observable<ValidationErrors | null> => {
-  //     console.debug('check');
-  //     return this.clientSrv.checkLogin(control.value).pipe(
-  //       map((exist: boolean) => {
-  //         return exist ? { loginExist: true } : null;
-  //       })
-  //     );
-  //   };
-  // }
+  loginFree(srv: ClientService): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      console.debug('check');
+      return this.clientSrv.checkLogin(control.value).pipe(
+        map((exist: boolean) => {
+          return exist ? { loginExist: true } : null;
+        })
+      );
+    };
+  }
 
   passwordAndConfirmEquals(control: AbstractControl): ValidationErrors | null {
     let group = control as FormGroup;
@@ -84,25 +84,25 @@ export class InscriptionClientComponent implements OnInit {
       : { loginAndPasswordEquals: true };
   }
 
-  // submit() {
-  //   let clientJson = {
-  //     prenom: this.form.get('prenom')?.value,
-  //     nom: this.form.get('nom')?.value,
-  //     adresse: {
-  //       numero: this.form.get('numero')?.value,
-  //       rue: this.form.get('rue')?.value,
-  //       codePostal: this.form.get('codePostal')?.value,
-  //       ville: this.form.get('ville')?.value,
-  //     },
-  //     compte: {
-  //       login: this.form.get('compteGroup.login')?.value,
-  //       password: this.form.get('compteGroup.passwordGrp.password')?.value,
-  //     },
-  //   };
-  //   this.clientSrv.inscription(clientJson).subscribe((client) => {
-  //     console.debug(client);
-  //     this.router.navigateByUrl('/login');
-  //   });
-  // }
+  submit() {
+    let clientJson = {
+      prenom: this.form.get('prenom')?.value,
+      nom: this.form.get('nom')?.value,
+      adresse: {
+        numero: this.form.get('numero')?.value,
+        rue: this.form.get('rue')?.value,
+        codePostal: this.form.get('codePostal')?.value,
+        ville: this.form.get('ville')?.value,
+      },
+      compte: {
+        login: this.form.get('compteGroup.login')?.value,
+        password: this.form.get('compteGroup.passwordGrp.password')?.value,
+      },
+    };
+    this.clientSrv.inscription(clientJson).subscribe((client) => {
+      console.debug(client);
+      this.router.navigateByUrl('/login');
+    });
+  }
 }
 

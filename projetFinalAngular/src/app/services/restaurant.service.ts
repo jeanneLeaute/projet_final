@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ObjectToJsonService } from './object-to-json.service';
 import { Restaurant } from '../model/restaurant';
 import { Categorie } from '../model/categorie';
+import { Restaurateur } from '../model/restaurateur';
 
 @Injectable({
   providedIn: 'root',

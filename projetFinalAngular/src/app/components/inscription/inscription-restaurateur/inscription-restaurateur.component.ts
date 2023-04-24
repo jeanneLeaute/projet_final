@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable, map } from 'rxjs';
 import { RestaurateurService } from 'src/app/services/restaurateur.service';
 
 @Component({
@@ -26,7 +27,7 @@ export class InscriptionRestaurateurComponent {
           login: new FormControl(
             '',
             Validators.required,
-            // this.loginFree(this.restaurateurSrv)
+            this.loginFree(this.restaurateurSrv)
           ),
           passwordGrp: new FormGroup(
             {
@@ -44,16 +45,16 @@ export class InscriptionRestaurateurComponent {
     });
   }
 
-  // loginFree(srv: RestaurateurService): AsyncValidatorFn {
-  //   return (control: AbstractControl): Observable<ValidationErrors | null> => {
-  //     console.debug('check');
-  //     return this.restaurateurSrv.checkLogin(control.value).pipe(
-  //       map((exist: boolean) => {
-  //         return exist ? { loginExist: true } : null;
-  //       })
-  //     );
-  //   };
-  // }
+  loginFree(srv: RestaurateurService): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      console.debug('check');
+      return this.restaurateurSrv.checkLogin(control.value).pipe(
+        map((exist: boolean) => {
+          return exist ? { loginExist: true } : null;
+        })
+      );
+    };
+  }
 
   passwordAndConfirmEquals(control: AbstractControl): ValidationErrors | null {
     let group = control as FormGroup;
@@ -76,24 +77,24 @@ export class InscriptionRestaurateurComponent {
       : { loginAndPasswordEquals: true };
   }
 
-  // submit() {
-  //   let restaurateurJson = {
-  //     prenom: this.form.get('prenom')?.value,
-  //     nom: this.form.get('nom')?.value,
-  //     adresse: {
-  //       numero: this.form.get('numero')?.value,
-  //       rue: this.form.get('rue')?.value,
-  //       codePostal: this.form.get('codePostal')?.value,
-  //       ville: this.form.get('ville')?.value,
-  //     },
-  //     compte: {
-  //       login: this.form.get('compteGroup.login')?.value,
-  //       password: this.form.get('compteGroup.passwordGrp.password')?.value,
-  //     },
-  //   };
-  //   this.restaurateurSrv.inscription(restaurateurJson).subscribe((restaurateur) => {
-  //     console.debug(restaurateur);
-  //     this.router.navigateByUrl('/login');
-  //   });
-  // }
+  submit() {
+    let restaurateurJson = {
+      prenom: this.form.get('prenom')?.value,
+      nom: this.form.get('nom')?.value,
+      adresse: {
+        numero: this.form.get('numero')?.value,
+        rue: this.form.get('rue')?.value,
+        codePostal: this.form.get('codePostal')?.value,
+        ville: this.form.get('ville')?.value,
+      },
+      compte: {
+        login: this.form.get('compteGroup.login')?.value,
+        password: this.form.get('compteGroup.passwordGrp.password')?.value,
+      },
+    };
+    this.restaurateurSrv.inscription(restaurateurJson).subscribe((restaurateur) => {
+      console.debug(restaurateur);
+      this.router.navigateByUrl('/login');
+    });
+  }
 }
