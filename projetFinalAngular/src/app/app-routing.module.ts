@@ -22,6 +22,9 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { RestaurateurGuardService } from './services/restaurateur-guard.service';
 import { ClientGuardService } from './services/client-guard.service';
 import { DetailAdminComponent } from './components/admin/detail-admin/detail-admin.component';
+import { ReservationComponent } from './components/reservation/reservation.component';
+import { ReservationSurPlaceComponent } from './components/reservation/reservation-sur-place/reservation-sur-place.component';
+import { ReservationCommandeADomicileComponent } from './components/reservation/reservation-commande-adomicile/reservation-commande-adomicile.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -31,8 +34,18 @@ const routes: Routes = [
     canActivate: [AnonymousGuardService],
   },
   {
-    path: 'inscription',
-    component: InscriptionComponent,
+    path: 'reservation',
+    component: ReservationComponent,
+    canActivate: [AnonymousGuardService],
+  },
+  {
+    path: 'reservation-surplace',
+    component: ReservationSurPlaceComponent,
+    canActivate: [AnonymousGuardService],
+  },
+  {
+    path: 'reservation-commande-adomicile',
+    component: ReservationCommandeADomicileComponent,
     canActivate: [AnonymousGuardService],
   },
   {

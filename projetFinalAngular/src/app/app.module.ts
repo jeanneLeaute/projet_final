@@ -24,6 +24,8 @@ import { RestaurateurService } from './services/restaurateur.service';
 import { EditRestaurantComponent } from './components/restaurant/edit-restaurant/edit-restaurant.component';
 import { ListRestaurantComponent } from './components/restaurant/list-restaurant/list-restaurant.component';
 import { DetailAdminComponent } from './components/admin/detail-admin/detail-admin.component';
+import { ReservationSurPlaceComponent } from './components/reservation/reservation-sur-place/reservation-sur-place.component';
+import { ReservationCommandeADomicileComponent } from './components/reservation/reservation-commande-adomicile/reservation-commande-adomicile.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { DetailAdminComponent } from './components/admin/detail-admin/detail-adm
     DetailClientComponent,
     DetailRestaurateurComponent,
     DetailAdminComponent,
+    ReservationSurPlaceComponent,
+    ReservationCommandeADomicileComponent,
   ],
   imports: [
     BrowserModule,
