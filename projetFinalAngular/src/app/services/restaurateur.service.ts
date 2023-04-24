@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Restaurateur } from '../model/restaurateur';
 import { Observable } from 'rxjs';
 import { ObjectToJsonService } from './object-to-json.service';
 import { Utilisateur } from '../model/utilisateur';
@@ -14,42 +13,42 @@ export class RestaurateurService {
     private convert: ObjectToJsonService
   ) {}
 
-  public allClient(): Observable<Utilisateur[]> {
+  public allRestaurateur(): Observable<Utilisateur[]> {
     return this.httpClient.get<Utilisateur[]>(
-      'http://localhost:8080/projetFinal/api/client'
+      'http://localhost:8080/projetFinal/api/restaurateur'
     );
   }
 
   public delete(id: number): Observable<void> {
     return this.httpClient.delete<void>(
-      `http://localhost:8080/eshop/api/client/${id}`
+      `http://localhost:8080/eshop/api/restaurateur/${id}`
     );
   }
 
   public create(restaurateur: Utilisateur): Observable<Utilisateur> {
     console.debug(restaurateur);
     return this.httpClient.post<Utilisateur>(
-      'http://localhost:8080/eshop/api/client/inscription',
+      'http://localhost:8080/eshop/api/restaurateur/inscription',
       this.convert.utilisateurToJson(restaurateur)
     );
   }
 
   public update(restaurateur: Utilisateur): Observable<Utilisateur> {
     return this.httpClient.put<Utilisateur>(
-      `http://localhost:8080/eshop/api/client/${restaurateur.id}`,
+      `http://localhost:8080/eshop/api/restaurateur/${restaurateur.id}`,
       this.convert.utilisateurToJson(restaurateur)
     );
   }
 
-  public getById(id: number): Observable<Restaurateur> {
-    return this.httpClient.get<Restaurateur>(
-      `http://localhost:8080/eshop/api/client/${id}`
+  public getById(id: number): Observable<Utilisateur> {
+    return this.httpClient.get<Utilisateur>(
+      `http://localhost:8080/eshop/api/restaurateur/${id}`
     );
   }
 
-  public getByLogin(login: string): Observable<Restaurateur> {
-    return this.httpClient.get<Restaurateur>(
-      `http://localhost:8080/eshop/api/client/${login}`
+  public getByLogin(login: string): Observable<Utilisateur> {
+    return this.httpClient.get<Utilisateur>(
+      `http://localhost:8080/eshop/api/restaurateur/${login}`
     );
   }
 }

@@ -1,21 +1,39 @@
 <div class="m-3 p-3 bg-dark position-relative center rounded">
-  <div class="center position-absolute top-50 start-50 translate-middle">
+  <div class="center">
     <nav>
       <app-link etiquetteLien="acceuil" lien="/home"></app-link>
       <ng-container *ngIf="admin">
-        <app-link etiquetteLien="client" lien="/client"></app-link>
-        <app-link etiquetteLien="restaurateur" lien="/restaurateur"></app-link>
+        <app-link etiquetteLien="client" lien="/list-client"></app-link>
+        <app-link
+          etiquetteLien="restaurateur"
+          lien="/list-restaurateur"
+        ></app-link>
         <app-link etiquetteLien="restaurant" lien="/restaurant"></app-link>
         <app-link etiquetteLien="commentaire" lien="/commentaire"></app-link>
         <app-link etiquetteLien="reservation" lien="/reservation"></app-link>
+        <app-link
+          etiquetteLien="mon compte"
+          lien="/restaurateur/detail/{{ IdUtilisateur }}"
+        ></app-link>
       </ng-container>
-      <ng-container *ngIf="client || restaurateur"> </ng-container>
       <ng-container *ngIf="!logged">
         <app-link etiquetteLien="inscription" lien="/inscription"></app-link>
         <app-link etiquetteLien="connexion" lien="/login"></app-link>
       </ng-container>
-      <button *ngIf="logged" class="btn btn-link" (click)="logout()">
-        deconnexion
+      <ng-container *ngIf="client"
+        ><app-link
+          etiquetteLien="mon compte"
+          lien="/client/detail/{{ IdUtilisateur }}"
+        ></app-link
+      ></ng-container>
+      <ng-container *ngIf="restaurateur"
+        ><app-link
+          etiquetteLien="mon compte"
+          lien="/restaurateur/detail/{{ IdUtilisateur }}"
+        ></app-link
+      ></ng-container>
+      <button *ngIf="logged" class="btn btn-primary" (click)="logout()">
+        déconnexion
       </button>
     </nav>
   </div>
