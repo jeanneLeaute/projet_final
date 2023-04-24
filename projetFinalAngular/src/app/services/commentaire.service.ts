@@ -11,11 +11,11 @@ export class CommentaireService {
 
   constructor(private http: HttpClient) {}
 
-  getCommentaires(): Observable<Commentaire[]> {
+  allCommentaires(): Observable<Commentaire[]> {
     return this.http.get<Commentaire[]>(this.baseUrl);
   }
 
-  getCommentaireById(id: string): Observable<Commentaire> {
+  getCommentaireById(id: number): Observable<Commentaire> {
     const url = `${this.baseUrl}/${id}`;
     return this.http.get<Commentaire>(url);
   }
@@ -29,7 +29,7 @@ export class CommentaireService {
     return this.http.put<Commentaire>(url, commentaire);
   }
 
-  deleteCommentaire(id: string): Observable<any> {
+  deleteCommentaire(id: number): Observable<any> {
     const url = `${this.baseUrl}/${id}`;
     return this.http.delete(url);
   }
