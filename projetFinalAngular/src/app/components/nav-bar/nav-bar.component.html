@@ -24,8 +24,9 @@
         <app-link etiquetteLien="connexion" lien="/login"></app-link>
         <app-link etiquetteLien="reservation" lien="/reservation"></app-link>
       </ng-container>
-      <ng-container *ngIf="client"
-        ><app-link
+      <ng-container *ngIf="client">
+        <app-link etiquetteLien="reservation" lien="/reservation"></app-link>
+        <app-link
           etiquetteLien="mon compte"
           lien="/client/detail/{{ IdUtilisateur }}"
         ></app-link>

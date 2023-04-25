@@ -52,8 +52,11 @@ export class RestaurateurService {
     );
   }
 
-  public inscription(client: any): Observable<any> {
-    return this.httpClient.post('http://localhost:8080/projetFinal/api/client/inscription', client);
+  public inscription(restaurateur: any): Observable<any> {
+    return this.httpClient.post(
+      'http://localhost:8080/projetFinal/api/restaurateur/inscription',
+      restaurateur
+    );
   }
 
   public checkLogin(login: string): Observable<boolean> {

@@ -35,13 +35,23 @@ export class EditRestaurateurComponent {
     if (this.restaurateur.id) {
       //update
       this.restaurateurSrv.update(this.restaurateur).subscribe(() => {
-        this.router.navigateByUrl('/client');
+        this.router.navigateByUrl('/list-restaurateur');
       });
     } else {
       //create
       this.restaurateurSrv.create(this.restaurateur).subscribe(() => {
-        this.router.navigateByUrl('/client');
+        this.router.navigateByUrl('/list-restaurateur');
       });
     }
+  }
+
+  get IdUtilisateur(): number {
+    if (sessionStorage.getItem('utilisateur')) {
+      let utilisateur: Utilisateur = JSON.parse(
+        sessionStorage.getItem('utilisateur')!
+      ) as Utilisateur;
+      return utilisateur.id!;
+    }
+    return 0;
   }
 }

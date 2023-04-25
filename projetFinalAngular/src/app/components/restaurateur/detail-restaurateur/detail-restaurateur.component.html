@@ -8,6 +8,10 @@
     <div>login : {{ restaurateur.login }}</div>
   </div>
   <div class="m-3">
+    <app-link
+      lien="/restaurateur/edit/{{ IdUtilisateur }}"
+      etiquetteLien="éditer le compte"
+    ></app-link>
     <button class="btn btn-danger" (click)="delete(restaurateur.id!)">
       supprimer le compte
     </button>

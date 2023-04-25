@@ -34,13 +34,23 @@ export class EditClientComponent {
     if (this.client.id) {
       //update
       this.clientSrv.update(this.client).subscribe(() => {
-        this.router.navigateByUrl('/client');
+        this.router.navigateByUrl('/list-client');
       });
     } else {
       //create
       this.clientSrv.create(this.client).subscribe(() => {
-        this.router.navigateByUrl('/client');
+        this.router.navigateByUrl('/list-client');
       });
     }
+  }
+
+  get IdUtilisateur(): number {
+    if (sessionStorage.getItem('utilisateur')) {
+      let utilisateur: Utilisateur = JSON.parse(
+        sessionStorage.getItem('utilisateur')!
+      ) as Utilisateur;
+      return utilisateur.id!;
+    }
+    return 0;
   }
 }
