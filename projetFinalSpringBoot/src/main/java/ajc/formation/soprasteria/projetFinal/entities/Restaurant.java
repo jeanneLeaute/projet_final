@@ -53,10 +53,10 @@ public class Restaurant {
 	@Column(name = "urlImage")
 	@JsonView(JsonViews.Simple.class)
 	private String urlImage;
-	@Column(name = "menu")
-	@JsonView(JsonViews.Simple.class)
-	@OneToMany(mappedBy = "restaurant")
-	private Set<ItemMenu> menu;
+//	@Column(name = "menu")
+//	@JsonView(JsonViews.Simple.class)
+//	@OneToMany(mappedBy = "restaurant")
+//	private Set<ItemMenu> menu;
 	@Column(name = "aEmporter")
 	@JsonView(JsonViews.Simple.class)
 	private boolean aEmporter;
@@ -102,7 +102,7 @@ public class Restaurant {
 
 
 	public Restaurant(String nom, Adresse adresse, String description, String horaireOuverture,
-			String urlImage, Set<ItemMenu> menu, boolean aEmporter, boolean peutReserver, Categorie categories,
+			String urlImage, boolean aEmporter, boolean peutReserver, Categorie categories,
 			Set<ItemMenu> itemMenus, Restaurateur restaurateur) {
 		super();
 		this.nom = nom;
@@ -110,7 +110,6 @@ public class Restaurant {
 		this.description = description;
 		this.horaireOuverture = horaireOuverture;
 		this.urlImage = urlImage;
-		this.menu = menu;
 		this.aEmporter = aEmporter;
 		this.peutReserver = peutReserver;
 		this.categories = categories;
@@ -157,15 +156,6 @@ public class Restaurant {
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
 	}
-	public Set<ItemMenu> getMenu() {
-		return menu;
-	}
-
-
-	public void setMenu(Set<ItemMenu> menu) {
-		this.menu = menu;
-	}
-
 
 	public Set<ItemMenu> getItemMenus() {
 		return itemMenus;

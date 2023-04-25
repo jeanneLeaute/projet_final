@@ -25,6 +25,7 @@ import ajc.formation.soprasteria.projetFinal.entities.ItemMenu;
 import ajc.formation.soprasteria.projetFinal.entities.Restaurant;
 import ajc.formation.soprasteria.projetFinal.entities.views.JsonViews;
 import ajc.formation.soprasteria.projetFinal.services.ItemMenuService;
+import ajc.formation.soprasteria.projetFinal.services.RestaurantService;
 
 @RestController
 @RequestMapping("/api/itemMenu")
@@ -33,6 +34,8 @@ public class ItemMenuRestController {
 	
 	@Autowired
 	private ItemMenuService itemMenuSrv;
+	@Autowired
+	private RestaurantService restaurantSrv;
 	
 	@GetMapping("")
 	@JsonView(JsonViews.ItemMenu.class)
@@ -102,7 +105,8 @@ public class ItemMenuRestController {
 	}
 	
 	@GetMapping("/{id}/restaurant")
-	public List<ItemMenu> getByRestaurant (@RequestBody Restaurant restaurant, @PathVariable Long id) {
+	public List<ItemMenu> getByRestaurant (@PathVariable Long id) {
+		Restaurant restaurant= restaurantSrv.getById(id) ;
 		List<ItemMenu> items = null;
 		items = itemMenuSrv.getByRestaurant(restaurant);
 		return items;
