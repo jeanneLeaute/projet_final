@@ -112,6 +112,9 @@ public class RestaurateurRestController {
 		if (restaurateur.getPrenom() != null) {
 			restaurateurEnBase.setPrenom(restaurateur.getPrenom());
 		}
+		if (restaurateur.getLogin() != null) {
+			restaurateurEnBase.setLogin(restaurateur.getLogin());
+		}
 		if (restaurateur.getPassword() != null) {
 			restaurateurEnBase.setPassword(restaurateur.getPassword());
 		}

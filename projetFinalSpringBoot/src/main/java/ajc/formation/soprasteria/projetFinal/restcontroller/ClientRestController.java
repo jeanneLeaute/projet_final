@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,6 +33,9 @@ public class ClientRestController {
 	
 	@Autowired
 	private ClientService clientSrv;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@GetMapping("")
 	@JsonView(JsonViews.Client.class)
@@ -107,6 +111,9 @@ public class ClientRestController {
 		}
 		if (client.getPrenom() != null) {
 			clientEnBase.setPrenom(client.getPrenom());
+		}
+		if (client.getLogin() != null) {
+			clientEnBase.setLogin(client.getLogin());
 		}
 		if (client.getPassword() != null) {
 			clientEnBase.setPassword(client.getPassword());

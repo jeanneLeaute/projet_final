@@ -107,7 +107,8 @@ public class ClientService {
 		Client clientEnBase = getById(client.getId());
 		clientEnBase.setNom(client.getNom());
 		clientEnBase.setPrenom(client.getPrenom());
-		clientEnBase.setPassword(client.getPassword());
+		clientEnBase.setLogin(client.getLogin());
+		clientEnBase.setPassword(passwordEncoder.encode(client.getPassword()));
 		return clientRepo.save(clientEnBase);
 	}
 

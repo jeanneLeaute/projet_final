@@ -97,7 +97,8 @@ public class RestaurateurService {
 		Restaurateur restaurateurEnBase = getById(restaurateur.getId());
 		restaurateurEnBase.setNom(restaurateur.getNom());
 		restaurateurEnBase.setPrenom(restaurateur.getPrenom());
-		restaurateurEnBase.setPassword(restaurateur.getPassword());
+		restaurateurEnBase.setLogin(restaurateur.getLogin());
+		restaurateurEnBase.setPassword(passwordEncoder.encode(restaurateur.getPassword()));
 		return restaurateurRepo.save(restaurateurEnBase);
 	}
 

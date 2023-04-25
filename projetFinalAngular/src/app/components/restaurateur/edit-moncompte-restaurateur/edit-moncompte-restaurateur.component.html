@@ -1,48 +1,83 @@
-<div>
-  <h2>restaurateur</h2>
-  <div>
+<form (ngSubmit)="submit()" [formGroup]="form">
+  <div class="form-group">
+    <label for="id">id:</label>
+    <input
+      [(ngModel)]="restaurateur.id"
+      id="id"
+      class="form-control"
+      formControlName="id"
+      readonly
+    />
+  </div>
+  <div class="form-group">
+    <label for="prenom">prenom:</label>
+    <input
+      [(ngModel)]="restaurateur.prenom"
+      id="prenom"
+      class="form-control"
+      formControlName="prenom"
+    />
+  </div>
+  <div class="form-group">
+    <label for="nom">nom:</label>
+    <input
+      [(ngModel)]="restaurateur.nom"
+      id="nom"
+      class="form-control"
+      formControlName="nom"
+    />
+  </div>
+  <ng-container formGroupName="compteGroup">
     <div class="form-group">
-      <label
-        >id :<input
-          [(ngModel)]="restaurateur.id"
-          readonly
-          class="form-control"
-        />
-      </label>
-    </div>
-    <div class="form-group">
-      <label
-        >nom :<input [(ngModel)]="restaurateur.nom" class="form-control" />
-      </label>
-    </div>
-    <div class="form-group">
-      <label
-        >prenom :<input
-          [(ngModel)]="restaurateur.prenom"
-          class="form-control"
-        />
-      </label>
-    </div>
-    <div class="form-group">
-      <label
-        >login :<input [(ngModel)]="restaurateur.login" class="form-control" />
-      </label>
-    </div>
-    <div class="form-group">
-      <label
-        >mot de passe :<input
-          [(ngModel)]="restaurateur.password"
-          class="form-control"
-        />
-      </label>
-    </div>
-    <div class="form-group">
-      <button (click)="save()" class="btn btn-outline-primary">
-        enregistrer les modifications
-      </button>
-      <a routerLink="/restaurateur/moncompte" class="btn btn-outline-warning"
-        >annuler</a
+      <label for="login">login:</label>
+      <input
+        [(ngModel)]="restaurateur.login"
+        id="login"
+        class="form-control"
+        formControlName="login"
+      />
+      <span
+        *ngIf="
+          form.get('compteGroup.login')?.dirty &&
+          form.get('compteGroup.login')?.hasError('loginExist')
+        "
+        >login exist</span
       >
     </div>
+    <ng-container formGroupName="passwordGrp">
+      <div class="form-group">
+        <label for="password">password:</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          formControlName="password"
+        />
+      </div>
+      <div class="form-group">
+        <label for="confirm">confirmation mot de passe:</label>
+        <input
+          type="password"
+          id="confirm"
+          class="form-control"
+          formControlName="confirm"
+        />
+      </div>
+    </ng-container>
+  </ng-container>
+  <div>
+    <button
+      type="submit"
+      class="btn btn-outline-primary"
+      [disabled]="form.invalid"
+    >
+      enregistrer
+    </button>
+    <a
+      routerLink="/restaurateur/moncompte"
+      routerLinkActive="active"
+      class="btn btn-link"
+      >annuler</a
+    >
   </div>
-</div>
+</form>
