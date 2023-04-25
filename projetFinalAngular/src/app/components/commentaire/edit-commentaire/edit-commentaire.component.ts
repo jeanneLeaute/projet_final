@@ -23,8 +23,8 @@ export class EditCommentaireComponent {
       if (params['id']) {
         this.commentaireSrv
           .getCommentaireById(params['id'])
-          .subscribe((data: Commentaire) => {
-            this.commentaire = data;
+          .subscribe((commentaire: Commentaire) => {
+            this.commentaire = commentaire;
           });
       }
     });
