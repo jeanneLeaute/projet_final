@@ -42,6 +42,7 @@ export class EditRestaurantGuardService {
             });
         }
       });
+      console.debug(this.restaurant);
       return (
         utilisateur.role == Role.ROLE_RESTAURATEUR &&
         utilisateur.id == this.restaurant.restaurateur?.id

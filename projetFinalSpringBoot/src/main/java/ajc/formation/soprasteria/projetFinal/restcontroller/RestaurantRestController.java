@@ -47,17 +47,11 @@ public class RestaurantRestController {
 		return restaurantSrv.getAll();
 	}
 	
-	@GetMapping("/{restaurateur}")
-	@JsonView(JsonViews.RestaurantWithRestaurateur.class)
-	public List<Restaurant> getByRestaurateur(@PathVariable Restaurateur restaurateur) {
-		return restaurantSrv.findByRestaurateur(restaurateur);
-	}
 	
 	@GetMapping("/restaurateur/{id}")
 	@JsonView(JsonViews.RestaurantWithRestaurateur.class)
 	public List<Restaurant> getByRestaurateur(@PathVariable Long id) {
-		Restaurateur restaurateur = restaurateurSrv.getById(id);
-		return restaurantSrv.findByRestaurateur(restaurateur);
+		return restaurantSrv.findByRestaurateur(restaurateurSrv.getById(id));
 	}
 	
 	@GetMapping("/{id}")
