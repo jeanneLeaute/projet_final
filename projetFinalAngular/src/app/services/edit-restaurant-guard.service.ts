@@ -9,6 +9,7 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Utilisateur } from '../model/utilisateur';
+import { Role } from '../model/role';
 
 @Injectable({
   providedIn: 'root',
@@ -41,7 +42,10 @@ export class EditRestaurantGuardService {
             });
         }
       });
-      return utilisateur.id == this.restaurant.restaurateur?.id;
+      return (
+        utilisateur.role == Role.ROLE_RESTAURATEUR &&
+        utilisateur.id == this.restaurant.restaurateur?.id
+      );
     }
     return false;
   }

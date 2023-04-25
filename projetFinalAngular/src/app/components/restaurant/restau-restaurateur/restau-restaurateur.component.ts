@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Restaurant } from 'src/app/model/restaurant';
 import { Restaurateur } from 'src/app/model/restaurateur';
 import { Utilisateur } from 'src/app/model/utilisateur';
@@ -12,8 +13,9 @@ import { RestaurateurService } from 'src/app/services/restaurateur.service';
   styleUrls: ['./restau-restaurateur.component.css'],
 })
 export class RestauRestaurateurComponent implements OnInit {
+  restaurant!: Restaurant;
+  restaurantsRestaurateur!: Restaurant[];
   restaurateur!: Utilisateur;
-  restaurants: Restaurant[] = [];
   constructor(
     private restaurateurSrv: RestaurateurService,
     private restaurantSrv: RestaurantService,
@@ -31,15 +33,33 @@ export class RestauRestaurateurComponent implements OnInit {
           });
       }
     });
+    this.initRestaurants();
+    this.restaurant.restaurateur = this.restaurateur;
   }
 
   initRestaurants() {
-    if (this.restaurateur.id) {
+    if (this.IdUtilisateur) {
       this.restaurantSrv
-        .RestaurantsByRestaurateur(this.restaurateur.id)
+        .RestaurantsByRestaurateur(this.IdUtilisateur)
         .subscribe((restaurants: Restaurant[]) => {
-          this.restaurants = restaurants;
+          this.restaurantsRestaurateur = restaurants;
         });
     }
+  }
+
+  get IdUtilisateur(): number {
+    if (sessionStorage.getItem('utilisateur')) {
+      let utilisateur: Utilisateur = JSON.parse(
+        sessionStorage.getItem('utilisateur')!
+      ) as Utilisateur;
+      return utilisateur.id!;
+    }
+    return 0;
+  }
+
+  delete(id: number) {
+    this.restaurantSrv.delete(id).subscribe(() => {
+      this.initRestaurants();
+    });
   }
 }

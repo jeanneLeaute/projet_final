@@ -1,6 +1,7 @@
 import { Adresse } from './adresse';
 import { Categorie } from './categorie';
 import { Restaurateur } from './restaurateur';
+import { Utilisateur } from './utilisateur';
 
 export class Restaurant {
   public get id(): number | undefined {
@@ -57,10 +58,10 @@ export class Restaurant {
   public set adressse(value: Adresse | undefined) {
     this._adresse = value;
   }
-  public get restaurateur(): Restaurateur | undefined {
+  public get restaurateur(): Utilisateur | undefined {
     return this._restaurateur;
   }
-  public set restaurateur(value: Restaurateur | undefined) {
+  public set restaurateur(value: Utilisateur | undefined) {
     this._restaurateur = value;
   }
 
@@ -74,6 +75,6 @@ export class Restaurant {
     private _peutReserver?: boolean,
     private _categories?: Categorie,
     private _adresse?: Adresse,
-    private _restaurateur?: Restaurateur
+    private _restaurateur?: Utilisateur
   ) {}
 }
