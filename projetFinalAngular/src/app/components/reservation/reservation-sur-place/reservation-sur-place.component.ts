@@ -21,7 +21,7 @@ export class ReservationSurPlaceComponent {
   form!: FormGroup;
   items!: Observable<ItemMenu[]>;
 
-  constructor(private surPlaceSrv: SurPlaceService, private router: Router,private itemMenuSrv:ItemMenuService;) {}
+  constructor(private surPlaceSrv: SurPlaceService, private router: Router,private itemMenuSrv:ItemMenuService) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({

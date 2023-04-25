@@ -22,6 +22,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import ajc.formation.soprasteria.projetFinal.entities.ItemMenu;
+import ajc.formation.soprasteria.projetFinal.entities.Restaurant;
 import ajc.formation.soprasteria.projetFinal.entities.views.JsonViews;
 import ajc.formation.soprasteria.projetFinal.services.ItemMenuService;
 
@@ -98,6 +99,13 @@ public class ItemMenuRestController {
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long id) {
 		itemMenuSrv.deleteByKey(id);
+	}
+	
+	@GetMapping("/{id}/restaurant")
+	public List<ItemMenu> getByRestaurant (@RequestBody Restaurant restaurant, @PathVariable Long id) {
+		List<ItemMenu> items = null;
+		items = itemMenuSrv.getByRestaurant(restaurant);
+		return items;
 	}
 
 }

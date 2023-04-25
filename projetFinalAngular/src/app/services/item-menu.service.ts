@@ -49,7 +49,7 @@ export class ItemMenuService {
 
   public findByRestaurant(restau:Restaurant):Observable<ItemMenu[]>{
     return this.httpClient.get<ItemMenu[]>(
-      `http://localhost:8080/projetFinal/api/itemMenu/${restau}`
+      `http://localhost:8080/projetFinal/api/itemMenu/${restau.id}/restaurant`
     );
   }
 }
