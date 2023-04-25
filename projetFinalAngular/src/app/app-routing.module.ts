@@ -96,7 +96,7 @@ const routes: Routes = [
   {
     path: 'restau-restaurateur/edit/:id',
     component: RestauRestaurateurEditComponent,
-    canActivate: [EditRestaurantGuardService],
+    // canActivate: [EditRestaurantGuardService],
   },
   {
     path: 'list-client',

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Restaurant } from 'src/app/model/restaurant';
 import { Restaurateur } from 'src/app/model/restaurateur';
+import { Role } from 'src/app/model/role';
 import { Utilisateur } from 'src/app/model/utilisateur';
 import { RestaurantService } from 'src/app/services/restaurant.service';
 import { RestaurateurService } from 'src/app/services/restaurateur.service';
@@ -17,7 +18,6 @@ export class RestauRestaurateurEditComponent {
   restaurateur!: Utilisateur;
 
   constructor(
-    private aR: ActivatedRoute,
     private restaurantSrv: RestaurantService,
     private restaurateurSrv: RestaurateurService,
     private activatedRoute: ActivatedRoute,
@@ -25,26 +25,34 @@ export class RestauRestaurateurEditComponent {
   ) {}
   ngOnInit(): void {
     this.restaurant = new Restaurant();
-    this.aR.params.subscribe((params) => {
+    this.activatedRoute.params.subscribe((params) => {
       if (params['id']) {
         this.restaurantSrv
           .getById(params['id'])
           .subscribe((restaurant: Restaurant) => {
             this.restaurant = restaurant;
           });
+      } else {
+        this.restaurateur = new Utilisateur();
+        if (this.isRestaurateur) {
+          this.restaurateurSrv
+            .getById(this.IdUtilisateur)
+            .subscribe((data: Utilisateur) => {
+              this.restaurant.restaurateur = data;
+            });
+        }
       }
     });
-    this.restaurateur = new Utilisateur();
-    this.activatedRoute.params.subscribe((params) => {
-      if (params['id']) {
-        this.restaurateurSrv
-          .getById(params['id'])
-          .subscribe((datas: Utilisateur) => {
-            this.restaurateur = datas;
-            this.restaurant.restaurateur = this.restaurateur;
-          });
-      }
-    });
+  }
+
+  get isRestaurateur(): boolean {
+    if (sessionStorage.getItem('utilisateur')) {
+      let utilisateur: Utilisateur = JSON.parse(
+        sessionStorage.getItem('utilisateur')!
+      ) as Utilisateur;
+      return utilisateur.role == Role.ROLE_RESTAURATEUR;
+    }
+    return false;
   }
 
   get IdUtilisateur(): number {

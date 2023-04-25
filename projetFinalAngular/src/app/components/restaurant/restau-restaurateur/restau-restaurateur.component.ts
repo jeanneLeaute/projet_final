@@ -34,7 +34,6 @@ export class RestauRestaurateurComponent implements OnInit {
       }
     });
     this.initRestaurants();
-    this.restaurant.restaurateur = this.restaurateur;
   }
 
   initRestaurants() {
