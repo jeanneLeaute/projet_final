@@ -52,10 +52,10 @@ export class RestaurateurService {
     );
   }
 
-  public inscription(client: any): Observable<any> {
+  public inscription(restaurateur: any): Observable<any> {
     return this.httpClient.post(
       'http://localhost:8080/projetFinal/api/restaurateur/inscription',
-      client
+      restaurateur
     );
   }
 
