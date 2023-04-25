@@ -1,3 +1,4 @@
+import { EditCommentaireComponent } from './components/commentaire/edit-commentaire/edit-commentaire.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -33,6 +34,7 @@ import { MoncompteClientComponent } from './components/client/moncompte-client/m
 import { MoncompteRestaurateurComponent } from './components/restaurateur/moncompte-restaurateur/moncompte-restaurateur.component';
 import { EditMoncompteClientComponent } from './components/client/edit-moncompte-client/edit-moncompte-client.component';
 import { EditMoncompteRestaurateurComponent } from './components/restaurateur/edit-moncompte-restaurateur/edit-moncompte-restaurateur.component';
+import { ListCommentaireComponent } from './components/commentaire/list-commentaire/list-commentaire.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +65,8 @@ import { EditMoncompteRestaurateurComponent } from './components/restaurateur/ed
     MoncompteRestaurateurComponent,
     EditMoncompteClientComponent,
     EditMoncompteRestaurateurComponent,
+    EditCommentaireComponent,
+    ListCommentaireComponent,
   ],
   imports: [
     BrowserModule,

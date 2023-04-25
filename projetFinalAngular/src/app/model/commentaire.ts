@@ -3,6 +3,7 @@ import { Restaurant } from './restaurant';
 
 export class Commentaire {
   commentaire: any;
+  utilisateur: any;
   public get texte(): string | undefined {
     return this._texte;
   }

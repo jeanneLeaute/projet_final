@@ -1,1 +1,27 @@
 <p>list-commentaire works!</p>
+<div class="comment-section">
+  <h2>Commentaires</h2>
+  <ul>
+    <li *ngFor="let commentaire of commentaires">
+      <p>{{ commentaire.utilisateur }}</p>
+      <p>{{ commentaire.texte }}</p>
+    </li>
+  </ul>
+  <td>
+    <a
+      routerLink="/commentaire/edit/{{ utilisateur.id }}"
+      routerLinkActive="active"
+      class="btn btn-outline-primary"
+      >editer</a
+    >
+  </td>
+  <td>
+    <button class="btn btn-outline-danger" (click)="delete(utilisateur.id!)">
+      suppression
+    </button>
+  </td>
+  <app-link
+    etiquetteLien="nouveau commentaire"
+    lien="/commentaire/add"
+  ></app-link>
+</div>

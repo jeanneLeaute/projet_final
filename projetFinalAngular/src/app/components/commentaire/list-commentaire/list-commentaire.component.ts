@@ -9,6 +9,7 @@ import { CommentaireService } from 'src/app/services/commentaire.service';
 })
 export class ListCommentaireComponent {
   commentaires: Commentaire[] = [];
+  utilisateur: any;
 
   constructor(private commentaireSrv: CommentaireService) {}
   ngOnInit(): void {
