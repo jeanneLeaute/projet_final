@@ -1,1 +1,43 @@
-<p>restau-restaurateur works!</p>
+<div
+  class="bg-dark m-3 p-3 bg-dark text-light position-relative center rounded"
+>
+  <table class="table text-light text-center">
+    <thead>
+      <tr>
+        <th>id:</th>
+        <th>nom:</th>
+        <th>horaireOuverture:</th>
+        <th>description:</th>
+        <th>restaurateur:</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let r of restaurants">
+        <td>{{ r.id }}</td>
+        <td>{{ r.nom }}</td>
+        <td>{{ r.horaireOuverture }}</td>
+        <td>{{ r.description }}</td>
+        <td>{{ r.restaurateur?.nom }}</td>
+        <td>
+          <a
+            routerLink="/restau-restaurateur/edit/{{ r.id }}"
+            routerLinkActive="active"
+            class="btn btn-outline-primary"
+            >editer</a
+          >
+        </td>
+        <td>
+          <button class="btn btn-outline-danger" (click)="delete(r.id!)">
+            suppression
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <app-link
+    etiquetteLien="nouveau restaurant"
+    lien="/restau-restaurateur/add"
+  ></app-link>
+</div>

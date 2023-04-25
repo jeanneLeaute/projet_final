@@ -25,6 +25,8 @@ import { DetailAdminComponent } from './components/admin/detail-admin/detail-adm
 import { ReservationComponent } from './components/reservation/reservation.component';
 import { ReservationSurPlaceComponent } from './components/reservation/reservation-sur-place/reservation-sur-place.component';
 import { ReservationCommandeADomicileComponent } from './components/reservation/reservation-commande-adomicile/reservation-commande-adomicile.component';
+import { RestauRestaurateurComponent } from './components/restaurant/restau-restaurateur/restau-restaurateur.component';
+import { RestauRestaurateurEditComponent } from './components/restaurant/restau-restaurateur-edit/restau-restaurateur-edit.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -77,6 +79,18 @@ const routes: Routes = [
     path: 'restaurant/edit/:id',
     component: EditRestaurantComponent,
     canActivate: [RestaurateurGuardService],
+  },
+  {
+    path: 'restau-restaurateur',
+    component: RestauRestaurateurComponent,
+  },
+  {
+    path: 'restau-restaurateur/add',
+    component: RestauRestaurateurEditComponent,
+  },
+  {
+    path: 'restau-restaurateur/edit/:id',
+    component: RestauRestaurateurEditComponent,
   },
   {
     path: 'list-client',
