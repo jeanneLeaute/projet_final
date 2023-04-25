@@ -27,6 +27,7 @@ import { DetailAdminComponent } from './components/admin/detail-admin/detail-adm
 import { ReservationSurPlaceComponent } from './components/reservation/reservation-sur-place/reservation-sur-place.component';
 import { ReservationCommandeADomicileComponent } from './components/reservation/reservation-commande-adomicile/reservation-commande-adomicile.component';
 import { ReservationComponent } from './components/reservation/reservation.component';
+import { RestauRestaurateurComponent } from './components/restaurant/restau-restaurateur/restau-restaurateur.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { ReservationComponent } from './components/reservation/reservation.compo
     ReservationComponent,
     ReservationSurPlaceComponent,
     ReservationCommandeADomicileComponent,
+    RestauRestaurateurComponent,
   ],
   imports: [
     BrowserModule,

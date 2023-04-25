@@ -24,9 +24,11 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import ajc.formation.soprasteria.projetFinal.entities.Categorie;
 import ajc.formation.soprasteria.projetFinal.entities.Restaurant;
+import ajc.formation.soprasteria.projetFinal.entities.Restaurateur;
 import ajc.formation.soprasteria.projetFinal.entities.views.JsonViews;
 import ajc.formation.soprasteria.projetFinal.exception.RestaurantException;
 import ajc.formation.soprasteria.projetFinal.services.RestaurantService;
+import ajc.formation.soprasteria.projetFinal.services.RestaurateurService;
 
 
 @RestController
@@ -36,11 +38,26 @@ public class RestaurantRestController {
 	
 	@Autowired
 	private RestaurantService restaurantSrv;
+	@Autowired
+	private RestaurateurService restaurateurSrv;
 	
 	@GetMapping("")
 	@JsonView(JsonViews.RestaurantWithRestaurateur.class)
 	public List<Restaurant> getAll() {
 		return restaurantSrv.getAll();
+	}
+	
+	@GetMapping("/{restaurateur}")
+	@JsonView(JsonViews.RestaurantWithRestaurateur.class)
+	public List<Restaurant> getByRestaurateur(@PathVariable Restaurateur restaurateur) {
+		return restaurantSrv.findByRestaurateur(restaurateur);
+	}
+	
+	@GetMapping("/restaurateur/{id}")
+	@JsonView(JsonViews.RestaurantWithRestaurateur.class)
+	public List<Restaurant> getByRestaurateur(@PathVariable Long id) {
+		Restaurateur restaurateur = restaurateurSrv.getById(id);
+		return restaurantSrv.findByRestaurateur(restaurateur);
 	}
 	
 	@GetMapping("/{id}")

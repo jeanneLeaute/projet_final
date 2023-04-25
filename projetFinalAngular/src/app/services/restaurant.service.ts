@@ -21,6 +21,12 @@ export class RestaurantService {
     );
   }
 
+  public RestaurantsByRestaurateur(id: number): Observable<Restaurant[]> {
+    return this.httpClient.get<Restaurant[]>(
+      `http://localhost:8080/projetFinal/api/restaurant/restaurateur/${id}`
+    );
+  }
+
   public getById(id: number): Observable<Restaurant> {
     return this.httpClient.get<Restaurant>(
       `http://localhost:8080/projetFinal/api/restaurant/${id}`
