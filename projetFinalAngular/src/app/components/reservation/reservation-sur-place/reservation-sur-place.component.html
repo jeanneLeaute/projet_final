@@ -5,9 +5,15 @@
     <input id="nom" class="form-control" formControlName="nom" />
   </div>
   <ng-container formGroupName="menuGroup">
-    <div class="form-group">
-      <label for="login">login:</label>
-      <input id="login" class="form-control" formControlName="login" />
+    <div class="form-group" *ngFor="let item of items | async">
+      <label>
+        <input
+          type="checkbox"
+          name="selectedItems"
+          [(ngModel)]="item.selected"
+        />
+        {{ item.nom }} - {{ item.description }}
+      </label>
     </div>
   </ng-container>
   <div>

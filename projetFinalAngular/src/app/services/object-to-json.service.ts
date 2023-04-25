@@ -3,6 +3,7 @@ import { Client } from '../model/client';
 import { Restaurant } from '../model/restaurant';
 import { Utilisateur } from '../model/utilisateur';
 import { Reservation } from '../model/reservation';
+import { ItemMenu } from '../model/item-menu';
 
 @Injectable({
   providedIn: 'root',
@@ -34,6 +35,20 @@ export class ObjectToJsonService {
     };
     if (utilisateur.id) {
       Object.assign(obj, { id: utilisateur.id });
+    }
+    return obj;
+  }
+
+  public itemMenuToJson(item: ItemMenu): any {
+    let obj = {
+      nom: item.nom,
+      utlImage: item.urlImage,
+      categoriePlat: item.categoriePlat,
+      description: item.description,
+      restaurant: item.restaurant,
+    };
+    if (item.id) {
+      Object.assign(obj, { id: item.id });
     }
     return obj;
   }

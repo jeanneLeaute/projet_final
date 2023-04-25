@@ -1,12 +1,21 @@
 import { Restaurant } from "./restaurant";
 
 export class ItemMenu {
+  selected: unknown;
   public constructor(
+    _id:number,
     _urlImage:string,
     _nom:string,
     _description:string,
     _categoriePlat:string,
     _restaurant:Restaurant) {}
+
+    public get id(): number{
+      return this.id;
+    }
+    public set id(value: number) {
+      this.id = value;
+    }
 
     public get urlImage(): string{
       return this.urlImage;
