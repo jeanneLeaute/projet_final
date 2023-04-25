@@ -38,17 +38,17 @@ const routes: Routes = [
   {
     path: 'reservation',
     component: ReservationComponent,
-    canActivate: [AnonymousGuardService],
+    canActivate: [ClientGuardService],
   },
   {
     path: 'reservation-surplace',
     component: ReservationSurPlaceComponent,
-    canActivate: [AnonymousGuardService],
+    canActivate: [ClientGuardService],
   },
   {
     path: 'reservation-commande-adomicile',
     component: ReservationCommandeADomicileComponent,
-    canActivate: [AnonymousGuardService],
+    canActivate: [ClientGuardService],
   },
   {
     path: 'inscription',
@@ -108,6 +108,11 @@ const routes: Routes = [
     canActivate: [ClientGuardService],
   },
   {
+    path: 'client/detail/moncompte',
+    component: DetailClientComponent,
+    canActivate: [ClientGuardService],
+  },
+  {
     path: 'list-restaurateur',
     component: ListRestaurateurComponent,
     canActivate: [AdminGuardService],
@@ -121,6 +126,11 @@ const routes: Routes = [
     path: 'restaurateur/detail/:id',
     component: DetailRestaurateurComponent,
     canActivate: [RestaurateurGuardService],
+  },
+  {
+    path: 'restaurateur/detail/moncompte',
+    component: DetailRestaurateurComponent,
+    canActivate: [ClientGuardService],
   },
   {
     path: 'admin/detail/:id',

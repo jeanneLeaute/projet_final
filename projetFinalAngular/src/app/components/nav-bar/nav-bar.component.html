@@ -28,13 +28,13 @@
         <app-link etiquetteLien="reservation" lien="/reservation"></app-link>
         <app-link
           etiquetteLien="mon compte"
-          lien="/client/detail/{{ IdUtilisateur }}"
+          lien="/client/detail/moncompte"
         ></app-link>
       </ng-container>
       <ng-container *ngIf="restaurateur"
         ><app-link
           etiquetteLien="mon compte"
-          lien="/restaurateur/detail/{{ IdUtilisateur }}"
+          lien="/restaurateur/detail/moncompte"
         ></app-link
       ></ng-container>
       <button *ngIf="logged" class="btn btn-primary" (click)="logout()">
