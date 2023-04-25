@@ -27,6 +27,9 @@ import { ReservationSurPlaceComponent } from './components/reservation/reservati
 import { ReservationCommandeADomicileComponent } from './components/reservation/reservation-commande-adomicile/reservation-commande-adomicile.component';
 import { RestauRestaurateurComponent } from './components/restaurant/restau-restaurateur/restau-restaurateur.component';
 import { RestauRestaurateurEditComponent } from './components/restaurant/restau-restaurateur-edit/restau-restaurateur-edit.component';
+import { MoncompteClientComponent } from './components/client/moncompte-client/moncompte-client.component';
+import { MoncompteRestaurateurComponent } from './components/restaurateur/moncompte-restaurateur/moncompte-restaurateur.component';
+import { EditMoncompteRestaurateurComponent } from './components/restaurateur/edit-moncompte-restaurateur/edit-moncompte-restaurateur.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -105,11 +108,11 @@ const routes: Routes = [
   {
     path: 'client/detail/:id',
     component: DetailClientComponent,
-    canActivate: [ClientGuardService],
+    canActivate: [AdminGuardService],
   },
   {
-    path: 'client/detail/moncompte',
-    component: DetailClientComponent,
+    path: 'client/moncompte',
+    component: MoncompteClientComponent,
     canActivate: [ClientGuardService],
   },
   {
@@ -120,17 +123,22 @@ const routes: Routes = [
   {
     path: 'restaurateur/edit/:id',
     component: EditRestaurateurComponent,
+    canActivate: [AdminGuardService],
+  },
+  {
+    path: 'restaurateur/edit-moncompte',
+    component: EditMoncompteRestaurateurComponent,
     canActivate: [RestaurateurGuardService],
   },
   {
     path: 'restaurateur/detail/:id',
     component: DetailRestaurateurComponent,
-    canActivate: [RestaurateurGuardService],
+    canActivate: [AdminGuardService],
   },
   {
-    path: 'restaurateur/detail/moncompte',
-    component: DetailRestaurateurComponent,
-    canActivate: [ClientGuardService],
+    path: 'restaurateur/moncompte',
+    component: MoncompteRestaurateurComponent,
+    canActivate: [RestaurateurGuardService],
   },
   {
     path: 'admin/detail/:id',

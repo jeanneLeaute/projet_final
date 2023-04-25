@@ -1,1 +1,28 @@
-<p>moncompte-restaurateur works!</p>
+<div class="p-3 m-3 center bg-dark text-light rounded">
+  <div class="m-3">
+    <h2>informations :</h2>
+  </div>
+  <div class="m-3">
+    <div>nom : {{ restaurateur.nom }}</div>
+    <div>prenom : {{ restaurateur.prenom }}</div>
+    <div>login : {{ restaurateur.login }}</div>
+  </div>
+  <div class="m-3">
+    <app-link
+      lien="/restaurateur/edit-moncompte"
+      etiquetteLien="éditer le compte"
+    ></app-link>
+    <button class="btn btn-danger" (click)="delete(restaurateur.id!)">
+      supprimer le compte
+    </button>
+  </div>
+</div>
+
+<div class="m-3 center bg-dark text-light rounded">
+  <div class="m-3">
+    <h2>historique des commantaires :</h2>
+  </div>
+  <div class="m-3">
+    <table></table>
+  </div>
+</div>

@@ -21,22 +21,17 @@ export class DetailClientComponent implements OnInit {
 
   ngOnInit(): void {
     this.client = new Utilisateur();
-    // if (this.isAdmin) {
-    this.activatedRoute.params.subscribe((params) => {
-      if (params['id']) {
-        this.clientSrv.getById(params['id']).subscribe((datas: Utilisateur) => {
-          this.client = datas;
-        });
-      }
-    });
-    // }
-    // if (this.isClient) {
-    //   this.clientSrv
-    //     .getById(this.IdUtilisateur)
-    //     .subscribe((datas: Utilisateur) => {
-    //       this.client = datas;
-    //     });
-    // }
+    if (this.isAdmin) {
+      this.activatedRoute.params.subscribe((params) => {
+        if (params['id']) {
+          this.clientSrv
+            .getById(params['id'])
+            .subscribe((datas: Utilisateur) => {
+              this.client = datas;
+            });
+        }
+      });
+    }
   }
 
   delete(id: number) {
@@ -54,16 +49,6 @@ export class DetailClientComponent implements OnInit {
       return utilisateur.id!;
     }
     return 0;
-  }
-
-  get isClient(): boolean {
-    if (sessionStorage.getItem('utilisateur')) {
-      let utilisateur: Utilisateur = JSON.parse(
-        sessionStorage.getItem('utilisateur')!
-      ) as Utilisateur;
-      return utilisateur.role == Role.ROLE_CLIENT;
-    }
-    return false;
   }
 
   get isAdmin(): boolean {

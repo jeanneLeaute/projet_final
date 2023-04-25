@@ -1,1 +1,37 @@
-<p>moncompte-client works!</p>
+<div class="p-3 m-3 center bg-dark text-light rounded">
+  <div class="m-3">
+    <h2>informations :</h2>
+  </div>
+  <div class="m-3">
+    <div>nom : {{ client.nom }}</div>
+    <div>prenom : {{ client.prenom }}</div>
+    <div>login : {{ client.login }}</div>
+  </div>
+  <div class="m-3">
+    <app-link
+      lien="/client/edit/{{ IdUtilisateur }}"
+      etiquetteLien="éditer le compte"
+    ></app-link>
+    <button class="btn btn-danger" (click)="delete(client.id!)">
+      supprimer le compte
+    </button>
+  </div>
+</div>
+
+<div class="m-3 center bg-dark text-light rounded">
+  <div class="m-3">
+    <h2>historique des commandes :</h2>
+  </div>
+  <div class="m-3">
+    <table></table>
+  </div>
+</div>
+
+<div class="m-3 center bg-dark text-light rounded">
+  <div class="m-3">
+    <h2>historique des commantaires :</h2>
+  </div>
+  <div class="m-3">
+    <table></table>
+  </div>
+</div>
