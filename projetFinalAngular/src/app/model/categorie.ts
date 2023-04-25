@@ -1,1 +1,3 @@
-export enum Categorie {}
+export enum Categorie {
+  pizzeria,burger
+}

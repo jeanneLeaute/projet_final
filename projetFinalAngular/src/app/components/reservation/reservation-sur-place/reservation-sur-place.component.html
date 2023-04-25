@@ -1,1 +1,25 @@
-<p>reservation-sur-place works!</p>
+<h1>Reserver une table</h1>
+<form (ngSubmit)="submit()" [formGroup]="form">
+  <div class="form-group">
+    <label for="nom">Nom de la réservation:</label>
+    <input id="nom" class="form-control" formControlName="nom" />
+  </div>
+  <ng-container formGroupName="menuGroup">
+    <div class="form-group">
+      <label for="login">login:</label>
+      <input id="login" class="form-control" formControlName="login" />
+    </div>
+  </ng-container>
+  <div>
+    <button
+      type="submit"
+      class="btn btn-outline-primary"
+      [disabled]="form.invalid"
+    >
+      enregistrer
+    </button>
+    <a routerLink="/home" routerLinkActive="active" class="btn btn-link"
+      >annuler</a
+    >
+  </div>
+</form>

@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ajc.formation.soprasteria.projetFinal.entities.ItemMenu;
+import ajc.formation.soprasteria.projetFinal.entities.Reservation;
+import ajc.formation.soprasteria.projetFinal.entities.Restaurant;
 import ajc.formation.soprasteria.projetFinal.exception.ItemMenuException;
+import ajc.formation.soprasteria.projetFinal.exception.ReservationException;
 import ajc.formation.soprasteria.projetFinal.repositories.ItemMenuRepository;
 
 @Service
@@ -58,6 +61,16 @@ public class ItemMenuService {
     public List<ItemMenu> getAll(){
     	return itemMenuRepo.findAll();
     }
-	
+    
+    public List<ItemMenu> getByRestaurant(Restaurant restaurant) {
+		if (restaurant == null) {
+			throw new ReservationException("restaurant obligatoire");
+		}
+		
+		if (itemMenuRepo.findByRestaurant(restaurant)==null) {
+			throw new ReservationException("restaurant inconnu");
+		}
+		return (List<ItemMenu>) itemMenuRepo.findByRestaurant(restaurant);
+	}
 
 }
