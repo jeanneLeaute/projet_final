@@ -1,6 +1,6 @@
 import { Restaurant } from './../../../model/restaurant';
 import { Component } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, map, toArray } from 'rxjs';
 import { Adresse } from 'src/app/model/adresse';
@@ -35,7 +35,8 @@ export class ReservationSurPlaceComponent {
     private itemMenuSrv: ItemMenuService,
     private clientSrv: ClientService,
     private aR: ActivatedRoute,
-    private restaurantSrv: RestaurantService
+    private restaurantSrv: RestaurantService,
+    private formBuilder : FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -61,9 +62,10 @@ export class ReservationSurPlaceComponent {
     }
     this.form = new FormGroup({
       nom: new FormControl('', Validators.required),
-      menuGroup: new FormGroup({
-        selectedItems: new FormControl([false]),
-      }),
+      selectedItems: this.formBuilder.array([])
+      // menuGroup: new FormGroup({
+      //   selectedItems: new FormControl([false]),
+      // }),
     });
     console.debug(this.restau);
 
@@ -91,24 +93,31 @@ export class ReservationSurPlaceComponent {
 
   public itemReservationSurPlace(e: any) {
     const selectedItems: FormArray = this.form.get('selectedItems') as FormArray;
+
     if (e.target.checked) {
       selectedItems.push(new FormControl(e.target.value));
     } else {
       let i: number = 0;
+
       selectedItems.controls.forEach((t: any) => {
+        console.log(t.value+"-"+e.target.value);
         if (t.value == e.target.value) {
           selectedItems.removeAt(i);
+          console.log(i);
           return;
         }
         i++;
       });
+
     }
+
+    console.log(selectedItems.controls);
   }
 
   public submit() {
     let surPlaceJson = {
       nom: this.form.get('nom')?.value,
-      selectedItems: this.form.get('menuGroup.selectedItems')?.value,
+      selectedItems: this.form.get('selectedItems')?.value,
     };
     this.surPlace = new SurPlace(
       undefined,
@@ -117,7 +126,7 @@ export class ReservationSurPlaceComponent {
       undefined,
       undefined,
       undefined,
-      this.form.get('menuGroup.selectedItems')?.value,
+      this.form.get('selectedItems')?.value,
       undefined
     );
 
