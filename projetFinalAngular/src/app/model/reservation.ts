@@ -1,5 +1,6 @@
 import { Client } from "./client";
 import { Restaurant } from "./restaurant";
+import { Utilisateur } from "./utilisateur";
 
 export abstract class Reservation {
   public get id(): number | undefined {
@@ -9,10 +10,10 @@ export abstract class Reservation {
     this._id = value;
   }
 
-  public get client(): Client | undefined {
+  public get client(): Utilisateur | undefined {
     return this._client;
   }
-  public set client(value: Client | undefined) {
+  public set client(value: Utilisateur | undefined) {
     this._client = value;
   }
 
@@ -39,7 +40,7 @@ export abstract class Reservation {
 
   public constructor(
     private _id?: number,
-    private _client?: Client,
+    private _client?: Utilisateur,
     private _restaurant?: Restaurant,
     private _date?: Date,
     private _specification?: string

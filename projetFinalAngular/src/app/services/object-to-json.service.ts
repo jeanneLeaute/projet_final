@@ -6,6 +6,7 @@ import { Utilisateur } from '../model/utilisateur';
 import { Reservation } from '../model/reservation';
 import { ItemMenu } from '../model/item-menu';
 import { SurPlace } from '../model/sur-place';
+import { CommandeADomicile } from '../model/commande-adomicile';
 
 @Injectable({
   providedIn: 'root',
@@ -79,6 +80,20 @@ export class ObjectToJsonService {
     };
     if (surPlace.id) {
       Object.assign(obj, { id: surPlace.id });
+    }
+    return obj;
+  }
+
+  public commandeToJson(commande: CommandeADomicile): any {
+    let obj = {
+      client: commande.client,
+      restaurant: commande.restaurant,
+      date: commande.date,
+      adresse: commande.adresse,
+      itemsMenu: commande.itemsMenu
+    };
+    if (commande.id) {
+      Object.assign(obj, { id: commande.id });
     }
     return obj;
   }
