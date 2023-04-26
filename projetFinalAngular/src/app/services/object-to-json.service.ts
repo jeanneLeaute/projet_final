@@ -50,8 +50,8 @@ export class ObjectToJsonService {
       description: item.description,
       restaurant: item.restaurant,
     };
-    if (item.id) {
-      Object.assign(obj, { id: item.id });
+    if (item.id_item) {
+      Object.assign(obj, { id_item: item.id_item });
     }
     return obj;
   }

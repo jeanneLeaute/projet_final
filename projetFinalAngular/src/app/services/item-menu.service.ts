@@ -36,7 +36,7 @@ export class ItemMenuService {
 
   public update(item: ItemMenu): Observable<ItemMenu> {
     return this.httpClient.put<ItemMenu>(
-      `http://localhost:8080/projetFinal/api/itemMenu/${item.id}`,
+      `http://localhost:8080/projetFinal/api/itemMenu/${item.id_item}`,
       this.convert.itemMenuToJson(item)
     );
   }

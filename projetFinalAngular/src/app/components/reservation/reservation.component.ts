@@ -21,10 +21,12 @@ export class ReservationComponent implements OnInit {
       if (params['id']) {
         this.restaurantSrv
           .getById(params['id'])
-          .subscribe((restaurant: Restaurant) => {
-            this.restaurant = restaurant;
+          .subscribe((resto: Restaurant) => {
+            this.restaurant = resto;
           });
+
       }
+
     });
   }
 }

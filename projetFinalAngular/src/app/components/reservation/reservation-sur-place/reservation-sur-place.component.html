@@ -5,16 +5,20 @@
     <input id="nom" class="form-control" formControlName="nom" />
   </div>
   <ng-container formGroupName="menuGroup">
-    <div class="form-group" *ngFor="let item of items | async">
+    <div
+      class="form-group"
+      *ngFor="let item of items | async; let i; as: index"
+    >
       <label>
         <input
           type="checkbox"
-          [value]="item.id"
-          name="selectedItems"
+          [value]="item.id_item"
+          name="item{{ item.id_item }}"
           (change)="itemReservationSurPlace($event)"
           formControlName="selectedItems"
+          checked="false"
         />
-        {{ item.nom }} - {{ item.description }}
+        {{ item.id_item }} - {{ item.nom }} - {{ item.description }}
       </label>
     </div>
   </ng-container>

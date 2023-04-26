@@ -3,18 +3,18 @@ import { Restaurant } from "./restaurant";
 export class ItemMenu {
   selected: unknown;
   public constructor(
-    _id:number,
+    _id_item:number,
     _urlImage:string,
     _nom:string,
     _description:string,
     _categoriePlat:string,
     _restaurant:Restaurant) {}
 
-    public get id(): number{
-      return this.id;
+    public get id_item(): number{
+      return this.id_item;
     }
-    public set id(value: number) {
-      this.id = value;
+    public set id_item(value: number) {
+      this.id_item = value;
     }
 
     public get urlImage(): string{

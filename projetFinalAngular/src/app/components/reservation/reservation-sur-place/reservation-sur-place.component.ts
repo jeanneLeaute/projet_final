@@ -1,6 +1,6 @@
 import { Restaurant } from './../../../model/restaurant';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, map, toArray } from 'rxjs';
 import { Adresse } from 'src/app/model/adresse';
@@ -46,7 +46,9 @@ export class ReservationSurPlaceComponent {
           .getById(params['id'])
           .subscribe((restaurant: Restaurant) => {
             this.restau = restaurant;
+            this.items = this.itemMenuSrv.findByRestaurant(this.restau);
           });
+
       }
     });
     this.client = new Utilisateur();
@@ -60,11 +62,11 @@ export class ReservationSurPlaceComponent {
     this.form = new FormGroup({
       nom: new FormControl('', Validators.required),
       menuGroup: new FormGroup({
-        selectedItems: new FormControl([]),
+        selectedItems: new FormControl([false]),
       }),
     });
+    console.debug(this.restau);
 
-    this.items = this.itemMenuSrv.findByRestaurant(this.restau);
   }
 
   get isClient(): boolean {
@@ -87,8 +89,20 @@ export class ReservationSurPlaceComponent {
     return 0;
   }
 
-  public itemReservationSurPlace(event: any) {
-    this.itemReserve.push(event);
+  public itemReservationSurPlace(e: any) {
+    const selectedItems: FormArray = this.form.get('selectedItems') as FormArray;
+    if (e.target.checked) {
+      selectedItems.push(new FormControl(e.target.value));
+    } else {
+      let i: number = 0;
+      selectedItems.controls.forEach((t: any) => {
+        if (t.value == e.target.value) {
+          selectedItems.removeAt(i);
+          return;
+        }
+        i++;
+      });
+    }
   }
 
   public submit() {
@@ -106,6 +120,8 @@ export class ReservationSurPlaceComponent {
       this.form.get('menuGroup.selectedItems')?.value,
       undefined
     );
+
+    console.log(this.surPlace);
     this.surPlaceSrv.create(this.surPlace).subscribe(() => {
       this.router.navigateByUrl('/home');
     });
