@@ -68,7 +68,12 @@ public class CommentaireService {
 		if (client == null) {
 			throw new CommentaireException("client obligatoire");
 		}
-		return commentaireRepo.findByClient(client);
+		List<Commentaire> commentaires = commentaireRepo.findByClient(client);
+		if (!commentaires.isEmpty()) {
+			return commentaires;
+		} else {
+			throw new CommentaireException("aucun résultat");
+		}
 	}
 
 	public List<Commentaire> getByRestaurant(Restaurant restaurant) {

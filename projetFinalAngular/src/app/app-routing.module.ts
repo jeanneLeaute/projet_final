@@ -173,7 +173,7 @@ const routes: Routes = [
     canActivate: [ClientGuardService],
   },
   {
-    path: 'commentaire/add',
+    path: 'commentaire/add/:idRestaurant',
     component: EditCommentaireComponent,
     canActivate: [ClientGuardService],
   },

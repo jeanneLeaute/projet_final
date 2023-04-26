@@ -15,14 +15,14 @@ export class CommentaireService {
     );
   }
 
-  getCommentaireByClient(idClient: number): Observable<Commentaire> {
-    return this.http.get<Commentaire>(
+  getCommentaireByClient(idClient: number): Observable<Commentaire[]> {
+    return this.http.get<Commentaire[]>(
       `http://localhost:8080/projetFinal/api/commentaire/client/${idClient}`
     );
   }
 
-  getCommentaireByRestaurant(idRestaurant: number): Observable<Commentaire> {
-    return this.http.get<Commentaire>(
+  getCommentaireByRestaurant(idRestaurant: number): Observable<Commentaire[]> {
+    return this.http.get<Commentaire[]>(
       `http://localhost:8080/projetFinal/api/commentaire/restaurant/${idRestaurant}`
     );
   }
@@ -30,8 +30,8 @@ export class CommentaireService {
   getCommentaireByRestaurantAndClient(
     idRestaurant: number,
     idClient: number
-  ): Observable<Commentaire> {
-    return this.http.get<Commentaire>(
+  ): Observable<Commentaire[]> {
+    return this.http.get<Commentaire[]>(
       `http://localhost:8080/projetFinal/api/commentaire/${idClient}/${idRestaurant}`
     );
   }

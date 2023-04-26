@@ -1,29 +1,16 @@
-<div class="comment-section">
-  <h2>Commentaires</h2>
-  <ul>
-    <li *ngFor="let commentaire of commentaires">
-      <p>{{ commentaire.utilisateur }}</p>
-      <p>{{ commentaire.texte }}</p>
-      <td>
-        <a
-          routerLink="/commentaire/edit/{{ commentaire.id }}"
-          routerLinkActive="active"
-          class="btn btn-outline-primary"
-          >editer</a
-        >
-      </td>
-      <td>
-        <button
-          class="btn btn-outline-danger"
-          (click)="delete(commentaire.id!)"
-        >
-          suppression
-        </button>
-      </td>
-    </li>
-  </ul>
-  <app-link
-    etiquetteLien="nouveau commentaire"
-    lien="/commentaire/add"
-  ></app-link>
-</div>
+<table class="table">
+  <thead>
+    <th>id :</th>
+    <th>auteur :</th>
+    <th>restaurant :</th>
+    <th>commentaire :</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let c of commentaires">
+      <td>{{ c.id }}</td>
+      <td>{{ c.client?.login }}</td>
+      <td>{{ c.restaurant?.nom }}</td>
+      <td>{{ c.texte }}</td>
+    </tr>
+  </tbody>
+</table>

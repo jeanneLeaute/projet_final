@@ -1,5 +1,4 @@
-<p>edit-commentaire works!</p>
-<div>
+<!-- <div>
   <ul>
     <li *ngFor="let commentaire of commentaires">
       <p>{{ commentaire.utilisateur }}</p>
@@ -7,7 +6,7 @@
     </li>
   </ul>
 </div>
-<form (ngSubmit)="save()" #commentForm="ngForm">
+<form (ngSubmit)="submit()" #commentForm="ngForm">
   <div class="form-group">
     <label for="utilisateur">Nom</label>
     <input
@@ -29,7 +28,37 @@
       required
     ></textarea>
   </div>
-  <button (click)="save()" class="btn btn-primary">
+  <button (click)="submit()" class="btn btn-primary">
     Ajouter un commentaire
   </button>
+</form> -->
+<form (ngSubmit)="submit()" [formGroup]="form">
+  <div class="form-group">
+    <label for="texte">texte :</label>
+    <textarea
+      [(ngModel)]="commentaire.texte"
+      id="texte"
+      class="form-control"
+      formControlName="texte"
+    ></textarea>
+  </div>
+  <div>
+    <button type="submit" class="btn-outline-primary" [disabled]="form.invalid">
+      enregistrer
+    </button>
+    <a
+      *ngIf="commentaire.id"
+      routerLink="/client/moncompte"
+      routerLinkActive="active"
+      class="btn btn-link"
+      >annuler</a
+    >
+    <a
+      *ngIf="!commentaire.id"
+      routerLink="/restaurant"
+      routerLinkActive="active"
+      class="btn btn-link"
+      >annuler</a
+    >
+  </div>
 </form>

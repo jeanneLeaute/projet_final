@@ -9,21 +9,15 @@ import { CommentaireService } from 'src/app/services/commentaire.service';
 })
 export class ListCommentaireComponent {
   commentaires: Commentaire[] = [];
-  utilisateur: any;
 
   constructor(private commentaireSrv: CommentaireService) {}
   ngOnInit(): void {
     this.initCommentaire();
   }
+
   initCommentaire() {
     this.commentaireSrv.allCommentaires().subscribe((datas: Commentaire[]) => {
       this.commentaires = datas;
-    });
-  }
-
-  delete(id: number) {
-    this.commentaireSrv.deleteCommentaire(id).subscribe(() => {
-      this.initCommentaire();
     });
   }
 }

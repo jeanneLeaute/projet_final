@@ -59,16 +59,13 @@ public class CommentaireRestController {
 	//!!!!
 	@GetMapping("/client/{idClient}")
 	@JsonView(JsonViews.Commentaire.class)
-	public List<Commentaire> getByClient(@PathVariable Long idClient, BindingResult br) {
-		if (br.hasErrors()) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-		}
+	public List<Commentaire> getByClient(@PathVariable Long idClient) {
 		return commentaireService.getByClient(clientSrv.getById(idClient));
 	}
 
 	@GetMapping("/restaurant/{idRestaurant}")
 	@JsonView(JsonViews.Commentaire.class)
-	public List<Commentaire> getByRestaurant(@PathVariable Long idRestaurant, BindingResult br) {
+	public List<Commentaire> getByRestaurant(@PathVariable Long idRestaurant) {
 		return commentaireService.getByRestaurant(restaurantSrv.getById(idRestaurant));
 	}
 
