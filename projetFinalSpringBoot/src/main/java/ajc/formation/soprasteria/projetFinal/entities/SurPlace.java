@@ -49,6 +49,71 @@ public class SurPlace extends Reservation{
 		this.itemsMenu = itemsMenu;
 		this.heureReservation = heureReservation;
 	}
+	
+	public SurPlace(Client client, Restaurant restaurant, LocalDate date, String specification, int nbPersonne,
+			Set<ItemMenu> itemsMenu, HeureReservation heureReservation) {
+		super(client, restaurant, date, specification);
+		this.nbPersonne = nbPersonne;
+		this.itemsMenu = itemsMenu;
+		this.heureReservation = heureReservation;
+	}
+
+	public SurPlace(Long id_reservation,Client client, Restaurant restaurant, LocalDate date, String specification, int nbPersonne,
+			Set<ItemMenu> itemsMenu, HeureReservation heureReservation) {
+		super(id_reservation,client, restaurant, date, specification);
+		this.nbPersonne = nbPersonne;
+		this.itemsMenu = itemsMenu;
+		this.heureReservation = heureReservation;
+	}
+	
+	public SurPlace(Client client, Restaurant restaurant,String specification, int nbPersonne,
+			Set<ItemMenu> itemsMenu, HeureReservation heureReservation) {
+		super(client, restaurant,specification);
+		this.nbPersonne = nbPersonne;
+		this.itemsMenu = itemsMenu;
+		this.heureReservation = heureReservation;
+	}
+
+	public SurPlace(Long id_reservation,Client client, Restaurant restaurant,String specification, int nbPersonne,
+			Set<ItemMenu> itemsMenu, HeureReservation heureReservation) {
+		super(id_reservation,client, restaurant,specification);
+		this.nbPersonne = nbPersonne;
+		this.itemsMenu = itemsMenu;
+		this.heureReservation = heureReservation;
+	}
+	public SurPlace(Client client, Restaurant restaurant, LocalDate date, int nbPersonne,
+			String choixTables, Set<ItemMenu> itemsMenu, HeureReservation heureReservation) {
+		super(client, restaurant, date);
+		this.nbPersonne = nbPersonne;
+		this.choixTables = choixTables;
+		this.itemsMenu = itemsMenu;
+		this.heureReservation = heureReservation;
+	}
+
+	public SurPlace(Long id_reservation,Client client, Restaurant restaurant, LocalDate date, int nbPersonne,
+			String choixTables, Set<ItemMenu> itemsMenu, HeureReservation heureReservation) {
+		super(id_reservation,client, restaurant, date);
+		this.nbPersonne = nbPersonne;
+		this.choixTables = choixTables;
+		this.itemsMenu = itemsMenu;
+		this.heureReservation = heureReservation;
+	}
+	
+	public SurPlace(Client client, Restaurant restaurant, LocalDate date, int nbPersonne,
+			Set<ItemMenu> itemsMenu, HeureReservation heureReservation) {
+		super(client, restaurant, date);
+		this.nbPersonne = nbPersonne;
+		this.itemsMenu = itemsMenu;
+		this.heureReservation = heureReservation;
+	}
+
+	public SurPlace(Long id_reservation,Client client, Restaurant restaurant, LocalDate date, int nbPersonne,
+			Set<ItemMenu> itemsMenu, HeureReservation heureReservation) {
+		super(id_reservation,client, restaurant, date);
+		this.nbPersonne = nbPersonne;
+		this.itemsMenu = itemsMenu;
+		this.heureReservation = heureReservation;
+	}
 
 	public int getNbPersonne() {
 		return nbPersonne;

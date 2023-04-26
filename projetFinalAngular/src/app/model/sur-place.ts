@@ -6,6 +6,12 @@ import { Restaurant } from "./restaurant";
 import { Utilisateur } from "./utilisateur";
 
 export class SurPlace extends Reservation{
+  public get nbPersonne(): number |undefined{
+    return this._nbPersonne;
+  }
+  public set nbPersonne(value: number|undefined) {
+    this._nbPersonne = value;
+  }
   public get heureReservation(): HeureReservation | undefined{
     return this._heureReservation;
   }
@@ -32,6 +38,7 @@ export class SurPlace extends Reservation{
     _restaurant?: Restaurant,
     _date?: Date,
     _specification?: string,
+    private _nbPersonne?: number,
     private _choixTables?: string,
     private _itemsMenu?: ItemMenu[],
     private _heureReservation?: HeureReservation

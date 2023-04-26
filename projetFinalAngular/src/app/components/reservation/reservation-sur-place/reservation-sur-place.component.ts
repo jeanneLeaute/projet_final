@@ -1,11 +1,10 @@
+import { HeureReservation } from './../../../model/heure-reservation';
 import { Restaurant } from './../../../model/restaurant';
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, map, toArray } from 'rxjs';
 import { Adresse } from 'src/app/model/adresse';
-import { Categorie } from 'src/app/model/categorie';
-import { Client } from 'src/app/model/client';
 import { ItemMenu } from 'src/app/model/item-menu';
 import { Role } from 'src/app/model/role';
 import { SurPlace } from 'src/app/model/sur-place';
@@ -20,6 +19,7 @@ import { SurPlaceService } from 'src/app/services/sur-place.service';
   templateUrl: './reservation-sur-place.component.html',
   styleUrls: ['./reservation-sur-place.component.css'],
 })
+
 export class ReservationSurPlaceComponent {
   adresse: Adresse = new Adresse('4', 'rue du restau', '34090', 'Montpellier');
   restau!: Restaurant;
@@ -28,6 +28,8 @@ export class ReservationSurPlaceComponent {
   client!: Utilisateur;
   surPlace!: SurPlace;
   itemReserve: ItemMenu[] = new Array();
+  localdate!: string;
+  heuresReservation=Object.values(HeureReservation)
 
   constructor(
     private surPlaceSrv: SurPlaceService,
@@ -36,7 +38,7 @@ export class ReservationSurPlaceComponent {
     private clientSrv: ClientService,
     private aR: ActivatedRoute,
     private restaurantSrv: RestaurantService,
-    private formBuilder : FormBuilder
+    private formBuilder : FormBuilder,
   ) {}
 
   ngOnInit(): void {
@@ -60,14 +62,14 @@ export class ReservationSurPlaceComponent {
           this.client = data;
         });
     }
+
     this.form = new FormGroup({
       nom: new FormControl('', Validators.required),
-      selectedItems: this.formBuilder.array([])
-      // menuGroup: new FormGroup({
-      //   selectedItems: new FormControl([false]),
-      // }),
-    });
-    console.debug(this.restau);
+      nbPersonne: new FormControl('', Validators.required),
+      heureReservation:new FormControl(''),
+      selectedItems: this.formBuilder.array([]),
+      specification:new FormControl(''),
+    })
 
   }
 
@@ -100,10 +102,9 @@ export class ReservationSurPlaceComponent {
       let i: number = 0;
 
       selectedItems.controls.forEach((t: any) => {
-        console.log(t.value+"-"+e.target.value);
         if (t.value == e.target.value) {
           selectedItems.removeAt(i);
-          console.log(i);
+
           return;
         }
         i++;
@@ -111,28 +112,32 @@ export class ReservationSurPlaceComponent {
 
     }
 
-    console.log(selectedItems.controls);
   }
 
   public submit() {
-    let surPlaceJson = {
-      nom: this.form.get('nom')?.value,
-      selectedItems: this.form.get('selectedItems')?.value,
-    };
+
+    for(let i=0;i<this.form.value.selectedItems.length;i++){
+      this.itemMenuSrv.getById(this.form.value.selectedItems[i]).subscribe((data:ItemMenu)=>{
+        this.itemReserve.push(data);
+      })
+    }
+
     this.surPlace = new SurPlace(
       undefined,
       this.client,
       this.restau,
       undefined,
+      this.form.value.specification,
+      this.form.value.nbPersonne,
       undefined,
-      undefined,
-      this.form.get('selectedItems')?.value,
-      undefined
+      this.itemReserve,
+      this.form.value.heureReservation
     );
-
     console.log(this.surPlace);
-    this.surPlaceSrv.create(this.surPlace).subscribe(() => {
-      this.router.navigateByUrl('/home');
+
+    this.surPlaceSrv.create(this.surPlace).subscribe(()=>{
+      this.router.navigateByUrl("/restaurant")
     });
+
   }
 }

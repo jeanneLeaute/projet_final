@@ -54,12 +54,6 @@ public abstract class Reservation {
 		this.specification = specification;
 	}
 
-
-	public Reservation() {
-		super();
-	}
-
-
 	public Reservation(Long id_reservation, Client client, Restaurant restaurant, LocalDate date,
 			String specification) {
 		super();
@@ -68,6 +62,40 @@ public abstract class Reservation {
 		this.restaurant = restaurant;
 		this.date = date;
 		this.specification = specification;
+	}
+	
+	public Reservation(Client client, Restaurant restaurant, LocalDate date) {
+		super();
+		this.client = client;
+		this.restaurant = restaurant;
+		this.date = date;
+	}
+
+	public Reservation(Long id_reservation, Client client, Restaurant restaurant, LocalDate date) {
+		super();
+		this.id_reservation = id_reservation;
+		this.client = client;
+		this.restaurant = restaurant;
+		this.date = date;
+	}
+	
+	public Reservation(Client client, Restaurant restaurant,String specification) {
+		super();
+		this.client = client;
+		this.restaurant = restaurant;
+		this.date= LocalDate.now();
+	}
+
+	public Reservation(Long id_reservation, Client client, Restaurant restaurant,String specification) {
+		super();
+		this.id_reservation = id_reservation;
+		this.client = client;
+		this.restaurant = restaurant;
+		this.date = LocalDate.now();
+	}
+
+	public Reservation() {
+		super();
 	}
 
 

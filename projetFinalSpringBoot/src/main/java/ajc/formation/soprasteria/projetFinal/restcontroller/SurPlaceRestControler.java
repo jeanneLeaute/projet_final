@@ -52,7 +52,7 @@ public class SurPlaceRestControler {
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public SurPlace create(@Valid @RequestBody SurPlace surPlace, BindingResult br) {
 		if (br.hasErrors()) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,br.getAllErrors().get(0).toString());
 		}
 		surPlaceService.createOrUpdate(surPlace);
 		return surPlace;

@@ -1,3 +1,3 @@
 export enum HeureReservation {
-  H19,H20
+  H11="11h",H11m30="11h30",H12="12h",H12m30="12h30",H13="13h",H19="19h",H19m30="19h30",H20="20h",H20m30="20h30",H21="21h"
 }

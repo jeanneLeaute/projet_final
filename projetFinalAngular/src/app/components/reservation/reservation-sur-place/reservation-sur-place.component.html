@@ -4,6 +4,18 @@
     <label for="nom">Nom de la réservation:</label>
     <input id="nom" class="form-control" formControlName="nom" />
   </div>
+  <div class="form-group">
+    <label for="nbPersonne">Nombre de personne :</label>
+    <input id="nbPersonne" class="form-control" formControlName="nbPersonne" />
+  </div>
+  <div>
+    <label for="heureReservation">heure de reservation:</label>
+    <select class="form-control" formControlName="heureReservation">
+      <option *ngFor="let heure of heuresReservation" [ngValue]="heure">
+        {{ heure }}
+      </option>
+    </select>
+  </div>
   <ng-container>
     <div class="form-group" *ngFor="let item of items | async">
       <label>
@@ -18,6 +30,14 @@
       </label>
     </div>
   </ng-container>
+  <div class="form-group">
+    <label for="specification">Quelque chose à ajouter ?</label>
+    <input
+      id="specification"
+      class="form-control"
+      formControlName="specification"
+    />
+  </div>
   <div>
     <button
       type="submit"
