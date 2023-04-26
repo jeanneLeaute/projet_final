@@ -1,9 +1,11 @@
+import { HeureReservation } from './../model/heure-reservation';
 import { Injectable } from '@angular/core';
 import { Client } from '../model/client';
 import { Restaurant } from '../model/restaurant';
 import { Utilisateur } from '../model/utilisateur';
 import { Reservation } from '../model/reservation';
 import { ItemMenu } from '../model/item-menu';
+import { SurPlace } from '../model/sur-place';
 
 @Injectable({
   providedIn: 'root',
@@ -62,6 +64,21 @@ export class ObjectToJsonService {
     };
     if (reservation.id) {
       Object.assign(obj, { id: reservation.id });
+    }
+    return obj;
+  }
+
+  public surPlaceToJson(surPlace: SurPlace): any {
+    let obj = {
+      client: surPlace.client,
+      restaurant: surPlace.restaurant,
+      date: surPlace.date,
+      choixTables: surPlace.choixTables,
+      heureReservation: surPlace.heureReservation,
+      itemsMenu: surPlace.itemsMenu
+    };
+    if (surPlace.id) {
+      Object.assign(obj, { id: surPlace.id });
     }
     return obj;
   }

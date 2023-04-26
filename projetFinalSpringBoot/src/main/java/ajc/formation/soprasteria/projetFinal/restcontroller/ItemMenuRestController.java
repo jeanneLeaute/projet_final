@@ -105,6 +105,7 @@ public class ItemMenuRestController {
 	}
 	
 	@GetMapping("/{id}/restaurant")
+	@JsonView(JsonViews.ItemMenu.class)
 	public List<ItemMenu> getByRestaurant (@PathVariable Long id) {
 		Restaurant restaurant= restaurantSrv.getById(id) ;
 		List<ItemMenu> items = null;

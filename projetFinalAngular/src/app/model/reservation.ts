@@ -1,7 +1,7 @@
 import { Client } from "./client";
 import { Restaurant } from "./restaurant";
 
-export class Reservation {
+export abstract class Reservation {
   public get id(): number | undefined {
     return this._id;
   }

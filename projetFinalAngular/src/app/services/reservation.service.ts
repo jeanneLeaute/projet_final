@@ -18,21 +18,6 @@ export class ReservationService {
     );
   }
 
-  public create(reservation: Reservation): Observable<Reservation> {
-    console.debug(reservation);
-    return this.httpClient.post<Reservation>(
-      this.url,
-      this.convert.reservationToJson(reservation)
-    );
-  }
-
-  public update(reservation: Reservation): Observable<Reservation> {
-    return this.httpClient.put<Reservation>(
-      `${this.url}/${reservation.id}`,
-      this.convert.reservationToJson(reservation)
-    );
-  }
-
   public getById(id: number): Observable<Reservation> {
     return this.httpClient.get<Reservation>(`${this.url}/${id}`);
   }

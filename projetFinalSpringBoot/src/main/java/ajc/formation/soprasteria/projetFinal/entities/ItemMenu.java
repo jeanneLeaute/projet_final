@@ -1,6 +1,7 @@
 package ajc.formation.soprasteria.projetFinal.entities;
 
 import java.util.Set;
+import java.util.HashSet;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -56,10 +57,9 @@ public class ItemMenu {
 	@JoinColumn(name = "surPlace_item_id", foreignKey = @ForeignKey(name="surPlace_item_id_fk"))
 	@JsonView(JsonViews.ItemMenuWithSurPlaces.class)
 	private Set<SurPlace> surPlaces;
-	@ManyToMany
-	@JoinColumn(name = "commande_item_id", foreignKey = @ForeignKey(name="commande_item_id_fk"))
+	@ManyToMany(mappedBy = "itemsMenu")
 	@JsonView(JsonViews.ItemMenuWithCommandesADomicile.class)
-	private Set<CommandeADomicile> commandesAdomicile;
+	private Set<CommandeADomicile> commandesAdomicile = new HashSet<>();
 	
 	
 	public ItemMenu() {

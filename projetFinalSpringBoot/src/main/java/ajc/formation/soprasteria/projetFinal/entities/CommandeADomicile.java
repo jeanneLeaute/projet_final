@@ -1,6 +1,7 @@
 package ajc.formation.soprasteria.projetFinal.entities;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.AttributeOverride;
@@ -9,6 +10,8 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -27,9 +30,10 @@ public class CommandeADomicile extends Reservation{
 			@AttributeOverride(name = "complementAdresse", column = @Column(name = "commande_adresse_complementAdresse"))})
 	@JsonView(JsonViews.Simple.class)
 	private Adresse adresse;
-	@ManyToMany(mappedBy = "commandesAdomicile")
+	@ManyToMany
+	@JoinTable(name = "item_menu_commandes_adomicile", joinColumns = @JoinColumn(name="commandes_adomicile_id_reservation"), inverseJoinColumns = @JoinColumn(name="items_menu_id_item"))
 	@JsonView(JsonViews.ADomicileWithItemsMenu.class)
-	private Set<ItemMenu> itemsMenu;
+	private Set<ItemMenu> itemsMenu = new HashSet<>();
 	
 	public CommandeADomicile() {
 		super();

@@ -10,7 +10,7 @@
         <input
           type="checkbox"
           name="selectedItems"
-          [(ngModel)]="item.selected"
+          formControlName="selectedItems"
         />
         {{ item.nom }} - {{ item.description }}
       </label>
