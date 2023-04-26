@@ -33,6 +33,7 @@ import { EditMoncompteRestaurateurComponent } from './components/restaurateur/ed
 import { EditMoncompteClientComponent } from './components/client/edit-moncompte-client/edit-moncompte-client.component';
 import { EditRestaurantGuardService } from './services/edit-restaurant-guard.service';
 import { RestauClientComponent } from './components/restaurant/restau-client/restau-client.component';
+import { RestaurantListCommentaireComponent } from './components/commentaire/restaurant-list-commentaire/restaurant-list-commentaire.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -165,6 +166,11 @@ const routes: Routes = [
   {
     path: 'list-commentaire',
     component: ListCommentaireComponent,
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: 'list-commentaire/restaurant/:id',
+    component: RestaurantListCommentaireComponent,
     canActivate: [AuthGuardService],
   },
   {
