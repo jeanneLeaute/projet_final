@@ -39,19 +39,49 @@ public class CommentaireService {
 		});
 	}
 	
+	public Commentaire getByIdWithClient(Long id) {
+		if (id == null) {
+			throw new CommentaireException("id obligatoire");
+		}
+		return commentaireRepo.findByIdFetchClient(id).orElseThrow(() -> {
+			throw new CommentaireException("id inconnu");
+		});
+	}
+	
+	public Commentaire getByIdWithRestaurant(Long id) {
+		if (id == null) {
+			throw new CommentaireException("id obligatoire");
+		}
+		return commentaireRepo.findByIdFetchRestaurant(id).orElseThrow(() -> {
+			throw new CommentaireException("id inconnu");
+		});
+	}
+	
 	public List<Commentaire> getByTexte(String texte) {
+		if (texte == null) {
+			throw new CommentaireException("texte obligatoire");
+		}
 		return commentaireRepo.findByTexteContaining(texte);
 	}
 
 	public List<Commentaire> getByClient(Client client) {
+		if (client == null) {
+			throw new CommentaireException("client obligatoire");
+		}
 		return commentaireRepo.findByClient(client);
 	}
 
 	public List<Commentaire> getByRestaurant(Restaurant restaurant) {
+		if (restaurant == null) {
+			throw new CommentaireException("restaurant obligatoire");
+		}
 		return commentaireRepo.findByRestaurant(restaurant);
 	}
 	
 	public List<Commentaire> getByRestaurantAndClient(Restaurant restaurant, Client client) {
+		if (restaurant == null || client == null) {
+			throw new CommentaireException("restaurant et client obligatoires");
+		}
 		return commentaireRepo.findByRestaurantAndClient(restaurant,client);
 	}
 	

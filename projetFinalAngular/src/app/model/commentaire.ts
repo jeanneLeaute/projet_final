@@ -1,4 +1,3 @@
-import { Client } from './client';
 import { Restaurant } from './restaurant';
 import { Utilisateur } from './utilisateur';
 

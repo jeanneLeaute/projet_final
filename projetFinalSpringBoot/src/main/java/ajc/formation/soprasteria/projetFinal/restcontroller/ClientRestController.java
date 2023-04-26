@@ -92,7 +92,7 @@ public class ClientRestController {
 	}
 	
 	@PostMapping("/inscription")
-	@JsonView(JsonViews.ClientWithReservation.class)
+	@JsonView(JsonViews.Client.class)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Client create(@Valid @RequestBody Client client, BindingResult br) {
 		if (br.hasErrors()) {

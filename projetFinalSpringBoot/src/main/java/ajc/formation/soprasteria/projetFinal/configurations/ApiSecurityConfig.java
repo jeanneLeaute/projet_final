@@ -43,6 +43,7 @@ public class ApiSecurityConfig {
 					.antMatchers(HttpMethod.DELETE, "/api/restaurant/**").hasAnyRole("RESTAURATEUR", "ADMIN")
 					.antMatchers(HttpMethod.PUT, "/api/restaurant/**").hasAnyRole("RESTAURATEUR", "ADMIN")
 					.antMatchers(HttpMethod.GET,"/api/commentaire/**").authenticated()
+					.antMatchers(HttpMethod.GET,"/api/commentaire").authenticated()
 					.antMatchers(HttpMethod.GET, "/api/auth").authenticated()
 					.anyRequest().hasAnyRole("ADMIN")
 				.and()

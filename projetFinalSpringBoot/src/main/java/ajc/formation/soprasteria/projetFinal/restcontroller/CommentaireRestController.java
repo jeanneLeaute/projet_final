@@ -82,9 +82,19 @@ public class CommentaireRestController {
 	@GetMapping("/{id}")
 	@JsonView(JsonViews.Commentaire.class)
 	public Commentaire getById(@PathVariable Long id) {
-		Commentaire commentaire = null;
-		commentaire = commentaireService.getById(id);
-		return commentaire;
+		return commentaireService.getById(id);
+	}
+	
+	@GetMapping("/{id}/client")
+	@JsonView(JsonViews.CommentaireWithClient.class)
+	public Commentaire getByIdWithClient(@PathVariable Long id) {
+		return commentaireService.getByIdWithClient(id);
+	}
+	
+	@GetMapping("/{id}/restaurant")
+	@JsonView(JsonViews.CommentaireWithRestaurant.class)
+	public Commentaire getByIdWithRestaurant(@PathVariable Long id) {
+		return commentaireService.getByIdWithRestaurant(id);
 	}
 
 	@PostMapping("")
