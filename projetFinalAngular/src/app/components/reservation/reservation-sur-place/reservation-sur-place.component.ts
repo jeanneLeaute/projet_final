@@ -26,6 +26,8 @@ export class ReservationSurPlaceComponent {
   form!: FormGroup;
   items!: Observable<ItemMenu[]>;
   client!:Utilisateur;
+  surPlace!:SurPlace;
+  itemReserve:ItemMenu[] = new Array;
 
   constructor(private surPlaceSrv: SurPlaceService, private router: Router,private itemMenuSrv:ItemMenuService,private clientSrv:ClientService) {}
 
@@ -68,12 +70,18 @@ export class ReservationSurPlaceComponent {
     return 0;
   }
 
+  public itemReservationSurPlace(event: any){
+    this.itemReserve.push(event);
+  }
+
   public submit(){
+
       let surPlaceJson = {
       nom: this.form.get('nom')?.value,
       selectedItems : this.form.get('menuGroup.selectedItems')?.value
     }
-    this.surPlaceSrv.create(new SurPlace(undefined,this.client,this.restau,undefined,undefined,undefined,this.form.get('menuGroup.selectedItems')?.value,undefined));
-    this.router.navigateByUrl('/home');
+    this.surPlace=new SurPlace(undefined,this.client,this.restau,undefined,undefined,undefined,this.form.get('menuGroup.selectedItems')?.value,undefined);
+    this.surPlaceSrv.create(this.surPlace)
+      .subscribe(()=>{this.router.navigateByUrl('/home')});
   }
 }

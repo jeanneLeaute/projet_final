@@ -9,7 +9,9 @@
       <label>
         <input
           type="checkbox"
+          [value]="item.id"
           name="selectedItems"
+          (change)="itemReservationSurPlace($event)"
           formControlName="selectedItems"
         />
         {{ item.nom }} - {{ item.description }}

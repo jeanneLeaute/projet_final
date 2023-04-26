@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class SurPlaceService {
 
-  private url: string = 'http://localhost:8080/projetfinal/api/surPlace';
+  private url: string = 'http://localhost:8080/projetfinal/api/SurPlace';
 
   constructor(private httpClient: HttpClient, private convert: ObjectToJsonService) { }
 
