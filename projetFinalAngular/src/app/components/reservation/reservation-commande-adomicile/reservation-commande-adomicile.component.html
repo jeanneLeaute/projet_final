@@ -1,1 +1,31 @@
-<p>reservation-commande-adomicile works!</p>
+<h1>Commander</h1>
+<form (ngSubmit)="submit()" [formGroup]="form">
+  <div class="form-group">
+    <label for="nom">Nom de la commande:</label>
+    <input id="nom" class="form-control" formControlName="nom" />
+  </div>
+  <ng-container formGroupName="menuGroup">
+    <div class="form-group" *ngFor="let item of items | async">
+      <label>
+        <input
+          type="checkbox"
+          name="selectedItems"
+          formControlName="selectedItems"
+        />
+        {{ item.nom }} - {{ item.description }}
+      </label>
+    </div>
+  </ng-container>
+  <div>
+    <button
+      type="submit"
+      class="btn btn-outline-primary"
+      [disabled]="form.invalid"
+    >
+      enregistrer
+    </button>
+    <a routerLink="/home" routerLinkActive="active" class="btn btn-link"
+      >annuler</a
+    >
+  </div>
+</form>

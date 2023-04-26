@@ -5,7 +5,12 @@ import { Router } from '@angular/router';
 import { Observable, map, toArray } from 'rxjs';
 import { Adresse } from 'src/app/model/adresse';
 import { Categorie } from 'src/app/model/categorie';
+import { Client } from 'src/app/model/client';
 import { ItemMenu } from 'src/app/model/item-menu';
+import { Role } from 'src/app/model/role';
+import { SurPlace } from 'src/app/model/sur-place';
+import { Utilisateur } from 'src/app/model/utilisateur';
+import { ClientService } from 'src/app/services/client.service';
 import { ItemMenuService } from 'src/app/services/item-menu.service';
 import { SurPlaceService } from 'src/app/services/sur-place.service';
 
@@ -20,10 +25,18 @@ export class ReservationSurPlaceComponent {
   restau:Restaurant=new Restaurant(1,"restau","restau","19h-21h","aa",true,true,Categorie.pizzeria,this.adresse);
   form!: FormGroup;
   items!: Observable<ItemMenu[]>;
+  client!:Utilisateur;
 
-  constructor(private surPlaceSrv: SurPlaceService, private router: Router,private itemMenuSrv:ItemMenuService) {}
+  constructor(private surPlaceSrv: SurPlaceService, private router: Router,private itemMenuSrv:ItemMenuService,private clientSrv:ClientService) {}
 
   ngOnInit(): void {
+    this.client = new Utilisateur();
+    if (this.isClient) {
+      this.clientSrv
+        .getById(this.IdUtilisateur)
+        .subscribe((data: Utilisateur) => {
+          this.client = data;
+    })}
     this.form = new FormGroup({
       nom: new FormControl('', Validators.required),
       menuGroup: new FormGroup({
@@ -32,12 +45,35 @@ export class ReservationSurPlaceComponent {
     });
 
     this.items=this.itemMenuSrv.findByRestaurant(this.restau);
+
+  }
+
+  get isClient(): boolean {
+    if (sessionStorage.getItem('utilisateur')) {
+      let utilisateur: Utilisateur = JSON.parse(
+        sessionStorage.getItem('utilisateur')!
+      ) as Utilisateur;
+      return utilisateur.role == Role.ROLE_CLIENT;
+    }
+    return false;
+  }
+
+  get IdUtilisateur(): number {
+    if (sessionStorage.getItem('utilisateur')) {
+      let utilisateur: Utilisateur = JSON.parse(
+        sessionStorage.getItem('utilisateur')!
+      ) as Utilisateur;
+      return utilisateur.id!;
+    }
+    return 0;
   }
 
   public submit(){
-      let reservationJson = {
+      let surPlaceJson = {
       nom: this.form.get('nom')?.value,
       selectedItems : this.form.get('menuGroup.selectedItems')?.value
     }
+    this.surPlaceSrv.create(new SurPlace(undefined,this.client,this.restau,undefined,undefined,undefined,this.form.get('menuGroup.selectedItems')?.value,undefined));
+    this.router.navigateByUrl('/home');
   }
 }

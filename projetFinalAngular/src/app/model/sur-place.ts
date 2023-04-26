@@ -3,6 +3,7 @@ import { HeureReservation } from "./heure-reservation";
 import { ItemMenu } from "./item-menu";
 import { Reservation } from "./reservation";
 import { Restaurant } from "./restaurant";
+import { Utilisateur } from "./utilisateur";
 
 export class SurPlace extends Reservation{
   public get heureReservation(): HeureReservation | undefined{
@@ -27,7 +28,7 @@ export class SurPlace extends Reservation{
 
   constructor(
     _id?:number,
-    _client?: Client,
+    _client?: Utilisateur,
     _restaurant?: Restaurant,
     _date?: Date,
     _specification?: string,
