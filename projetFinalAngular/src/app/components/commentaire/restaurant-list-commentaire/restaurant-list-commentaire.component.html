@@ -1,0 +1,17 @@
+<div class="bg-dark m-3 p-3 text-light position-relative center rounded">
+  <h2>tous les commentaires</h2>
+  <table class="table text-light">
+    <thead>
+      <th>id :</th>
+      <th>auteur :</th>
+      <th>commentaire :</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of commentaires">
+        <td>{{ c.id }}</td>
+        <td>{{ c.client?.login }}</td>
+        <td>{{ c.texte }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -66,9 +66,13 @@ export class EditCommentaireComponent {
   }
 
   submit() {
+    console.debug(this.client);
+    console.debug(this.restaurant);
+    console.debug(this.form.get('texte')?.value);
     if (this.commentaire.id) {
       this.commentaire.texte = this.form.get('texte')?.value;
       this.commentaireSrv.updateCommentaire(this.commentaire).subscribe(() => {
+        console.debug(this.commentaire);
         this.router.navigateByUrl('/client/moncompte');
       });
     } else {
@@ -76,6 +80,7 @@ export class EditCommentaireComponent {
       this.commentaire.restaurant = this.restaurant;
       this.commentaire.texte = this.form.get('texte')?.value;
       this.commentaireSrv.createCommentaire(this.commentaire).subscribe(() => {
+        console.debug(this.commentaire);
         this.router.navigateByUrl('/restau-client');
       });
     }

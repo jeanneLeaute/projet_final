@@ -1,26 +1,28 @@
-<h2>mes commentaires</h2>
-<table class="table">
-  <thead>
-    <th>id :</th>
-    <th>restaurant :</th>
-    <th>commentaire :</th>
-  </thead>
-  <tbody>
-    <tr *ngFor="let c of commentaires">
-      <td>{{ c.id }}</td>
-      <td>{{ c.restaurant?.nom }}</td>
-      <td>{{ c.texte }}</td>
-      <td>
-        <app-link
-          lien="/commentaire/edit/{{ c.id }}"
-          etiquetteLien="éditer"
-        ></app-link>
-      </td>
-      <td>
-        <button (click)="delete(c.id!)" class="btn btn-outline-danger">
-          supprimer
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="bg-dark m-3 p-3 text-light position-relative center rounded">
+  <h2>mes commentaires</h2>
+  <table class="table text-light">
+    <thead>
+      <th>id :</th>
+      <th>restaurant :</th>
+      <th>commentaire :</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of commentaires">
+        <td>{{ c.id }}</td>
+        <td>{{ c.restaurant?.nom }}</td>
+        <td>{{ c.texte }}</td>
+        <td>
+          <app-link
+            lien="/commentaire/edit/{{ c.id }}"
+            etiquetteLien="éditer"
+          ></app-link>
+        </td>
+        <td>
+          <button (click)="delete(c.id!)" class="btn btn-outline-danger">
+            supprimer
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -13,10 +13,10 @@ export class ClientListCommentaireComponent {
 
   constructor(private commentaireSrv: CommentaireService) {}
   ngOnInit(): void {
-    this.initCommentaire();
+    this.initCommentaires();
   }
 
-  initCommentaire() {
+  initCommentaires() {
     this.commentaireSrv
       .getCommentaireByClient(this.IdUtilisateur)
       .subscribe((datas: Commentaire[]) => {
@@ -26,7 +26,7 @@ export class ClientListCommentaireComponent {
 
   delete(id: number) {
     this.commentaireSrv.deleteCommentaire(id).subscribe(() => {
-      this.initCommentaire();
+      this.initCommentaires();
     });
   }
 
