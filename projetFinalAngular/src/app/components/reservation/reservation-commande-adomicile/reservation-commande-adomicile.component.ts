@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Adresse } from 'src/app/model/adresse';
 import { Categorie } from 'src/app/model/categorie';
@@ -12,39 +12,57 @@ import { Utilisateur } from 'src/app/model/utilisateur';
 import { ClientService } from 'src/app/services/client.service';
 import { CommandeADomicileService } from 'src/app/services/commande-adomicile.service';
 import { ItemMenuService } from 'src/app/services/item-menu.service';
+import { RestaurantService } from 'src/app/services/restaurant.service';
 
 @Component({
   selector: 'app-reservation-commande-adomicile',
   templateUrl: './reservation-commande-adomicile.component.html',
-  styleUrls: ['./reservation-commande-adomicile.component.css']
+  styleUrls: ['./reservation-commande-adomicile.component.css'],
 })
 export class ReservationCommandeADomicileComponent {
-
-  adresse:Adresse=new Adresse("4","rue du restau","34090","Montpellier");
-  restau:Restaurant=new Restaurant(1,"restau","restau","19h-21h","aa",true,true,Categorie.pizzeria,this.adresse);
   form!: FormGroup;
+  adresse: Adresse = new Adresse('4', 'rue du restau', '34090', 'Montpellier');
+  restau!: Restaurant;
   items!: Observable<ItemMenu[]>;
-  client!:Utilisateur;
+  client!: Utilisateur;
 
-  constructor(private commandeSrv: CommandeADomicileService, private router: Router,private itemMenuSrv:ItemMenuService,private clientSrv:ClientService) {}
+  constructor(
+    private aR: ActivatedRoute,
+    private restaurantSrv: RestaurantService,
+    private commandeSrv: CommandeADomicileService,
+    private router: Router,
+    private itemMenuSrv: ItemMenuService,
+    private clientSrv: ClientService
+  ) {}
 
   ngOnInit(): void {
+    this.restau = new Restaurant();
+    this.aR.params.subscribe((params) => {
+      if (params['id']) {
+        this.restaurantSrv
+          .getById(params['id'])
+          .subscribe((restaurant: Restaurant) => {
+            this.restau = restaurant;
+          });
+      }
+    });
+
     this.client = new Utilisateur();
     if (this.isClient) {
       this.clientSrv
         .getById(this.IdUtilisateur)
         .subscribe((data: Utilisateur) => {
           this.client = data;
-    })}
+        });
+    }
     this.form = new FormGroup({
       nom: new FormControl('', Validators.required),
       menuGroup: new FormGroup({
-        selectedItems: new FormControl([])
-      })
+        selectedItems: new FormControl([]),
+      }),
     });
 
-    this.items=this.itemMenuSrv.findByRestaurant(this.restau);
-
+    this.items = this.itemMenuSrv.findByRestaurant(this.restau);
   }
 
   get isClient(): boolean {
@@ -67,12 +85,22 @@ export class ReservationCommandeADomicileComponent {
     return 0;
   }
 
-  public submit(){
-      let surPlaceJson = {
+  public submit() {
+    let surPlaceJson = {
       nom: this.form.get('nom')?.value,
-      selectedItems : this.form.get('menuGroup.selectedItems')?.value
-    }
-    this.commandeSrv.create(new CommandeADomicile(undefined,this.client,this.restau,undefined,undefined,undefined,this.form.get('menuGroup.selectedItems')?.value,));
+      selectedItems: this.form.get('menuGroup.selectedItems')?.value,
+    };
+    this.commandeSrv.create(
+      new CommandeADomicile(
+        undefined,
+        this.client,
+        this.restau,
+        undefined,
+        undefined,
+        undefined,
+        this.form.get('menuGroup.selectedItems')?.value
+      )
+    );
     this.router.navigateByUrl('/home');
   }
 }

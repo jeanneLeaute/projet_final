@@ -47,12 +47,12 @@ const routes: Routes = [
     canActivate: [ClientGuardService],
   },
   {
-    path: 'reservation-surplace',
+    path: 'reservation-surplace/:id',
     component: ReservationSurPlaceComponent,
     canActivate: [ClientGuardService],
   },
   {
-    path: 'reservation-commande-adomicile',
+    path: 'reservation-commande-adomicile/:id',
     component: ReservationCommandeADomicileComponent,
     canActivate: [ClientGuardService],
   },

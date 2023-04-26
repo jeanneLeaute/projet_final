@@ -12,8 +12,7 @@ export class ReservationComponent implements OnInit {
   restaurant!: Restaurant;
   constructor(
     private aR: ActivatedRoute,
-    private restaurantSrv: RestaurantService,
-    private router: Router
+    private restaurantSrv: RestaurantService
   ) {}
 
   ngOnInit(): void {

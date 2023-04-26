@@ -1,7 +1,7 @@
 import { Restaurant } from './../../../model/restaurant';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, map, toArray } from 'rxjs';
 import { Adresse } from 'src/app/model/adresse';
 import { Categorie } from 'src/app/model/categorie';
@@ -12,42 +12,59 @@ import { SurPlace } from 'src/app/model/sur-place';
 import { Utilisateur } from 'src/app/model/utilisateur';
 import { ClientService } from 'src/app/services/client.service';
 import { ItemMenuService } from 'src/app/services/item-menu.service';
+import { RestaurantService } from 'src/app/services/restaurant.service';
 import { SurPlaceService } from 'src/app/services/sur-place.service';
 
 @Component({
   selector: 'app-reservation-sur-place',
   templateUrl: './reservation-sur-place.component.html',
-  styleUrls: ['./reservation-sur-place.component.css']
+  styleUrls: ['./reservation-sur-place.component.css'],
 })
 export class ReservationSurPlaceComponent {
-
-  adresse:Adresse=new Adresse("4","rue du restau","34090","Montpellier");
-  restau:Restaurant=new Restaurant(1,"restau","restau","19h-21h","aa",true,true,Categorie.pizzeria,this.adresse);
+  adresse: Adresse = new Adresse('4', 'rue du restau', '34090', 'Montpellier');
+  restau!: Restaurant;
   form!: FormGroup;
   items!: Observable<ItemMenu[]>;
-  client!:Utilisateur;
-  surPlace!:SurPlace;
-  itemReserve:ItemMenu[] = new Array;
+  client!: Utilisateur;
+  surPlace!: SurPlace;
+  itemReserve: ItemMenu[] = new Array();
 
-  constructor(private surPlaceSrv: SurPlaceService, private router: Router,private itemMenuSrv:ItemMenuService,private clientSrv:ClientService) {}
+  constructor(
+    private surPlaceSrv: SurPlaceService,
+    private router: Router,
+    private itemMenuSrv: ItemMenuService,
+    private clientSrv: ClientService,
+    private aR: ActivatedRoute,
+    private restaurantSrv: RestaurantService
+  ) {}
 
   ngOnInit(): void {
+    this.restau = new Restaurant();
+    this.aR.params.subscribe((params) => {
+      if (params['id']) {
+        this.restaurantSrv
+          .getById(params['id'])
+          .subscribe((restaurant: Restaurant) => {
+            this.restau = restaurant;
+          });
+      }
+    });
     this.client = new Utilisateur();
     if (this.isClient) {
       this.clientSrv
         .getById(this.IdUtilisateur)
         .subscribe((data: Utilisateur) => {
           this.client = data;
-    })}
+        });
+    }
     this.form = new FormGroup({
       nom: new FormControl('', Validators.required),
       menuGroup: new FormGroup({
-        selectedItems: new FormControl([])
-      })
+        selectedItems: new FormControl([]),
+      }),
     });
 
-    this.items=this.itemMenuSrv.findByRestaurant(this.restau);
-
+    this.items = this.itemMenuSrv.findByRestaurant(this.restau);
   }
 
   get isClient(): boolean {
@@ -70,18 +87,27 @@ export class ReservationSurPlaceComponent {
     return 0;
   }
 
-  public itemReservationSurPlace(event: any){
+  public itemReservationSurPlace(event: any) {
     this.itemReserve.push(event);
   }
 
-  public submit(){
-
-      let surPlaceJson = {
+  public submit() {
+    let surPlaceJson = {
       nom: this.form.get('nom')?.value,
-      selectedItems : this.form.get('menuGroup.selectedItems')?.value
-    }
-    this.surPlace=new SurPlace(undefined,this.client,this.restau,undefined,undefined,undefined,this.form.get('menuGroup.selectedItems')?.value,undefined);
-    this.surPlaceSrv.create(this.surPlace)
-      .subscribe(()=>{this.router.navigateByUrl('/home')});
+      selectedItems: this.form.get('menuGroup.selectedItems')?.value,
+    };
+    this.surPlace = new SurPlace(
+      undefined,
+      this.client,
+      this.restau,
+      undefined,
+      undefined,
+      undefined,
+      this.form.get('menuGroup.selectedItems')?.value,
+      undefined
+    );
+    this.surPlaceSrv.create(this.surPlace).subscribe(() => {
+      this.router.navigateByUrl('/home');
+    });
   }
 }

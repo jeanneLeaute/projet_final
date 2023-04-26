@@ -2,19 +2,15 @@
 <div>
   vous désirer :
   <a
-    routerLink="/reservation-surplace"
+    routerLink="/reservation-surplace/{{ restaurant.id }}"
     routerLinkActive="active"
     class="btn btn-link"
     >Réserver une table</a
   >
   <a
-    routerLink="/reservation-commande-adomicile"
+    routerLink="/reservation-commande-adomicile/{{ restaurant.id }}"
     routerLinkActive="active"
     class="btn btn-link"
     >Commander</a
   >
-</div>
-<div>
-  <label for="id">id:</label>
-  <input id="id" [(ngModel)]="restaurant.nom" readonly class="form-control" />
 </div>
