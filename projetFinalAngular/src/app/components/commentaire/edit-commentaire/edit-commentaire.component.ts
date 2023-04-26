@@ -67,14 +67,16 @@ export class EditCommentaireComponent {
 
   submit() {
     if (this.commentaire.id) {
+      this.commentaire.texte = this.form.get('texte')?.value;
       this.commentaireSrv.updateCommentaire(this.commentaire).subscribe(() => {
         this.router.navigateByUrl('/client/moncompte');
       });
     } else {
       this.commentaire.client = this.client;
       this.commentaire.restaurant = this.restaurant;
+      this.commentaire.texte = this.form.get('texte')?.value;
       this.commentaireSrv.createCommentaire(this.commentaire).subscribe(() => {
-        this.router.navigateByUrl('/restaurant');
+        this.router.navigateByUrl('/restau-client');
       });
     }
   }
