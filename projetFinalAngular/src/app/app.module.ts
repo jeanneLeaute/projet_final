@@ -36,8 +36,6 @@ import { EditMoncompteClientComponent } from './components/client/edit-moncompte
 import { EditMoncompteRestaurateurComponent } from './components/restaurateur/edit-moncompte-restaurateur/edit-moncompte-restaurateur.component';
 import { ListCommentaireComponent } from './components/commentaire/list-commentaire/list-commentaire.component';
 import { RestauClientComponent } from './components/restaurant/restau-client/restau-client.component';
-import { RestauClientEditComponent } from './components/restaurant/restau-client-edit/restau-client-edit.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,7 +68,6 @@ import { RestauClientEditComponent } from './components/restaurant/restau-client
     EditCommentaireComponent,
     ListCommentaireComponent,
     RestauClientComponent,
-    RestauClientEditComponent,
   ],
   imports: [
     BrowserModule,
