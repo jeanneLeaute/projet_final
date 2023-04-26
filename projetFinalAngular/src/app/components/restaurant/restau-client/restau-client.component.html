@@ -1,1 +1,30 @@
-<p>restau-client works!</p>
+<div
+  class="bg-dark m-3 p-3 bg-dark text-light position-relative center rounded"
+>
+  <table class="table text-light text-center">
+    <thead>
+      <tr>
+        <th>nom:</th>
+        <th>horaireOuverture:</th>
+        <th>description:</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let r of restaurantsRestaurateur">
+        <td>{{ r.nom }}</td>
+        <td>{{ r.horaireOuverture }}</td>
+        <td>{{ r.description }}</td>
+        <td>
+          <a
+            routerLink="/reservation"
+            routerLinkActive="active"
+            class="btn btn-outline-primary"
+            >reserver</a
+          >
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

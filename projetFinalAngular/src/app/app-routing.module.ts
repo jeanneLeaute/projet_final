@@ -32,6 +32,7 @@ import { MoncompteRestaurateurComponent } from './components/restaurateur/moncom
 import { EditMoncompteRestaurateurComponent } from './components/restaurateur/edit-moncompte-restaurateur/edit-moncompte-restaurateur.component';
 import { EditMoncompteClientComponent } from './components/client/edit-moncompte-client/edit-moncompte-client.component';
 import { EditRestaurantGuardService } from './services/edit-restaurant-guard.service';
+import { RestauClientComponent } from './components/restaurant/restau-client/restau-client.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -97,6 +98,10 @@ const routes: Routes = [
     path: 'restau-restaurateur/edit/:id',
     component: RestauRestaurateurEditComponent,
     // canActivate: [EditRestaurantGuardService],
+  },
+  {
+    path: 'restau-client',
+    component: RestauClientComponent,
   },
   {
     path: 'list-client',
