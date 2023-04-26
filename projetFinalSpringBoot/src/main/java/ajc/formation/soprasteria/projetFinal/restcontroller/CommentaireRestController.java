@@ -26,7 +26,9 @@ import ajc.formation.soprasteria.projetFinal.entities.ClientRestaurantKey;
 import ajc.formation.soprasteria.projetFinal.entities.Commentaire;
 import ajc.formation.soprasteria.projetFinal.entities.Restaurant;
 import ajc.formation.soprasteria.projetFinal.entities.views.JsonViews;
+import ajc.formation.soprasteria.projetFinal.services.ClientService;
 import ajc.formation.soprasteria.projetFinal.services.CommentaireService;
+import ajc.formation.soprasteria.projetFinal.services.RestaurantService;
 
 @RestController
 @RequestMapping("/api/commentaire")
@@ -35,6 +37,12 @@ public class CommentaireRestController {
 
 	@Autowired
 	private CommentaireService commentaireService;
+	
+	@Autowired
+	private ClientService clientSrv;
+	
+	@Autowired
+	private RestaurantService restaurantSrv;
 
 	@GetMapping("")
 	@JsonView(JsonViews.Commentaire.class)
@@ -49,31 +57,31 @@ public class CommentaireRestController {
 //	}
 
 	//!!!!
-	@GetMapping("/{client}")
+	@GetMapping("/client/{idClient}")
 	@JsonView(JsonViews.Commentaire.class)
-	public List<Commentaire> getByClient(@Valid @RequestBody Client client, BindingResult br) {
+	public List<Commentaire> getByClient(@PathVariable Long idClient, BindingResult br) {
 		if (br.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		}
-		return commentaireService.getByClient(client);
+		return commentaireService.getByClient(clientSrv.getById(idClient));
 	}
 
-	@GetMapping("/{restaurant}")
+	@GetMapping("/restaurant/{idRestaurant}")
 	@JsonView(JsonViews.Commentaire.class)
-	public List<Commentaire> getByRestaurant(@RequestBody Restaurant restaurant) {
-		return commentaireService.getByRestaurant(restaurant);
+	public List<Commentaire> getByRestaurant(@PathVariable Long idRestaurant, BindingResult br) {
+		return commentaireService.getByRestaurant(restaurantSrv.getById(idRestaurant));
 	}
 
-	@GetMapping("/{client}/{restaurant}")
+	@GetMapping("/{idClient}/{idRestaurant}")
 	@JsonView(JsonViews.Commentaire.class)
-	public List<Commentaire> getByRestaurantAndClient(@PathVariable Client client,
-			@PathVariable Restaurant restaurant) {
-		return commentaireService.getByRestaurantAndClient(restaurant, client);
+	public List<Commentaire> getByRestaurantAndClient(@PathVariable Long idClient,
+			@PathVariable Long idRestaurant) {
+		return commentaireService.getByRestaurantAndClient(restaurantSrv.getById(idRestaurant), clientSrv.getById(idClient));
 	}
 
 	@GetMapping("/{id}")
 	@JsonView(JsonViews.Commentaire.class)
-	public Commentaire getById(@PathVariable ClientRestaurantKey id) {
+	public Commentaire getById(@PathVariable Long id) {
 		Commentaire commentaire = null;
 		commentaire = commentaireService.getById(id);
 		return commentaire;
@@ -86,13 +94,13 @@ public class CommentaireRestController {
 		if (br.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		}
-		commentaireService.createOrUpdate(commentaire);
+		commentaireService.create(commentaire);
 		return commentaire;
 	}
 
 	@PutMapping("/{id}")
 	@JsonView(JsonViews.Commentaire.class)
-	public Commentaire update(@RequestBody Commentaire commentaire, @PathVariable ClientRestaurantKey id) {
+	public Commentaire update(@RequestBody Commentaire commentaire, @PathVariable Long id) {
 		Commentaire commentaireEnBase = commentaireService.getById(id);
 		if (commentaire.getTexte() != null) {
 			commentaireEnBase.setTexte(commentaire.getTexte());
@@ -103,13 +111,13 @@ public class CommentaireRestController {
 		if (commentaire.getRestaurant() != null) {
 			commentaireEnBase.setRestaurant(commentaire.getRestaurant());
 		}
-
+		commentaireService.update(commentaireEnBase);
 		return commentaireEnBase;
 	}
 
 	@DeleteMapping("/{id}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void delete(@PathVariable ClientRestaurantKey id) {
+	public void delete(@PathVariable Long id) {
 		commentaireService.deleteById(id);
 	}
 

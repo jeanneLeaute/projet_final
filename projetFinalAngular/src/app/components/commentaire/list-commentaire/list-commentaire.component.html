@@ -5,21 +5,24 @@
     <li *ngFor="let commentaire of commentaires">
       <p>{{ commentaire.utilisateur }}</p>
       <p>{{ commentaire.texte }}</p>
+      <td>
+        <a
+          routerLink="/commentaire/edit/{{ commentaire.id }}"
+          routerLinkActive="active"
+          class="btn btn-outline-primary"
+          >editer</a
+        >
+      </td>
+      <td>
+        <button
+          class="btn btn-outline-danger"
+          (click)="delete(commentaire.id!)"
+        >
+          suppression
+        </button>
+      </td>
     </li>
   </ul>
-  <td>
-    <a
-      routerLink="/commentaire/edit/{{ utilisateur.id }}"
-      routerLinkActive="active"
-      class="btn btn-outline-primary"
-      >editer</a
-    >
-  </td>
-  <td>
-    <button class="btn btn-outline-danger" (click)="delete(utilisateur.id!)">
-      suppression
-    </button>
-  </td>
   <app-link
     etiquetteLien="nouveau commentaire"
     lien="/commentaire/add"

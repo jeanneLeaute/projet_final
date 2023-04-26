@@ -7,30 +7,33 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class CommentaireService {
-  private baseUrl = 'http://localhost:4200/api/commentaires';
-
   constructor(private http: HttpClient) {}
 
   allCommentaires(): Observable<Commentaire[]> {
-    return this.http.get<Commentaire[]>(this.baseUrl);
+    return this.http.get<Commentaire[]>(
+      'http://localhost:4200/api/commentaire'
+    );
   }
 
   getCommentaireById(id: number): Observable<Commentaire> {
-    const url = `${this.baseUrl}/${id}`;
+    const url = `http://localhost:4200/api/commentaire/${id}`;
     return this.http.get<Commentaire>(url);
   }
 
   createCommentaire(commentaire: Commentaire): Observable<Commentaire> {
-    return this.http.post<Commentaire>(this.baseUrl, commentaire);
+    return this.http.post<Commentaire>(
+      'http://localhost:4200/api/commentaire',
+      commentaire
+    );
   }
 
   updateCommentaire(commentaire: Commentaire): Observable<Commentaire> {
-    const url = `${this.baseUrl}/${commentaire.id}`;
+    const url = `http://localhost:4200/api/commentaire/${commentaire.id}`;
     return this.http.put<Commentaire>(url, commentaire);
   }
 
   deleteCommentaire(id: number): Observable<any> {
-    const url = `${this.baseUrl}/${id}`;
+    const url = `http://localhost:4200/api/commentaire/${id}`;
     return this.http.delete(url);
   }
 }

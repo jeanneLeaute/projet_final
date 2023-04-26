@@ -10,9 +10,9 @@ import ajc.formation.soprasteria.projetFinal.entities.ClientRestaurantKey;
 import ajc.formation.soprasteria.projetFinal.entities.Commentaire;
 import ajc.formation.soprasteria.projetFinal.entities.Restaurant;
 
-public interface CommentaireRepository extends JpaRepository<Commentaire, ClientRestaurantKey>{
+public interface CommentaireRepository extends JpaRepository<Commentaire, Long>{
 
-	Optional<Commentaire> findById(ClientRestaurantKey id);
+	Optional<Commentaire> findById(Long id);
 
 	List<Commentaire> findByTexteContaining(String Texte);
 

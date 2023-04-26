@@ -5,6 +5,8 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
@@ -17,24 +19,26 @@ import ajc.formation.soprasteria.projetFinal.entities.views.JsonViews;
 
 @Entity
 @Table(name = "commentaire")
-@IdClass(ClientRestaurantKey.class)
 public class Commentaire {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(JsonViews.Simple.class)
+	@Column(name = "id")
+	private Long id;
 	
 	@JsonView(JsonViews.Simple.class)
 	@Column(name = "texte")
 	private String texte;
 	
-	
-	@Id
 	@ManyToOne
 	@JoinColumn(name="commentaire_client",foreignKey = @ForeignKey(name="commentaire_client_fk"))
-	@JsonView(JsonViews.Simple.class)
+	@JsonView(JsonViews.CommentaireWithClient.class)
 	private Client client;
-	
-	@Id
+
 	@ManyToOne
 	@JoinColumn(name="commentaire_restaurant",foreignKey = @ForeignKey(name="commentaire_restaurant_fk"))
-	@JsonView(JsonViews.Simple.class)
+	@JsonView(JsonViews.CommentaireWithRestaurant.class)
 	private Restaurant restaurant;
 
 	public Commentaire() {
@@ -48,6 +52,19 @@ public class Commentaire {
 		this.restaurant = restaurant;
 	}
 
+
+	public Commentaire(String texte) {
+		super();
+		this.texte = texte;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public Client getClient() {
 		return client;
@@ -75,7 +92,7 @@ public class Commentaire {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(client, restaurant);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -87,13 +104,10 @@ public class Commentaire {
 		if (getClass() != obj.getClass())
 			return false;
 		Commentaire other = (Commentaire) obj;
-		return Objects.equals(client, other.client) && Objects.equals(restaurant, other.restaurant);
+		return id == other.id;
 	}
 
-	public ClientRestaurantKey getId() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	
 	

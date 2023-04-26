@@ -172,6 +172,11 @@ const routes: Routes = [
     component: EditCommentaireComponent,
     canActivate: [ClientGuardService],
   },
+  {
+    path: 'commentaire/add',
+    component: EditCommentaireComponent,
+    canActivate: [ClientGuardService],
+  },
   { path: '**', component: NotFoundComponent },
 ];
 
