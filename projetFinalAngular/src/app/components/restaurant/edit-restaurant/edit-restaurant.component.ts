@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Restaurant } from 'src/app/model/restaurant';
@@ -12,7 +12,7 @@ import { RestaurateurService } from 'src/app/services/restaurateur.service';
   templateUrl: './edit-restaurant.component.html',
   styleUrls: ['./edit-restaurant.component.css'],
 })
-export class EditRestaurantComponent {
+export class EditRestaurantComponent implements OnInit {
   restaurant!: Restaurant;
   obsRestaurateurs!: Observable<Utilisateur[]>;
 

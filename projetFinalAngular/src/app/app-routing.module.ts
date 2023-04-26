@@ -129,6 +129,10 @@ const routes: Routes = [
     canActivate: [ClientGuardService],
   },
   {
+    path: 'reservation/:id',
+    component: ReservationComponent,
+  },
+  {
     path: 'list-restaurateur',
     component: ListRestaurateurComponent,
     canActivate: [AdminGuardService],

@@ -34,7 +34,7 @@ public class ApiSecurityConfig {
 					.antMatchers(HttpMethod.GET,"/api/client/**").hasAnyRole("CLIENT", "ADMIN")
 					.antMatchers(HttpMethod.PUT,"/api/client/**").hasAnyRole("CLIENT", "ADMIN")
 					.antMatchers(HttpMethod.GET, "/api/reservation").hasAnyRole("RESTAURATEUR")
-					.antMatchers(HttpMethod.GET,"/api/restaurant/**").hasAnyRole("RESTAURATEUR", "ADMIN")
+					.antMatchers(HttpMethod.GET,"/api/restaurant/**").hasAnyRole("CLIENT", "RESTAURATEUR", "ADMIN")
 					.antMatchers(HttpMethod.GET,"/api/restaurateur/**").hasAnyRole("RESTAURATEUR", "ADMIN")
 					.antMatchers(HttpMethod.PUT,"/api/restaurateur/**").hasAnyRole("RESTAURATEUR", "ADMIN")
 					.antMatchers(HttpMethod.POST, "/api/restaurant").hasAnyRole("RESTAURATEUR", "ADMIN")
