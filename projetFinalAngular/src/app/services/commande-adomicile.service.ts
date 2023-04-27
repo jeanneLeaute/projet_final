@@ -5,15 +5,18 @@ import { CommandeADomicile } from '../model/commande-adomicile';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CommandeADomicileService {
+  private url: string =
+    'http://localhost:8080/projetFinal/api/commandeADomicile';
 
-  private url: string = 'http://localhost:8080/projetfinal/api/commandeADomicile';
+  constructor(
+    private httpClient: HttpClient,
+    private convert: ObjectToJsonService
+  ) {}
 
-  constructor(private httpClient: HttpClient, private convert: ObjectToJsonService) { }
-
-  public create(commande: CommandeADomicile): Observable<CommandeADomicile> {
+  public create(commande: any): Observable<any> {
     console.debug(commande);
     return this.httpClient.post<CommandeADomicile>(
       this.url,
@@ -29,9 +32,7 @@ export class CommandeADomicileService {
   }
 
   public allCommandeADomicile(): Observable<CommandeADomicile[]> {
-    return this.httpClient.get<CommandeADomicile[]>(
-      this.url,
-    );
+    return this.httpClient.get<CommandeADomicile[]>(this.url);
   }
 
   public getById(id: number): Observable<CommandeADomicile> {

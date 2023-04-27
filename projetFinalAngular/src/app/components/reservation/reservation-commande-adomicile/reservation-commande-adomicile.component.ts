@@ -1,10 +1,17 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Adresse } from 'src/app/model/adresse';
 import { Categorie } from 'src/app/model/categorie';
 import { CommandeADomicile } from 'src/app/model/commande-adomicile';
+import { HeureReservation } from 'src/app/model/heure-reservation';
 import { ItemMenu } from 'src/app/model/item-menu';
 import { Restaurant } from 'src/app/model/restaurant';
 import { Role } from 'src/app/model/role';
@@ -21,10 +28,12 @@ import { RestaurantService } from 'src/app/services/restaurant.service';
 })
 export class ReservationCommandeADomicileComponent {
   form!: FormGroup;
-  adresse: Adresse = new Adresse('4', 'rue du restau', '34090', 'Montpellier');
+  adresse!: Adresse;
   restau!: Restaurant;
   items!: Observable<ItemMenu[]>;
   client!: Utilisateur;
+  commandeADomicile!: CommandeADomicile;
+  itemReserve: Array<ItemMenu> = new Array<ItemMenu>();
 
   constructor(
     private aR: ActivatedRoute,
@@ -32,7 +41,8 @@ export class ReservationCommandeADomicileComponent {
     private commandeSrv: CommandeADomicileService,
     private router: Router,
     private itemMenuSrv: ItemMenuService,
-    private clientSrv: ClientService
+    private clientSrv: ClientService,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -43,6 +53,7 @@ export class ReservationCommandeADomicileComponent {
           .getById(params['id'])
           .subscribe((restaurant: Restaurant) => {
             this.restau = restaurant;
+            this.items = this.itemMenuSrv.findByRestaurant(this.restau);
           });
       }
     });
@@ -56,13 +67,13 @@ export class ReservationCommandeADomicileComponent {
         });
     }
     this.form = new FormGroup({
-      nom: new FormControl('', Validators.required),
-      menuGroup: new FormGroup({
-        selectedItems: new FormControl([]),
-      }),
+      selectedItems: new FormControl([]),
+      specification: new FormControl(''),
+      numero: new FormControl(''),
+      rue: new FormControl(),
+      codePostal: new FormControl(),
+      ville: new FormControl(),
     });
-
-    this.items = this.itemMenuSrv.findByRestaurant(this.restau);
   }
 
   get isClient(): boolean {
@@ -85,22 +96,55 @@ export class ReservationCommandeADomicileComponent {
     return 0;
   }
 
+  public itemReservationCommandeADomicile(e: any) {
+    const selectedItems: FormArray = this.form.get(
+      'selectedItems'
+    ) as FormArray;
+
+    if (e.target.checked) {
+      selectedItems.push(new FormControl(e.target.value));
+      this.itemMenuSrv.getById(e.target.value).subscribe((data: ItemMenu) => {
+        this.itemReserve.push(data);
+      });
+    } else {
+      let i: number = 0;
+
+      selectedItems.controls.forEach((t: any) => {
+        if (t.value == e.target.value) {
+          selectedItems.removeAt(i);
+
+          return;
+        }
+        i++;
+      });
+    }
+  }
+
   public submit() {
-    let surPlaceJson = {
-      nom: this.form.get('nom')?.value,
-      selectedItems: this.form.get('menuGroup.selectedItems')?.value,
-    };
-    this.commandeSrv.create(
-      new CommandeADomicile(
-        undefined,
-        this.client,
-        this.restau,
-        undefined,
-        undefined,
-        undefined,
-        this.form.get('menuGroup.selectedItems')?.value
-      )
+    this.adresse.numero = this.form.get('numero')?.value;
+    this.adresse.rue = this.form.get('rue')?.value;
+    this.adresse.codePostal = this.form.get('codePostal')?.value;
+    this.adresse.ville = this.form.get('ville')?.value;
+    this.commandeADomicile = new CommandeADomicile(
+      undefined,
+      this.client,
+      this.restau,
+      undefined,
+      this.form.value.specification,
+      this.adresse,
+      this.itemReserve
     );
-    this.router.navigateByUrl('/home');
+
+    let commandeAdomicileJson = {
+      client: this.commandeADomicile.client,
+      restaurant: this.commandeADomicile.restaurant,
+      date: this.commandeADomicile.date,
+      specification: this.commandeADomicile.specification,
+      itemsMenu: this.itemReserve,
+    };
+
+    this.commandeSrv.create(commandeAdomicileJson).subscribe((resp) => {
+      this.router.navigateByUrl('/restau-client');
+    });
   }
 }

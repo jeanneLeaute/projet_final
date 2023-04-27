@@ -1,21 +1,27 @@
 <h1>Commander</h1>
 <form (ngSubmit)="submit()" [formGroup]="form">
-  <div class="form-group">
-    <label for="nom">Nom de la commande:</label>
-    <input id="nom" class="form-control" formControlName="nom" />
-  </div>
-  <ng-container formGroupName="menuGroup">
+  <ng-container>
     <div class="form-group" *ngFor="let item of items | async">
       <label>
         <input
           type="checkbox"
-          name="selectedItems"
-          formControlName="selectedItems"
+          [value]="item.id_item"
+          name="item{{ item.id_item }}"
+          (change)="itemReservationCommandeADomicile($event)"
+          formArrayName="selectedItems"
         />
-        {{ item.nom }} - {{ item.description }}
+        {{ item.id_item }} - {{ item.nom }} - {{ item.description }}
       </label>
     </div>
   </ng-container>
+  <div class="form-group">
+    <label for="specification">Quelque chose à ajouter ?</label>
+    <input
+      id="specification"
+      class="form-control"
+      formControlName="specification"
+    />
+  </div>
   <div>
     <button
       type="submit"
