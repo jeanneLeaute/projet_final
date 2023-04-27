@@ -33,12 +33,12 @@ public class Commentaire {
 	
 	@ManyToOne
 	@JoinColumn(name="commentaire_client",foreignKey = @ForeignKey(name="commentaire_client_fk"))
-	@JsonView(JsonViews.CommentaireWithClient.class)
+	@JsonView(JsonViews.Simple.class)
 	private Client client;
 
 	@ManyToOne
 	@JoinColumn(name="commentaire_restaurant",foreignKey = @ForeignKey(name="commentaire_restaurant_fk"))
-	@JsonView(JsonViews.CommentaireWithRestaurant.class)
+	@JsonView(JsonViews.Simple.class)
 	private Restaurant restaurant;
 
 	public Commentaire() {

@@ -66,6 +66,7 @@ export class EditCommentaireComponent {
   }
 
   submit() {
+    console.debug(this.commentaire);
     console.debug(this.client);
     console.debug(this.restaurant);
     console.debug(this.form.get('texte')?.value);
