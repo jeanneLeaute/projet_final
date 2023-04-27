@@ -150,7 +150,7 @@ export class ReservationSurPlaceComponent {
 
     this.surPlaceSrv.create(surPlaceJson).subscribe((resp)=>{
       // console.debug(this.surPlace);
-      this.router.navigateByUrl("/restau-client")
+      this.router.navigateByUrl("/reservationValidee")
     });
 
   }

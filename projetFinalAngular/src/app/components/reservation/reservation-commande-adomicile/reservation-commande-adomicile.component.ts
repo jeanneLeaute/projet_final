@@ -150,10 +150,9 @@ export class ReservationCommandeADomicileComponent {
       itemsMenu: this.itemReserve,
     };
 
-    console.log(commandeAdomicileJson)
 
     this.commandeSrv.create(commandeAdomicileJson).subscribe((resp) => {
-      this.router.navigateByUrl('/restau-client');
+      this.router.navigateByUrl('/reservationValidee');
     });
   }
 }
