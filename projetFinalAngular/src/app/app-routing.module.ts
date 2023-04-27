@@ -190,7 +190,7 @@ const routes: Routes = [
     component: EditCommentaireComponent,
     canActivate: [ClientGuardService],
   },
-  { path: 'reservation/validee', component: CommandeValideComponent },
+  { path: 'reservationValidee', component: CommandeValideComponent },
   { path: '**', component: NotFoundComponent },
 ];
 
