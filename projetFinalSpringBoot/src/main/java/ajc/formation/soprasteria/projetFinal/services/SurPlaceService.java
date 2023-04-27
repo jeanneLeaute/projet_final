@@ -77,4 +77,15 @@ public class SurPlaceService {
 		}
 		return surPlaceRepo.findByRestaurant(restaurant);
 	}
+	
+	public List<SurPlace> findSurPlacesByItemMenuId(Long ItemMenuId){
+		if (ItemMenuId == null) {
+			throw new ReservationException("ItemMenu Id obligatoire");
+		}
+		
+		if (surPlaceRepo.findSurPlacesByItemMenuId(ItemMenuId)==null) {
+			throw new ReservationException("ItemMenu Id inconnu");
+		}
+		return surPlaceRepo.findSurPlacesByItemMenuId(ItemMenuId);
+	}
 }

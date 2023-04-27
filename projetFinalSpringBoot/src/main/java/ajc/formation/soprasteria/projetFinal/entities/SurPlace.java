@@ -7,6 +7,8 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -20,7 +22,8 @@ public class SurPlace extends Reservation{
 	private int nbPersonne;
 	@JsonView(JsonViews.Simple.class)
 	private String choixTables;
-	@ManyToMany(mappedBy = "surPlaces")
+	@ManyToMany
+	@JoinTable(name = "item_menu_sur_place", joinColumns = @JoinColumn(name="sur_place_id_reservation"), inverseJoinColumns = @JoinColumn(name="items_menu_id_item"))
 	@JsonView(JsonViews.SurPlaceWithItemsMenu.class)
 	private Set<ItemMenu> itemsMenu;
 	@Enumerated(EnumType.STRING)

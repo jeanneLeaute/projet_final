@@ -12,4 +12,6 @@ public interface SurPlaceRepository extends JpaRepository<SurPlace,Long>{
 	List<SurPlace> findByClient(Client client);
 
 	List<SurPlace> findByRestaurant(Restaurant restaurant);
+	
+	List<SurPlace> findSurPlacesByItemMenuId(Long ItemMenuId);
 }
