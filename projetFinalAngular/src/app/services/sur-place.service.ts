@@ -13,11 +13,10 @@ export class SurPlaceService {
 
   constructor(private httpClient: HttpClient, private convert: ObjectToJsonService) { }
 
-  public create(surPlace: SurPlace): Observable<SurPlace> {
-    console.debug(surPlace);
-    return this.httpClient.post<SurPlace>(
-      this.url,
-      this.convert.surPlaceToJson(surPlace)
+  public create(surPlace: any): Observable<any> {
+    console.log(surPlace);
+    return this.httpClient.post(
+      this.url,surPlace
     );
   }
 

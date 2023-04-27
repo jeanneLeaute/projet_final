@@ -51,6 +51,7 @@ public class SurPlaceRestControler {
 	@JsonView(JsonViews.SurPlace.class)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public SurPlace create(@Valid @RequestBody SurPlace surPlace, BindingResult br) {
+		System.out.println(surPlace.getItemsMenu());
 		if (br.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,br.getAllErrors().get(0).toString());
 		}

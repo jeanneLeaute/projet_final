@@ -74,6 +74,8 @@ export class ObjectToJsonService {
       client: surPlace.client,
       restaurant: surPlace.restaurant,
       date: surPlace.date,
+      specification: surPlace.specification,
+      nbPersonne:surPlace.nbPersonne,
       choixTables: surPlace.choixTables,
       heureReservation: surPlace.heureReservation,
       itemsMenu: surPlace.itemsMenu

@@ -22,7 +22,7 @@ public class SurPlace extends Reservation{
 	private String choixTables;
 	@ManyToMany(mappedBy = "surPlaces")
 	@JsonView(JsonViews.SurPlaceWithItemsMenu.class)
-	private Set<ItemMenu> itemsMenu=null;
+	private Set<ItemMenu> itemsMenu;
 	@Enumerated(EnumType.STRING)
 	@JsonView(JsonViews.Simple.class)
 	private HeureReservation heureReservation;
