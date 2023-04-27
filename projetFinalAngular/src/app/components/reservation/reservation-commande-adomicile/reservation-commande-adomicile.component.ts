@@ -67,7 +67,7 @@ export class ReservationCommandeADomicileComponent {
         });
     }
     this.form = new FormGroup({
-      selectedItems: new FormControl([]),
+      selectedItems: this.formBuilder.array([]),
       specification: new FormControl(''),
       numero: new FormControl(''),
       rue: new FormControl(),
@@ -121,6 +121,7 @@ export class ReservationCommandeADomicileComponent {
   }
 
   public submit() {
+    this.adresse = new Adresse();
     this.adresse.numero = this.form.get('numero')?.value;
     this.adresse.rue = this.form.get('rue')?.value;
     this.adresse.codePostal = this.form.get('codePostal')?.value;
@@ -136,6 +137,12 @@ export class ReservationCommandeADomicileComponent {
     );
 
     let commandeAdomicileJson = {
+      adresse: {
+        numero: this.adresse.numero,
+        rue: this.adresse.rue,
+        codePostal: this.adresse.codePostal,
+        ville: this.adresse.codePostal,
+      },
       client: this.commandeADomicile.client,
       restaurant: this.commandeADomicile.restaurant,
       date: this.commandeADomicile.date,
