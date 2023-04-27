@@ -9,6 +9,7 @@ import ajc.formation.soprasteria.projetFinal.entities.Client;
 import ajc.formation.soprasteria.projetFinal.entities.Restaurant;
 import ajc.formation.soprasteria.projetFinal.entities.SurPlace;
 import ajc.formation.soprasteria.projetFinal.exception.ReservationException;
+import ajc.formation.soprasteria.projetFinal.repositories.ClientRepository;
 import ajc.formation.soprasteria.projetFinal.repositories.RestaurantRepository;
 import ajc.formation.soprasteria.projetFinal.repositories.SurPlaceRepository;
 
@@ -19,6 +20,9 @@ public class SurPlaceService {
 	
 	@Autowired
 	private RestaurantRepository restaurantRepo;
+	
+	@Autowired
+	private ClientRepository clientRepo;
 
 	public List<SurPlace> getAll() {
 		return surPlaceRepo.findAll();
@@ -88,6 +92,14 @@ public class SurPlaceService {
 		}
 		
 		return surPlaceRepo.findByRestaurantWithItemsMenu(id);
+	}
+	
+	public List<SurPlace> getByClientWithItemsMenu(Long id) {
+		if (id == null || !clientRepo.existsById(id)) {
+			throw new ReservationException("client obligatoire");
+		}
+		
+		return surPlaceRepo.findByClientWithItemsMenu(id);
 	}
 	
 //	public List<SurPlace> findSurPlacesByItemMenuId(Long ItemMenuId){

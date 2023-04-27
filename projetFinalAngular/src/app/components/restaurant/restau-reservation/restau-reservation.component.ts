@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CommandeADomicile } from 'src/app/model/commande-adomicile';
@@ -14,36 +14,37 @@ import { RestaurateurService } from 'src/app/services/restaurateur.service';
 @Component({
   selector: 'app-restau-reservation',
   templateUrl: './restau-reservation.component.html',
-  styleUrls: ['./restau-reservation.component.css']
+  styleUrls: ['./restau-reservation.component.css'],
 })
-export class RestauReservationComponent {
-
+export class RestauReservationComponent implements OnInit {
   restaurant!: Restaurant;
   idRestaurateur!: number;
-  reservationsSurPlace:Array<SurPlace>=new Array;
-  reservationsCommande:Array<CommandeADomicile>=new Array;
+  reservationsSurPlace: Array<SurPlace> = new Array();
+  reservationsCommande: Array<CommandeADomicile> = new Array();
 
   constructor(
-    private reservationSrv:ReservationService,
+    private reservationSrv: ReservationService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
-      this.idRestaurateur=params['id']
+      this.idRestaurateur = params['id'];
 
-      this.reservationSrv.getSurPlaceByRestaurant(this.idRestaurateur).subscribe((data:any)=>{
-        this.reservationsSurPlace=data;
-      })
+      this.reservationSrv
+        .getSurPlaceByRestaurant(this.idRestaurateur)
+        .subscribe((data: any) => {
+          this.reservationsSurPlace = data;
+        });
 
-      this.reservationSrv.getCommandeByRestaurant(this.idRestaurateur).subscribe((data:any)=>{
-        this.reservationsCommande=data;
-      })
-
-    })
+      this.reservationSrv
+        .getCommandeByRestaurant(this.idRestaurateur)
+        .subscribe((data: any) => {
+          this.reservationsCommande = data;
+        });
+    });
   }
 
-  public traite(id:number|undefined){}
-
+  public traite(id: number | undefined) {}
 }

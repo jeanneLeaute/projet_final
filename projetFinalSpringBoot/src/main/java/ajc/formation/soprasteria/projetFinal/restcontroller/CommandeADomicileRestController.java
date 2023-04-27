@@ -117,8 +117,14 @@ public class CommandeADomicileRestController {
 	
 	@GetMapping("/restau-reservation/{id}")
 	@JsonView(JsonViews.CommandeADomicileWithItemsMenu.class)
-	public List<CommandeADomicile> getByRestaurant(@PathVariable("id") Long id) {
+	public List<CommandeADomicile> getByRestaurantWithItemsMenu(@PathVariable("id") Long id) {
 //		Restaurant restaurant = restaurantService.getById(id);
 		return commandeADomicileService.getByRestaurantWithItemsMenu(id);
+	}
+	
+	@GetMapping("/client-reservation/{id}")
+	@JsonView(JsonViews.CommandeADomicileWithItemsMenu.class)
+	public List<CommandeADomicile> getByClientWithItemsMenu(@PathVariable("id") Long id) {
+		return commandeADomicileService.getByClientWithItemsMenu(id);
 	}
 }

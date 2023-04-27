@@ -120,8 +120,14 @@ public class SurPlaceRestControler {
 	
 	@GetMapping("/restau-reservation/{id}")
 	@JsonView(JsonViews.SurPlaceWithItemsMenu.class)
-	public List<SurPlace> getByRestaurant(@PathVariable("id") Long id) {
+	public List<SurPlace> getByRestaurantWithItemsMenu(@PathVariable("id") Long id) {
 //		Restaurant restaurant = restaurantService.getById(id);
 		return surPlaceService.getByRestaurantWithItemsMenu(id);
+	}
+	
+	@GetMapping("/client-reservation/{id}")
+	@JsonView(JsonViews.SurPlaceWithItemsMenu.class)
+	public List<SurPlace> getByClientWithItemsMenu(@PathVariable("id") Long id) {
+		return surPlaceService.getByClientWithItemsMenu(id);
 	}
 }

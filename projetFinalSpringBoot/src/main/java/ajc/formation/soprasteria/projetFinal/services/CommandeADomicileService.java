@@ -10,6 +10,7 @@ import ajc.formation.soprasteria.projetFinal.entities.CommandeADomicile;
 import ajc.formation.soprasteria.projetFinal.entities.Restaurant;
 import ajc.formation.soprasteria.projetFinal.entities.SurPlace;
 import ajc.formation.soprasteria.projetFinal.exception.ReservationException;
+import ajc.formation.soprasteria.projetFinal.repositories.ClientRepository;
 import ajc.formation.soprasteria.projetFinal.repositories.CommandeADomicileRepository;
 import ajc.formation.soprasteria.projetFinal.repositories.RestaurantRepository;
 
@@ -19,6 +20,9 @@ public class CommandeADomicileService {
 	private CommandeADomicileRepository commandeADomicileRepo;
 	@Autowired
 	private RestaurantRepository restaurantRepo;
+	
+	@Autowired
+	private ClientRepository clientRepo;
 
 	public List<CommandeADomicile> getAll() {
 		return commandeADomicileRepo.findAll();
@@ -88,5 +92,13 @@ public class CommandeADomicileService {
 		}
 		
 		return commandeADomicileRepo.findByRestaurantWithItemsMenu(id);
+	}
+	
+	public List<CommandeADomicile> getByClientWithItemsMenu(Long id) {
+		if (id == null || !clientRepo.existsById(id)) {
+			throw new ReservationException("client obligatoire");
+		}
+		
+		return commandeADomicileRepo.findByClientWithItemsMenu(id);
 	}
 }

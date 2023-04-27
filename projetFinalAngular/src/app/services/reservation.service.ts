@@ -8,12 +8,15 @@ import { CommandeADomicileService } from './commande-adomicile.service';
 import { CommandeADomicile } from '../model/commande-adomicile';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ReservationService {
   private url: string = 'http://localhost:8080/projetfinal/api/reservation';
 
-  constructor(private httpClient: HttpClient, private convert: ObjectToJsonService) {}
+  constructor(
+    private httpClient: HttpClient,
+    private convert: ObjectToJsonService
+  ) {}
 
   public allReservation(): Observable<Reservation[]> {
     return this.httpClient.get<Reservation[]>(
@@ -25,11 +28,27 @@ export class ReservationService {
     return this.httpClient.get<Reservation>(`${this.url}/${id}`);
   }
 
-  public getSurPlaceByRestaurant(id:number): Observable<SurPlace[]>{
-    return this.httpClient.get<SurPlace[]>(`http://localhost:8080/projetFinal/api/SurPlace/restau-reservation/${id}`);
+  public getSurPlaceByRestaurant(id: number): Observable<SurPlace[]> {
+    return this.httpClient.get<SurPlace[]>(
+      `http://localhost:8080/projetFinal/api/SurPlace/restau-reservation/${id}`
+    );
   }
 
-  public getCommandeByRestaurant(id:number): Observable<CommandeADomicile[]>{
-    return this.httpClient.get<CommandeADomicile[]>(`http://localhost:8080/projetFinal/api/CommandeADomicile/restau-reservation/${id}`);
+  public getCommandeByRestaurant(id: number): Observable<CommandeADomicile[]> {
+    return this.httpClient.get<CommandeADomicile[]>(
+      `http://localhost:8080/projetFinal/api/CommandeADomicile/restau-reservation/${id}`
+    );
+  }
+
+  public getSurPlaceByClient(id: number): Observable<SurPlace[]> {
+    return this.httpClient.get<SurPlace[]>(
+      `http://localhost:8080/projetFinal/api/SurPlace/client-reservation/${id}`
+    );
+  }
+
+  public getCommandeByClient(id: number): Observable<CommandeADomicile[]> {
+    return this.httpClient.get<CommandeADomicile[]>(
+      `http://localhost:8080/projetFinal/api/CommandeADomicile/client-reservation/${id}`
+    );
   }
 }

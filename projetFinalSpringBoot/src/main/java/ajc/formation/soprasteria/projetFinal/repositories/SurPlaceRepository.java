@@ -17,5 +17,8 @@ public interface SurPlaceRepository extends JpaRepository<SurPlace,Long>{
 	@Query("select distinct s from SurPlace s left join fetch s.itemsMenu where s.restaurant.id = ?1")
 	List<SurPlace> findByRestaurantWithItemsMenu(Long idRestaurant);
 	
+	@Query("select distinct s from SurPlace s left join fetch s.itemsMenu where s.client.id = ?1")
+	List<SurPlace> findByClientWithItemsMenu(Long idClient);
+	
 //	List<SurPlace> findSurPlacesByItemMenuId(Long ItemMenuId);
 }

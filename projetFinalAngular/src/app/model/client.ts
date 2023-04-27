@@ -19,10 +19,10 @@ export class Client {
   public set prenom(value: string | undefined) {
     this._prenom = value;
   }
-  public get login(): string  {
+  public get login(): string {
     return this._login;
   }
-  public set login(value: string ) {
+  public set login(value: string) {
     this._login = value;
   }
   public get password(): string | undefined {
