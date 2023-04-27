@@ -119,9 +119,9 @@ public class SurPlaceRestControler {
 	}
 	
 	@GetMapping("/restau-reservation/{id}")
-	@JsonView(JsonViews.SurPlace.class)
+	@JsonView(JsonViews.SurPlaceWithItemsMenu.class)
 	public List<SurPlace> getByRestaurant(@PathVariable("id") Long id) {
-		Restaurant restaurant = restaurantService.getById(id);
-		return surPlaceService.getByRestaurant(restaurant);
+//		Restaurant restaurant = restaurantService.getById(id);
+		return surPlaceService.getByRestaurantWithItemsMenu(id);
 	}
 }

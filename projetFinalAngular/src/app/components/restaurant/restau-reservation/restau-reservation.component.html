@@ -10,6 +10,7 @@
         <th>date:</th>
         <th>nombre de personne:</th>
         <th>commande</th>
+        <th>spécification</th>
         <th></th>
       </tr>
     </thead>
@@ -22,6 +23,7 @@
         <td>
           {{ r.itemsMenu }}
         </td>
+        <td>{{ r.specification }}</td>
         <td>
           <button class="btn btn-outline-danger" (click)="traite(r.id)">
             traité
@@ -40,9 +42,7 @@
     <thead>
       <tr>
         <th>login client:</th>
-        <th>heure :</th>
         <th>date:</th>
-        <th>nombre de personne:</th>
         <th>commande</th>
         <th>spécification</th>
         <th></th>
