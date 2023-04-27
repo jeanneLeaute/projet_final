@@ -39,7 +39,6 @@ export class RestauReservationComponent {
 
       this.reservationSrv.getCommandeByRestaurant(this.idRestaurateur).subscribe((data:any)=>{
         this.reservationsCommande=data;
-        console.log(this.reservationsCommande)
       })
 
     })
