@@ -20,15 +20,15 @@ export class CommandeADomicile extends Reservation{
   }
 
   constructor(
+    _client: Utilisateur,
     _id?:number,
-    _client?: Utilisateur,
     _restaurant?: Restaurant,
     _date?: Date,
     _specification?: string,
     private _adresse?: Adresse,
     private _itemsMenu?: ItemMenu[],
   ) {
-    super(_id,_client,
+    super(_client,_id,
       _restaurant,
       _date,
       _specification);

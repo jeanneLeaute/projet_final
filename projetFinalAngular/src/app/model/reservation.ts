@@ -10,10 +10,10 @@ export abstract class Reservation {
     this._id = value;
   }
 
-  public get client(): Utilisateur | undefined {
+  public get client(): Utilisateur  {
     return this._client;
   }
-  public set client(value: Utilisateur | undefined) {
+  public set client(value: Utilisateur ) {
     this._client = value;
   }
 
@@ -39,8 +39,8 @@ export abstract class Reservation {
   }
 
   public constructor(
+    private _client: Utilisateur,
     private _id?: number,
-    private _client?: Utilisateur,
     private _restaurant?: Restaurant,
     private _date?: Date,
     private _specification?: string

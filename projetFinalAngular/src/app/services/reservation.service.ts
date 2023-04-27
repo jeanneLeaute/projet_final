@@ -26,10 +26,10 @@ export class ReservationService {
   }
 
   public getSurPlaceByRestaurant(id:number): Observable<SurPlace[]>{
-    return this.httpClient.get<SurPlace[]>(`http://localhost:8080/projetfinal/api/SurPlace/restau-reservation/${id}`);
+    return this.httpClient.get<SurPlace[]>(`http://localhost:8080/projetFinal/api/SurPlace/restau-reservation/${id}`);
   }
 
   public getCommandeByRestaurant(id:number): Observable<CommandeADomicile[]>{
-    return this.httpClient.get<CommandeADomicile[]>(`http://localhost:8080/projetfinal/api/CommandeADomicile/restau-reservation/${id}`);
+    return this.httpClient.get<CommandeADomicile[]>(`http://localhost:8080/projetFinal/api/CommandeADomicile/restau-reservation/${id}`);
   }
 }

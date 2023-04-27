@@ -33,8 +33,8 @@ export class SurPlace extends Reservation{
 
 
   constructor(
+    _client: Utilisateur,
     _id?:number,
-    _client?: Utilisateur,
     _restaurant?: Restaurant,
     _date?: Date,
     _specification?: string,
@@ -43,7 +43,7 @@ export class SurPlace extends Reservation{
     private _itemsMenu?: ItemMenu[],
     private _heureReservation?: HeureReservation
   ) {
-    super(_id,_client,
+    super(_client,_id,
       _restaurant,
       _date,
       _specification);

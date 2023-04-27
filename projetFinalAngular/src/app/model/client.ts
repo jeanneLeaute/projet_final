@@ -19,10 +19,10 @@ export class Client {
   public set prenom(value: string | undefined) {
     this._prenom = value;
   }
-  public get login(): string | undefined {
+  public get login(): string  {
     return this._login;
   }
-  public set login(value: string | undefined) {
+  public set login(value: string ) {
     this._login = value;
   }
   public get password(): string | undefined {
@@ -38,10 +38,10 @@ export class Client {
     this._role = value;
   }
   constructor(
+    private _login: string,
     private _id?: number,
     private _nom?: string,
     private _prenom?: string,
-    private _login?: string,
     private _password?: string,
     private _role?: Role
   ) {}

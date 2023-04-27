@@ -126,8 +126,8 @@ export class ReservationSurPlaceComponent {
     // }
 
     this.surPlace = new SurPlace(
-      undefined,
       this.client,
+      undefined,
       this.restau,
       undefined,
       this.form.value.specification,
