@@ -1,33 +1,37 @@
-<table class="table">
-  <thead>
-    <th>id</th>
-    <th>nom</th>
-    <th>prenom</th>
-    <th>login</th>
-  </thead>
-  <tbody>
-    <tr *ngFor="let c of restaurateurs">
-      <td>{{ c.id }}</td>
-      <td>{{ c.nom }}</td>
-      <td>{{ c.prenom }}</td>
-      <td>{{ c.login }}</td>
-      <td>
-        <app-link
-          lien="/restaurateur/detail/{{ c.id }}"
-          etiquetteLien="détails"
-        ></app-link>
-      </td>
-      <td>
-        <app-link
-          lien="/restaurateur/edit/{{ c.id }}"
-          etiquetteLien="éditer"
-        ></app-link>
-      </td>
-      <td>
-        <button (click)="delete(c.id!)" class="btn btn-outline-danger">
-          supprimer
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div
+  class="bg-dark m-3 p-3 bg-dark text-light position-relative center rounded"
+>
+  <table class="table">
+    <thead>
+      <th>id</th>
+      <th>nom</th>
+      <th>prenom</th>
+      <th>login</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of restaurateurs">
+        <td>{{ c.id }}</td>
+        <td>{{ c.nom }}</td>
+        <td>{{ c.prenom }}</td>
+        <td>{{ c.login }}</td>
+        <td>
+          <app-link
+            lien="/restaurateur/detail/{{ c.id }}"
+            etiquetteLien="détails"
+          ></app-link>
+        </td>
+        <td>
+          <app-link
+            lien="/restaurateur/edit/{{ c.id }}"
+            etiquetteLien="éditer"
+          ></app-link>
+        </td>
+        <td>
+          <button (click)="delete(c.id!)" class="btn btn-outline-danger">
+            supprimer
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

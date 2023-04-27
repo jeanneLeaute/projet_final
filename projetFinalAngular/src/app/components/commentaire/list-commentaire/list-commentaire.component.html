@@ -1,16 +1,20 @@
-<table class="table">
-  <thead>
-    <th>id :</th>
-    <th>auteur :</th>
-    <th>restaurant :</th>
-    <th>commentaire :</th>
-  </thead>
-  <tbody>
-    <tr *ngFor="let c of commentaires">
-      <td>{{ c.id }}</td>
-      <td>{{ c.client?.login }}</td>
-      <td>{{ c.restaurant?.nom }}</td>
-      <td>{{ c.texte }}</td>
-    </tr>
-  </tbody>
-</table>
+<div
+  class="bg-dark m-3 p-3 bg-dark text-light position-relative center rounded"
+>
+  <table class="table">
+    <thead>
+      <th>id :</th>
+      <th>auteur :</th>
+      <th>restaurant :</th>
+      <th>commentaire :</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of commentaires">
+        <td>{{ c.id }}</td>
+        <td>{{ c.client?.login }}</td>
+        <td>{{ c.restaurant?.nom }}</td>
+        <td>{{ c.texte }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
