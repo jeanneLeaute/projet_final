@@ -42,7 +42,7 @@ public class ApiSecurityConfig {
 					.antMatchers(HttpMethod.GET, "/api/SurPlace/restau-reservation/**").hasAnyRole("RESTAURATEUR","ADMIN")
 					.antMatchers(HttpMethod.GET, "/api/CommandeADomicile/restau-reservation/**").hasAnyRole("RESTAURATEUR","ADMIN")
 					.antMatchers(HttpMethod.GET, "/api/reservation").hasAnyRole("RESTAURATEUR", "ADMIN")
-					.antMatchers(HttpMethod.GET,"/api/restaurant/**").hasAnyRole("ADMIN")
+					.antMatchers(HttpMethod.GET,"/api/restaurant/**").hasAnyRole("ADMIN", "RESTAURATEUR")
 					.antMatchers(HttpMethod.GET,"/api/restaurant").authenticated()
 					.antMatchers(HttpMethod.GET,"/api/restaurateur/**").hasAnyRole("RESTAURATEUR", "ADMIN")
 					.antMatchers(HttpMethod.PUT,"/api/restaurateur/**").hasAnyRole("RESTAURATEUR", "ADMIN")
