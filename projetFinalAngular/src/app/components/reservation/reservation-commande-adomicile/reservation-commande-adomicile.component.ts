@@ -126,12 +126,12 @@ export class ReservationCommandeADomicileComponent {
     this.adresse.codePostal = this.form.get('codePostal')?.value;
     this.adresse.ville = this.form.get('ville')?.value;
     this.commandeADomicile = new CommandeADomicile(
+      this.adresse,
       this.client,
       undefined,
       this.restau,
       undefined,
       this.form.value.specification,
-      this.adresse,
       this.itemReserve
     );
 

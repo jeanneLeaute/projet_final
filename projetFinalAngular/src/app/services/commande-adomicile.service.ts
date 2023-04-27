@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class CommandeADomicileService {
   private url: string =
-    'http://localhost:8080/projetFinal/api/commandeADomicile';
+    'http://localhost:8080/projetFinal/api/CommandeADomicile';
 
   constructor(
     private httpClient: HttpClient,
