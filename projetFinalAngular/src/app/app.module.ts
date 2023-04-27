@@ -38,6 +38,7 @@ import { ListCommentaireComponent } from './components/commentaire/list-commenta
 import { RestauClientComponent } from './components/restaurant/restau-client/restau-client.component';
 import { ClientListCommentaireComponent } from './components/commentaire/client-list-commentaire/client-list-commentaire.component';
 import { RestaurantListCommentaireComponent } from './components/commentaire/restaurant-list-commentaire/restaurant-list-commentaire.component';
+import { RestauReservationComponent } from './components/restaurant/restau-reservation/restau-reservation.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,6 +73,7 @@ import { RestaurantListCommentaireComponent } from './components/commentaire/res
     RestauClientComponent,
     ClientListCommentaireComponent,
     RestaurantListCommentaireComponent,
+    RestauReservationComponent,
   ],
   imports: [
     BrowserModule,
