@@ -1,5 +1,6 @@
 package ajc.formation.soprasteria.projetFinal.restcontroller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -51,7 +52,9 @@ public class SurPlaceRestControler {
 	@JsonView(JsonViews.SurPlace.class)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public SurPlace create(@Valid @RequestBody SurPlace surPlace, BindingResult br) {
-		System.out.println(surPlace.getItemsMenu());
+		surPlace.getItemsMenu().forEach(item -> {
+			System.out.println(item.getId_item());
+		});
 		if (br.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,br.getAllErrors().get(0).toString());
 		}

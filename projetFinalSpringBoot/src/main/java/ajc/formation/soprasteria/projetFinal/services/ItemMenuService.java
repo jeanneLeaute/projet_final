@@ -73,15 +73,15 @@ public class ItemMenuService {
 		return (List<ItemMenu>) itemMenuRepo.findByRestaurant(restaurant);
 	}
     
-    public List<ItemMenu> findItemMenusBySurPlaceId(Long surPlaceId){
-    	if (surPlaceId == null) {
-			throw new ReservationException("surPlace Id obligatoire");
-		}
-		
-		if (itemMenuRepo.findItemMenusBySurPlaceId(surPlaceId)==null) {
-			throw new ReservationException("surPlace Id inconnu");
-		}
-    	return (List<ItemMenu>) itemMenuRepo.findItemMenusBySurPlaceId(surPlaceId);
-    }
+//    public List<ItemMenu> findItemMenusBySurPlaceId(Long surPlaceId){
+//    	if (surPlaceId == null) {
+//			throw new ReservationException("surPlace Id obligatoire");
+//		}
+//		
+//		if (itemMenuRepo.findItemMenusBySurPlaceId(surPlaceId)==null) {
+//			throw new ReservationException("surPlace Id inconnu");
+//		}
+//    	return (List<ItemMenu>) itemMenuRepo.findItemMenusBySurPlaceId(surPlaceId);
+//    }
 
 }

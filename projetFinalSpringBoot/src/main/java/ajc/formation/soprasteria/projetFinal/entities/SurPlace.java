@@ -23,7 +23,7 @@ public class SurPlace extends Reservation{
 	@JsonView(JsonViews.Simple.class)
 	private String choixTables;
 	@ManyToMany
-	@JoinTable(name = "item_menu_sur_place", joinColumns = @JoinColumn(name="sur_place_id_reservation"), inverseJoinColumns = @JoinColumn(name="items_menu_id_item"))
+	@JoinTable(name = "item_menu_sur_places", joinColumns = @JoinColumn(name="sur_place_id_reservation"), inverseJoinColumns = @JoinColumn(name="items_menu_id_item"))
 	@JsonView(JsonViews.SurPlaceWithItemsMenu.class)
 	private Set<ItemMenu> itemsMenu;
 	@Enumerated(EnumType.STRING)
