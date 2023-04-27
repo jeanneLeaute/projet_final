@@ -8,13 +8,17 @@ import org.springframework.stereotype.Service;
 import ajc.formation.soprasteria.projetFinal.entities.Client;
 import ajc.formation.soprasteria.projetFinal.entities.CommandeADomicile;
 import ajc.formation.soprasteria.projetFinal.entities.Restaurant;
+import ajc.formation.soprasteria.projetFinal.entities.SurPlace;
 import ajc.formation.soprasteria.projetFinal.exception.ReservationException;
 import ajc.formation.soprasteria.projetFinal.repositories.CommandeADomicileRepository;
+import ajc.formation.soprasteria.projetFinal.repositories.RestaurantRepository;
 
 @Service
 public class CommandeADomicileService {
 	@Autowired
 	private CommandeADomicileRepository commandeADomicileRepo;
+	@Autowired
+	private RestaurantRepository restaurantRepo;
 
 	public List<CommandeADomicile> getAll() {
 		return commandeADomicileRepo.findAll();
@@ -76,5 +80,13 @@ public class CommandeADomicileService {
 			throw new ReservationException("restaurant inconnu");
 		}
 		return commandeADomicileRepo.findByRestaurant(restaurant);
+	}
+	
+	public List<CommandeADomicile> getByRestaurantWithItemsMenu(Long id) {
+		if (id == null || !restaurantRepo.existsById(id)) {
+			throw new ReservationException("restaurant obligatoire");
+		}
+		
+		return commandeADomicileRepo.findByRestaurantWithItemsMenu(id);
 	}
 }

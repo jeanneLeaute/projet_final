@@ -64,7 +64,6 @@ export class ReservationSurPlaceComponent {
     }
 
     this.form = new FormGroup({
-      nom: new FormControl('', Validators.required),
       nbPersonne: new FormControl('', Validators.required),
       heureReservation:new FormControl(''),
       selectedItems: this.formBuilder.array([]),

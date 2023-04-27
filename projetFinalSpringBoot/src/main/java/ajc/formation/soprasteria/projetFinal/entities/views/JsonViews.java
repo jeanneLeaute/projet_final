@@ -51,6 +51,10 @@ public class JsonViews {
 
 	}
 	
+	public static class CommandeADomicileWithItemsMenu extends SurPlace {
+
+	}
+	
 	public static class ADomicileWithItemsMenu extends CommandeADomicile {
 
 	}

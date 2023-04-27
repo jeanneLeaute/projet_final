@@ -21,9 +21,7 @@
         <td>{{ r.date }}</td>
         <td>{{ r.nbPersonne }}</td>
         <td>
-          <div *ngFor="let item of r.itemsMenu">
-            {{ item.nom }}
-          </div>
+          <div *ngFor="let item of r.itemsMenu">{{ item.nom }},</div>
         </td>
         <td>{{ r.specification }}</td>
         <td>
@@ -45,6 +43,7 @@
       <tr>
         <th>login client:</th>
         <th>date:</th>
+        <th>adresse</th>
         <th>commande</th>
         <th>spécification</th>
         <th></th>
@@ -54,10 +53,12 @@
       <tr *ngFor="let r of reservationsCommande">
         <td>{{ r.client.login }}</td>
         <td>{{ r.date }}</td>
-        <td></td>
-        <!-- <td>{{ r.adresse.numero }} {{ r.adresse.rue }}, {{ r.adresse.codePostal }} {{ r.adresse.ville }}</td> -->
         <td>
-          {{ r.itemsMenu }}
+          {{ r.adresse.numero }} {{ r.adresse.rue }},
+          {{ r.adresse.codePostal }} {{ r.adresse.ville }}
+        </td>
+        <td>
+          <div *ngFor="let item of r.itemsMenu">{{ item.nom }},</div>
         </td>
         <td>{{ r.specification }}</td>
         <td>

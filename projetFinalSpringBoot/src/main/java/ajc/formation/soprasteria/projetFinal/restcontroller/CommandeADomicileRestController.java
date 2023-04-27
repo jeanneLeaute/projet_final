@@ -109,16 +109,16 @@ public class CommandeADomicileRestController {
 		return commandeADomicileService.getByClient(client);
 	}
 	
-	@GetMapping("/getByRestaurant")
-	@JsonView(JsonViews.CommandeADomicile.class)
-	public List<CommandeADomicile> getByRestaurant(@RequestBody Restaurant restaurant) {
-		return commandeADomicileService.getByRestaurant(restaurant);
-	}
+//	@GetMapping("/getByRestaurant")
+//	@JsonView(JsonViews.CommandeADomicile.class)
+//	public List<CommandeADomicile> getByRestaurant(@RequestBody Restaurant restaurant) {
+//		return commandeADomicileService.getByRestaurant(restaurant);
+//	}
 	
 	@GetMapping("/restau-reservation/{id}")
-	@JsonView(JsonViews.CommandeADomicile.class)
+	@JsonView(JsonViews.CommandeADomicileWithItemsMenu.class)
 	public List<CommandeADomicile> getByRestaurant(@PathVariable("id") Long id) {
-		Restaurant restaurant = restaurantService.getById(id);
-		return commandeADomicileService.getByRestaurant(restaurant);
+//		Restaurant restaurant = restaurantService.getById(id);
+		return commandeADomicileService.getByRestaurantWithItemsMenu(id);
 	}
 }

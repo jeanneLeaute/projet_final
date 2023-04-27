@@ -32,7 +32,7 @@ public class CommandeADomicile extends Reservation{
 	private Adresse adresse;
 	@ManyToMany
 	@JoinTable(name = "item_menu_commandes_adomicile", joinColumns = @JoinColumn(name="commandes_adomicile_id_reservation"), inverseJoinColumns = @JoinColumn(name="items_menu_id_item"))
-	@JsonView(JsonViews.ADomicileWithItemsMenu.class)
+	@JsonView(JsonViews.CommandeADomicileWithItemsMenu.class)
 	private Set<ItemMenu> itemsMenu = new HashSet<>();
 	
 	public CommandeADomicile() {
