@@ -17,29 +17,84 @@
         </option>
       </select>
     </div>
+    <h2 class="mt-4">Commander maintenant pour être servi en arrivant</h2>
     <ng-container>
-      <div class="form-group" *ngFor="let item of items | async">
-        <label>
-          <input
-            type="checkbox"
-            [value]="item.id_item"
-            name="item{{ item.id_item }}"
-            (change)="itemReservationSurPlace($event)"
-            formArrayName="selectedItems"
-          />
-          {{ item.id_item }} - {{ item.nom }} - {{ item.description }}
-        </label>
+      <div class="text-danger">
+        Ne pas sélectionner d'item si vous souhaitez commander sur place
       </div>
+      <h3 class="mt-4">Entrée</h3>
+      <ng-container *ngFor="let item of items | async">
+        <div *ngIf="item.categoriePlat == 'Entree'">
+          <label>
+            <input
+              type="checkbox"
+              [value]="item.id_item"
+              name="item{{ item.id_item }}"
+              (change)="itemReservationSurPlace($event)"
+              formArrayName="selectedItems"
+            />
+            {{ item.nom }} - {{ item.description }}
+          </label>
+        </div>
+      </ng-container>
+
+      <h3 class="mt-4">Plat</h3>
+      <ng-container *ngFor="let item of items | async">
+        <div *ngIf="item.categoriePlat == 'Plat'">
+          <label>
+            <input
+              type="checkbox"
+              [value]="item.id_item"
+              name="item{{ item.id_item }}"
+              (change)="itemReservationSurPlace($event)"
+              formArrayName="selectedItems"
+            />
+            {{ item.nom }} - {{ item.description }}
+          </label>
+        </div>
+      </ng-container>
+
+      <h3 class="mt-4">Dessert</h3>
+      <ng-container *ngFor="let item of items | async">
+        <div *ngIf="item.categoriePlat == 'Dessert'">
+          <label>
+            <input
+              type="checkbox"
+              [value]="item.id_item"
+              name="item{{ item.id_item }}"
+              (change)="itemReservationSurPlace($event)"
+              formArrayName="selectedItems"
+            />
+            {{ item.nom }} - {{ item.description }}
+          </label>
+        </div>
+      </ng-container>
+
+      <h3 class="mt-4">Boisson</h3>
+      <ng-container *ngFor="let item of items | async">
+        <div *ngIf="item.categoriePlat == 'Boisson'">
+          <label>
+            <input
+              type="checkbox"
+              [value]="item.id_item"
+              name="item{{ item.id_item }}"
+              (change)="itemReservationSurPlace($event)"
+              formArrayName="selectedItems"
+            />
+            {{ item.nom }} - {{ item.description }}
+          </label>
+        </div>
+      </ng-container>
     </ng-container>
-    <div class="form-group">
-      <label for="specification">Quelque chose à ajouter ?</label>
+    <div class="form-group" class="mt-4">
+      <label for="specification">Quelque chose à préciser ?</label>
       <input
         id="specification"
         class="form-control"
         formControlName="specification"
       />
     </div>
-    <div>
+    <div class="mt-4">
       <button
         type="submit"
         class="btn btn-outline-primary"

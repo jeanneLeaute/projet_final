@@ -1,5 +1,6 @@
 <div class="p-3 m-3 bg-dark text-light center rounded position-relative">
   <h1>Commander</h1>
+  <h2 class="mt-4">Adresse</h2>
   <form (ngSubmit)="submit()" [formGroup]="form">
     <div class="form-group">
       <label for="numero">numéro :</label>
@@ -27,21 +28,73 @@
       <label for="ville">ville :</label>
       <input id="ville" class="form-control" formControlName="ville" />
     </div>
+    <h2 class="mt-4">Votre commande</h2>
     <ng-container>
-      <div class="form-group" *ngFor="let item of items | async">
-        <label>
-          <input
-            type="checkbox"
-            [value]="item.id_item"
-            name="item{{ item.id_item }}"
-            (change)="itemReservationCommandeADomicile($event)"
-            formArrayName="selectedItems"
-          />
-          {{ item.id_item }} - {{ item.nom }} - {{ item.description }}
-        </label>
-      </div>
+      <h3 class="mt-4">Entrée</h3>
+      <ng-container *ngFor="let item of items | async">
+        <div *ngIf="item.categoriePlat == 'Entree'">
+          <label>
+            <input
+              type="checkbox"
+              [value]="item.id_item"
+              name="item{{ item.id_item }}"
+              (change)="itemReservationCommandeADomicile($event)"
+              formArrayName="selectedItems"
+            />
+            {{ item.nom }} - {{ item.description }}
+          </label>
+        </div>
+      </ng-container>
+
+      <h3 class="mt-4">Plat</h3>
+      <ng-container *ngFor="let item of items | async">
+        <div *ngIf="item.categoriePlat == 'Plat'">
+          <label>
+            <input
+              type="checkbox"
+              [value]="item.id_item"
+              name="item{{ item.id_item }}"
+              (change)="itemReservationCommandeADomicile($event)"
+              formArrayName="selectedItems"
+            />
+            {{ item.nom }} - {{ item.description }}
+          </label>
+        </div>
+      </ng-container>
+
+      <h3 class="mt-4">Dessert</h3>
+      <ng-container *ngFor="let item of items | async">
+        <div *ngIf="item.categoriePlat == 'Dessert'">
+          <label>
+            <input
+              type="checkbox"
+              [value]="item.id_item"
+              name="item{{ item.id_item }}"
+              (change)="itemReservationCommandeADomicile($event)"
+              formArrayName="selectedItems"
+            />
+            {{ item.nom }} - {{ item.description }}
+          </label>
+        </div>
+      </ng-container>
+
+      <h3 class="mt-4">Boisson</h3>
+      <ng-container *ngFor="let item of items | async">
+        <div *ngIf="item.categoriePlat == 'Boisson'">
+          <label>
+            <input
+              type="checkbox"
+              [value]="item.id_item"
+              name="item{{ item.id_item }}"
+              (change)="itemReservationCommandeADomicile($event)"
+              formArrayName="selectedItems"
+            />
+            {{ item.nom }} - {{ item.description }}
+          </label>
+        </div>
+      </ng-container>
     </ng-container>
-    <div class="form-group">
+    <div class="form-group" class="mt-4">
       <label for="specification">Quelque chose à ajouter ?</label>
       <input
         id="specification"
@@ -49,7 +102,7 @@
         formControlName="specification"
       />
     </div>
-    <div>
+    <div class="mt-4">
       <button
         type="submit"
         class="btn btn-outline-primary"
