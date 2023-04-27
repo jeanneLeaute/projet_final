@@ -24,8 +24,10 @@ import com.fasterxml.jackson.annotation.JsonView;
 import ajc.formation.soprasteria.projetFinal.entities.Client;
 import ajc.formation.soprasteria.projetFinal.entities.CommandeADomicile;
 import ajc.formation.soprasteria.projetFinal.entities.Restaurant;
+import ajc.formation.soprasteria.projetFinal.entities.SurPlace;
 import ajc.formation.soprasteria.projetFinal.entities.views.JsonViews;
 import ajc.formation.soprasteria.projetFinal.services.CommandeADomicileService;
+import ajc.formation.soprasteria.projetFinal.services.RestaurantService;
 
 @RestController
 @RequestMapping("/api/CommandeADomicile")
@@ -34,6 +36,8 @@ public class CommandeADomicileRestController {
 	
 	@Autowired
 	private CommandeADomicileService commandeADomicileService;
+	@Autowired
+	private RestaurantService restaurantService;
 
 	@GetMapping("")
 	@JsonView(JsonViews.CommandeADomicile.class)
@@ -108,6 +112,13 @@ public class CommandeADomicileRestController {
 	@GetMapping("/getByRestaurant")
 	@JsonView(JsonViews.CommandeADomicile.class)
 	public List<CommandeADomicile> getByRestaurant(@RequestBody Restaurant restaurant) {
+		return commandeADomicileService.getByRestaurant(restaurant);
+	}
+	
+	@GetMapping("/restau-reservation/{id}")
+	@JsonView(JsonViews.CommandeADomicile.class)
+	public List<CommandeADomicile> getByRestaurant(@PathVariable("id") Long id) {
+		Restaurant restaurant = restaurantService.getById(id);
 		return commandeADomicileService.getByRestaurant(restaurant);
 	}
 }

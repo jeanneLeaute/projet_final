@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { CommandeADomicile } from 'src/app/model/commande-adomicile';
+import { Reservation } from 'src/app/model/reservation';
 import { Restaurant } from 'src/app/model/restaurant';
 import { Role } from 'src/app/model/role';
+import { SurPlace } from 'src/app/model/sur-place';
 import { Utilisateur } from 'src/app/model/utilisateur';
+import { ReservationService } from 'src/app/services/reservation.service';
 import { RestaurantService } from 'src/app/services/restaurant.service';
 import { RestaurateurService } from 'src/app/services/restaurateur.service';
 
@@ -15,69 +19,30 @@ import { RestaurateurService } from 'src/app/services/restaurateur.service';
 export class RestauReservationComponent {
 
   restaurant!: Restaurant;
-  restaurateur!: Utilisateur;
+  idRestaurateur!: number;
+  reservationsSurPlace:Array<SurPlace>=new Array;
+  reservationsCommande:Array<CommandeADomicile>=new Array;
 
   constructor(
-    private restaurantSrv: RestaurantService,
-    private restaurateurSrv: RestaurateurService,
+    private reservationSrv:ReservationService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
+
   ngOnInit(): void {
-    this.restaurant = new Restaurant();
     this.activatedRoute.params.subscribe((params) => {
-      if (params['id']) {
-        this.restaurantSrv
-          .getById(params['id'])
-          .subscribe((restaurant: Restaurant) => {
-            this.restaurant = restaurant;
-          });
-      } else {
-        this.restaurateur = new Utilisateur();
-        if (this.isRestaurateur) {
-          this.restaurateurSrv
-            .getById(this.IdUtilisateur)
-            .subscribe((data: Utilisateur) => {
-              this.restaurant.restaurateur = data;
-            });
-        }
-      }
-    });
+      this.idRestaurateur=params['id']
+
+      this.reservationSrv.getSurPlaceByRestaurant(this.idRestaurateur).subscribe((data:any)=>{
+        this.reservationsSurPlace=data;
+      })
+
+      this.reservationSrv.getCommandeByRestaurant(this.idRestaurateur).subscribe((data:any)=>{
+        this.reservationsCommande=data;
+      })
+    })
   }
 
-  get isRestaurateur(): boolean {
-    if (sessionStorage.getItem('utilisateur')) {
-      let utilisateur: Utilisateur = JSON.parse(
-        sessionStorage.getItem('utilisateur')!
-      ) as Utilisateur;
-      return utilisateur.role == Role.ROLE_RESTAURATEUR;
-    }
-    return false;
-  }
+  public traite(id:number|undefined){}
 
-  get IdUtilisateur(): number {
-    if (sessionStorage.getItem('utilisateur')) {
-      let utilisateur: Utilisateur = JSON.parse(
-        sessionStorage.getItem('utilisateur')!
-      ) as Utilisateur;
-      return utilisateur.id!;
-    }
-    return 0;
-  }
-
-  save() {
-    let obvResult: Observable<Restaurant>;
-    if (this.restaurant.id) {
-      obvResult = this.restaurantSrv.update(this.restaurant);
-    } else {
-      obvResult = this.restaurantSrv.create(this.restaurant);
-    }
-    obvResult.subscribe(() => {
-      this.router.navigateByUrl('/restau-restaurateur');
-    });
-  }
-
-  compareById(obj1: Restaurant, obj2: Restaurant) {
-    return obj1 && obj2 && obj1.id == obj2.id;
-  }
 }

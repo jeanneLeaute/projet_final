@@ -23,9 +23,11 @@ import org.springframework.web.server.ResponseStatusException;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import ajc.formation.soprasteria.projetFinal.entities.Client;
+import ajc.formation.soprasteria.projetFinal.entities.Reservation;
 import ajc.formation.soprasteria.projetFinal.entities.Restaurant;
 import ajc.formation.soprasteria.projetFinal.entities.SurPlace;
 import ajc.formation.soprasteria.projetFinal.entities.views.JsonViews;
+import ajc.formation.soprasteria.projetFinal.services.RestaurantService;
 import ajc.formation.soprasteria.projetFinal.services.SurPlaceService;
 
 @RestController
@@ -34,6 +36,8 @@ import ajc.formation.soprasteria.projetFinal.services.SurPlaceService;
 public class SurPlaceRestControler {
 	@Autowired
 	private SurPlaceService surPlaceService;
+	@Autowired
+	private RestaurantService restaurantService;
 
 	@GetMapping("")
 	@JsonView(JsonViews.SurPlace.class)
@@ -114,9 +118,10 @@ public class SurPlaceRestControler {
 		return surPlaceService.getByClient(client);
 	}
 	
-	@GetMapping("/getByRestaurant")
+	@GetMapping("/restau-reservation/{id}")
 	@JsonView(JsonViews.SurPlace.class)
-	public List<SurPlace> getByRestaurant(@RequestBody Restaurant restaurant) {
+	public List<SurPlace> getByRestaurant(@PathVariable("id") Long id) {
+		Restaurant restaurant = restaurantService.getById(id);
 		return surPlaceService.getByRestaurant(restaurant);
 	}
 }

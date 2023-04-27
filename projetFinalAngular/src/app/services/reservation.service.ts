@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Reservation } from '../model/reservation';
 import { ObjectToJsonService } from './object-to-json.service';
+import { SurPlace } from '../model/sur-place';
+import { CommandeADomicileService } from './commande-adomicile.service';
+import { CommandeADomicile } from '../model/commande-adomicile';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +25,11 @@ export class ReservationService {
     return this.httpClient.get<Reservation>(`${this.url}/${id}`);
   }
 
+  public getSurPlaceByRestaurant(id:number): Observable<SurPlace[]>{
+    return this.httpClient.get<SurPlace[]>(`http://localhost:8080/projetfinal/api/SurPlace/restau-reservation/${id}`);
+  }
 
+  public getCommandeByRestaurant(id:number): Observable<CommandeADomicile[]>{
+    return this.httpClient.get<CommandeADomicile[]>(`http://localhost:8080/projetfinal/api/CommandeADomicile/restau-reservation/${id}`);
+  }
 }
