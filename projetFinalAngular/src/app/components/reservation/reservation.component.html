@@ -1,16 +1,20 @@
-<h1>Reservation</h1>
-<div>
-  vous désirer : {{ restaurant.nom }}
-  <a
-    routerLink="/reservation-surplace/{{ restaurant.id }}"
-    routerLinkActive="active"
-    class="btn btn-link"
-    >Réserver une table</a
-  >
-  <a
-    routerLink="/reservation-commande-adomicile/{{ restaurant.id }}"
-    routerLinkActive="active"
-    class="btn btn-link"
-    >Commander</a
-  >
+<div class="bg-dark position-absolute top-50 start-50 translate-middle rounded">
+  <div class="text-light text-center">
+    <h1>Reservation</h1>
+    <div class="m-3">
+      vous désirer : {{ restaurant.nom }}
+      <a
+        routerLink="/reservation-surplace/{{ restaurant.id }}"
+        routerLinkActive="active"
+        class="btn btn-link"
+        >Réserver une table</a
+      >
+      <a
+        routerLink="/reservation-commande-adomicile/{{ restaurant.id }}"
+        routerLinkActive="active"
+        class="btn btn-link"
+        >Commander</a
+      >
+    </div>
+  </div>
 </div>
