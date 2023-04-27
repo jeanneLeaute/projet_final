@@ -1,8 +1,8 @@
 <div class="bg-dark position-absolute top-50 start-50 translate-middle rounded">
   <div class="text-light text-center">
-    <h1>Reservation</h1>
+    <h1>Reservation chez {{ restaurant.nom }}</h1>
     <div class="m-3">
-      vous désirer : {{ restaurant.nom }}
+      vous désirer :
       <a
         routerLink="/reservation-surplace/{{ restaurant.id }}"
         routerLinkActive="active"
