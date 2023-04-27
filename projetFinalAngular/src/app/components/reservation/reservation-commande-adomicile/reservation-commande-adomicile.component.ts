@@ -141,7 +141,7 @@ export class ReservationCommandeADomicileComponent {
         numero: this.adresse.numero,
         rue: this.adresse.rue,
         codePostal: this.adresse.codePostal,
-        ville: this.adresse.codePostal,
+        ville: this.adresse.ville,
       },
       client: this.commandeADomicile.client,
       restaurant: this.commandeADomicile.restaurant,
@@ -149,6 +149,8 @@ export class ReservationCommandeADomicileComponent {
       specification: this.commandeADomicile.specification,
       itemsMenu: this.itemReserve,
     };
+
+    console.log(commandeAdomicileJson)
 
     this.commandeSrv.create(commandeAdomicileJson).subscribe((resp) => {
       this.router.navigateByUrl('/restau-client');
