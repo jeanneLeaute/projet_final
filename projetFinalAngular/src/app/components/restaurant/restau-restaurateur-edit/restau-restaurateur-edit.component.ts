@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Adresse } from 'src/app/model/adresse';
+import { Categorie } from 'src/app/model/categorie';
 import { Restaurant } from 'src/app/model/restaurant';
 import { Restaurateur } from 'src/app/model/restaurateur';
 import { Role } from 'src/app/model/role';
@@ -16,6 +18,7 @@ import { RestaurateurService } from 'src/app/services/restaurateur.service';
 export class RestauRestaurateurEditComponent {
   restaurant!: Restaurant;
   restaurateur!: Utilisateur;
+  categories!: Categorie[];
 
   constructor(
     private restaurantSrv: RestaurantService,
@@ -25,12 +28,16 @@ export class RestauRestaurateurEditComponent {
   ) {}
   ngOnInit(): void {
     this.restaurant = new Restaurant();
+    this.categories = [Categorie.burger, Categorie.pizzeria];
     this.activatedRoute.params.subscribe((params) => {
       if (params['id']) {
         this.restaurantSrv
           .getById(params['id'])
           .subscribe((restaurant: Restaurant) => {
             this.restaurant = restaurant;
+            if (restaurant.adresse == null) {
+              this.restaurant.adresse = new Adresse();
+            }
           });
       } else {
         this.restaurateur = new Utilisateur();
@@ -39,6 +46,7 @@ export class RestauRestaurateurEditComponent {
             .getById(this.IdUtilisateur)
             .subscribe((data: Utilisateur) => {
               this.restaurant.restaurateur = data;
+              this.restaurant.adresse = new Adresse();
             });
         }
       }
@@ -66,6 +74,7 @@ export class RestauRestaurateurEditComponent {
   }
 
   save() {
+    console.log(this.restaurant.adresse);
     let obvResult: Observable<Restaurant>;
     if (this.restaurant.id) {
       obvResult = this.restaurantSrv.update(this.restaurant);
@@ -73,7 +82,7 @@ export class RestauRestaurateurEditComponent {
       obvResult = this.restaurantSrv.create(this.restaurant);
     }
     obvResult.subscribe(() => {
-      this.router.navigateByUrl('/restau-restaurateur');
+      this.router.navigateByUrl('/restaurateur/moncompte');
     });
   }
 

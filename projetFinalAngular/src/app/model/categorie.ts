@@ -1,3 +1,4 @@
 export enum Categorie {
-  pizzeria,burger
+  pizzeria,
+  burger,
 }

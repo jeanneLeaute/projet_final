@@ -4,11 +4,11 @@
   <table class="table text-light text-center">
     <thead>
       <tr>
-        <th>id:</th>
-        <th>nom:</th>
-        <th>horaireOuverture:</th>
+        <th>Id:</th>
+        <th>Nom:</th>
+        <th>Horaire d'ouverture:</th>
         <th>description:</th>
-        <th>restaurateur:</th>
+        <th>Adresse:</th>
         <th></th>
         <th></th>
       </tr>
@@ -19,7 +19,10 @@
         <td>{{ r.nom }}</td>
         <td>{{ r.horaireOuverture }}</td>
         <td>{{ r.description }}</td>
-        <td>{{ r.restaurateur?.nom }}</td>
+        <td>
+          {{ r.adresse?.numero }} {{ r.adresse?.rue }} <br />
+          {{ r.adresse?.codePostal }} {{ r.adresse?.ville }}
+        </td>
         <td>
           <a
             routerLink="/restau-restaurateur/edit/{{ r.id }}"

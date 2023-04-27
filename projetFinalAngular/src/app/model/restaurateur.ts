@@ -1,3 +1,4 @@
+import { Categorie } from './categorie';
 import { Role } from './role';
 
 export class Restaurateur {
@@ -37,6 +38,7 @@ export class Restaurateur {
   public set role(value: Role | undefined) {
     this._role = value;
   }
+
   constructor(
     private _id?: number,
     private _nom?: string,

@@ -8,6 +8,7 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
+
 import { Utilisateur } from '../model/utilisateur';
 import { Role } from '../model/role';
 
@@ -16,6 +17,7 @@ import { Role } from '../model/role';
 })
 export class EditRestaurantGuardService {
   restaurant!: Restaurant;
+  boolean!: boolean;
   constructor(
     private restaurantSrv: RestaurantService,
     private activatedRoute: ActivatedRoute
@@ -29,25 +31,28 @@ export class EditRestaurantGuardService {
     | UrlTree
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> {
-    if (sessionStorage.getItem('utilisateur')) {
-      let utilisateur: Utilisateur = JSON.parse(
-        sessionStorage.getItem('utilisateur')!
-      ) as Utilisateur;
-      this.activatedRoute.params.subscribe((params) => {
-        if (params['id']) {
-          this.restaurantSrv
-            .getByIdWithRestaurateur(params['id'])
-            .subscribe((data: Restaurant) => {
-              this.restaurant = data;
-            });
-        }
-      });
-      console.debug(this.restaurant);
-      return (
-        utilisateur.role == Role.ROLE_RESTAURATEUR &&
-        utilisateur.id == this.restaurant.restaurateur?.id
-      );
-    }
-    return false;
+    this.activatedRoute.params.subscribe((params) => {
+      if (params['id']) {
+        this.restaurantSrv
+          .getByIdWithRestaurateur(params['id'])
+          .subscribe((data: Restaurant) => {
+            this.restaurant = data;
+            if (sessionStorage.getItem('utilisateur')) {
+              let utilisateur: Utilisateur = JSON.parse(
+                sessionStorage.getItem('utilisateur')!
+              ) as Utilisateur;
+              if (
+                utilisateur.role == Role.ROLE_RESTAURATEUR &&
+                utilisateur.id == this.restaurant.restaurateur?.id
+              ) {
+                this.boolean = true;
+              } else {
+                this.boolean = false;
+              }
+            }
+          });
+      }
+    });
+    return this.boolean;
   }
 }

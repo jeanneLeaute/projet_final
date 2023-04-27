@@ -1,6 +1,5 @@
 import { Adresse } from './adresse';
 import { Categorie } from './categorie';
-import { Restaurateur } from './restaurateur';
 import { Utilisateur } from './utilisateur';
 
 export class Restaurant {
@@ -55,7 +54,7 @@ export class Restaurant {
   public get adresse(): Adresse | undefined {
     return this._adresse;
   }
-  public set adressse(value: Adresse | undefined) {
+  public set adresse(value: Adresse | undefined) {
     this._adresse = value;
   }
   public get restaurateur(): Utilisateur | undefined {

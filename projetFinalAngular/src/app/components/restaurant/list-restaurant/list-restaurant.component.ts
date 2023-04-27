@@ -13,7 +13,6 @@ export class ListRestaurantComponent implements OnInit {
   restaurants: Restaurant[] = [];
   ngOnInit(): void {
     this.initRestaurants();
-    console.log(this.restaurants);
   }
 
   initRestaurants() {
