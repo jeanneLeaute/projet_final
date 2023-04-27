@@ -21,7 +21,9 @@
         <td>{{ r.date }}</td>
         <td>{{ r.nbPersonne }}</td>
         <td>
-          {{ r.itemsMenu }}
+          <div *ngFor="let item of r.itemsMenu">
+            {{ item.nom }}
+          </div>
         </td>
         <td>{{ r.specification }}</td>
         <td>
