@@ -35,6 +35,7 @@ export class RestauReservationComponent {
 
       this.reservationSrv.getSurPlaceByRestaurant(this.idRestaurateur).subscribe((data:any)=>{
         this.reservationsSurPlace=data;
+        console.log(this.reservationsSurPlace[0]);
       })
 
       this.reservationSrv.getCommandeByRestaurant(this.idRestaurateur).subscribe((data:any)=>{
