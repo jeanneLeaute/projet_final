@@ -38,6 +38,7 @@ public class ApiSecurityConfig {
 					.antMatchers(HttpMethod.PUT,"/api/client/**").hasAnyRole("CLIENT", "ADMIN")
 					.antMatchers(HttpMethod.POST,"/api/commentaire").hasAnyRole("CLIENT", "ADMIN")
 					.antMatchers(HttpMethod.PUT,"/api/commentaire/**").hasAnyRole("CLIENT", "ADMIN")
+					.antMatchers(HttpMethod.DELETE,"/api/commentaire/**").hasAnyRole("CLIENT", "ADMIN")
 					.antMatchers(HttpMethod.GET, "/api/SurPlace/restau-reservation/**").hasAnyRole("RESTAURATEUR","ADMIN")
 					.antMatchers(HttpMethod.GET, "/api/CommandeADomicile/restau-reservation/**").hasAnyRole("RESTAURATEUR","ADMIN")
 					.antMatchers(HttpMethod.GET, "/api/reservation").hasAnyRole("RESTAURATEUR", "ADMIN")
