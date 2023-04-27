@@ -40,6 +40,7 @@ import { ClientListCommentaireComponent } from './components/commentaire/client-
 import { RestaurantListCommentaireComponent } from './components/commentaire/restaurant-list-commentaire/restaurant-list-commentaire.component';
 import { RestauReservationComponent } from './components/restaurant/restau-reservation/restau-reservation.component';
 import { ClientListReservationComponent } from './components/reservation/client-list-reservation/client-list-reservation.component';
+import { CommandeValideComponent } from './components/reservation/commande-valide/commande-valide.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,6 +77,7 @@ import { ClientListReservationComponent } from './components/reservation/client-
     RestaurantListCommentaireComponent,
     RestauReservationComponent,
     ClientListReservationComponent,
+    CommandeValideComponent,
   ],
   imports: [
     BrowserModule,
