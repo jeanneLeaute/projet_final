@@ -7,6 +7,7 @@ import { Reservation } from '../model/reservation';
 import { ItemMenu } from '../model/item-menu';
 import { SurPlace } from '../model/sur-place';
 import { CommandeADomicile } from '../model/commande-adomicile';
+import { Commentaire } from '../model/commentaire';
 
 @Injectable({
   providedIn: 'root',
@@ -75,10 +76,10 @@ export class ObjectToJsonService {
       restaurant: surPlace.restaurant,
       date: surPlace.date,
       specification: surPlace.specification,
-      nbPersonne:surPlace.nbPersonne,
+      nbPersonne: surPlace.nbPersonne,
       choixTables: surPlace.choixTables,
       heureReservation: surPlace.heureReservation,
-      itemsMenu: surPlace.itemsMenu
+      itemsMenu: surPlace.itemsMenu,
     };
     if (surPlace.id) {
       Object.assign(obj, { id: surPlace.id });
@@ -92,7 +93,7 @@ export class ObjectToJsonService {
       restaurant: commande.restaurant,
       date: commande.date,
       adresse: commande.adresse,
-      itemsMenu: commande.itemsMenu
+      itemsMenu: commande.itemsMenu,
     };
     if (commande.id) {
       Object.assign(obj, { id: commande.id });
@@ -119,6 +120,18 @@ export class ObjectToJsonService {
     };
     if (restaurant.id) {
       Object.assign(obj, { id: restaurant.id });
+    }
+    return obj;
+  }
+
+  public commentaireToJson(commentaire: Commentaire): any {
+    let obj = {
+      texte: commentaire.texte,
+      client: commentaire.client,
+      restaurant: commentaire.restaurant,
+    };
+    if (commentaire.id) {
+      Object.assign(obj, { id: commentaire.id });
     }
     return obj;
   }
