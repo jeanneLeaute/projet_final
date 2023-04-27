@@ -1,36 +1,33 @@
-import { Adresse } from "./adresse";
-import { HeureReservation } from "./heure-reservation";
-import { ItemMenu } from "./item-menu";
-import { Reservation } from "./reservation";
-import { Restaurant } from "./restaurant";
-import { Utilisateur } from "./utilisateur";
+import { Adresse } from './adresse';
+import { HeureReservation } from './heure-reservation';
+import { ItemMenu } from './item-menu';
+import { Reservation } from './reservation';
+import { Restaurant } from './restaurant';
+import { Utilisateur } from './utilisateur';
 
-export class CommandeADomicile extends Reservation{
-  public get itemsMenu(): ItemMenu[] | undefined{
+export class CommandeADomicile extends Reservation {
+  public get itemsMenu(): ItemMenu[] | undefined {
     return this._itemsMenu;
   }
-  public set itemsMenu(value: ItemMenu[]| undefined) {
+  public set itemsMenu(value: ItemMenu[] | undefined) {
     this._itemsMenu = value;
   }
-  public get adresse(): Adresse | undefined{
+  public get adresse(): Adresse {
     return this._adresse;
   }
-  public set adresse(value: Adresse | undefined) {
+  public set adresse(value: Adresse) {
     this._adresse = value;
   }
 
   constructor(
-    _id?:number,
-    _client?: Utilisateur,
+    private _adresse: Adresse,
+    _client: Utilisateur,
+    _id?: number,
     _restaurant?: Restaurant,
     _date?: Date,
     _specification?: string,
-    private _adresse?: Adresse,
-    private _itemsMenu?: ItemMenu[],
+    private _itemsMenu?: ItemMenu[]
   ) {
-    super(_id,_client,
-      _restaurant,
-      _date,
-      _specification);
+    super(_client, _id, _restaurant, _date, _specification);
   }
 }

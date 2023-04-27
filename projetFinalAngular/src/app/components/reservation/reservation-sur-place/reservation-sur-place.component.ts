@@ -1,3 +1,4 @@
+import { SurPlace } from './../../../model/sur-place';
 import { HeureReservation } from './../../../model/heure-reservation';
 import { Restaurant } from './../../../model/restaurant';
 import { Component } from '@angular/core';
@@ -7,7 +8,6 @@ import { Observable, map, toArray } from 'rxjs';
 import { Adresse } from 'src/app/model/adresse';
 import { ItemMenu } from 'src/app/model/item-menu';
 import { Role } from 'src/app/model/role';
-import { SurPlace } from 'src/app/model/sur-place';
 import { Utilisateur } from 'src/app/model/utilisateur';
 import { ClientService } from 'src/app/services/client.service';
 import { ItemMenuService } from 'src/app/services/item-menu.service';
@@ -27,7 +27,7 @@ export class ReservationSurPlaceComponent {
   items!: Observable<ItemMenu[]>;
   client!: Utilisateur;
   surPlace!: SurPlace;
-  itemReserve: ItemMenu[] = new Array();
+  itemReserve: Array<ItemMenu> = new Array<ItemMenu>();
   localdate!: string;
   heuresReservation=Object.values(HeureReservation)
 
@@ -98,6 +98,9 @@ export class ReservationSurPlaceComponent {
 
     if (e.target.checked) {
       selectedItems.push(new FormControl(e.target.value));
+      this.itemMenuSrv.getById(e.target.value).subscribe((data:ItemMenu)=>{
+        this.itemReserve.push(data);
+      })
     } else {
       let i: number = 0;
 
@@ -116,15 +119,15 @@ export class ReservationSurPlaceComponent {
 
   public submit() {
 
-    for(let i=0;i<this.form.value.selectedItems.length;i++){
-      this.itemMenuSrv.getById(this.form.value.selectedItems[i]).subscribe((data:ItemMenu)=>{
-        this.itemReserve.push(data);
-      })
-    }
+    // for(let i=0;i<this.form.value.selectedItems.length;i++){
+    //   this.itemMenuSrv.getById(this.form.value.selectedItems[i]).subscribe((data:ItemMenu)=>{
+    //     this.itemReserve.push(data);
+    //   })
+    // }
 
     this.surPlace = new SurPlace(
-      undefined,
       this.client,
+      undefined,
       this.restau,
       undefined,
       this.form.value.specification,
@@ -133,10 +136,22 @@ export class ReservationSurPlaceComponent {
       this.itemReserve,
       this.form.value.heureReservation
     );
-    console.log(this.surPlace);
 
-    this.surPlaceSrv.create(this.surPlace).subscribe(()=>{
-      this.router.navigateByUrl("/restaurant")
+    let surPlaceJson = {
+      client: this.surPlace.client,
+      restaurant: this.surPlace.restaurant,
+      date: this.surPlace.date,
+      specification: this.surPlace.specification,
+      nbPersonne:this.surPlace.nbPersonne,
+      choixTables: this.surPlace.choixTables,
+      itemsMenu: this.itemReserve,
+      heureReservation: this.surPlace.heureReservation,
+    };
+
+
+    this.surPlaceSrv.create(surPlaceJson).subscribe((resp)=>{
+      // console.debug(this.surPlace);
+      this.router.navigateByUrl("/restau-client")
     });
 
   }

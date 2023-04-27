@@ -53,10 +53,9 @@ public class ItemMenu {
 	@JoinColumn(name = "restaurant_item_id", foreignKey = @ForeignKey(name="restaurant_item_id_fk"))
 	@JsonView(JsonViews.ItemMenuWithRestaurant.class)
 	private Restaurant restaurant;
-	@ManyToMany
-	@JoinColumn(name = "surPlace_item_id", foreignKey = @ForeignKey(name="surPlace_item_id_fk"))
+	@ManyToMany(mappedBy = "itemsMenu")
 	@JsonView(JsonViews.ItemMenuWithSurPlaces.class)
-	private Set<SurPlace> surPlaces;
+	private Set<SurPlace> surPlaces = new HashSet<>();
 	@ManyToMany(mappedBy = "itemsMenu")
 	@JsonView(JsonViews.ItemMenuWithCommandesADomicile.class)
 	private Set<CommandeADomicile> commandesAdomicile = new HashSet<>();

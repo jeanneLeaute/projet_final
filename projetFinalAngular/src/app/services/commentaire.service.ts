@@ -2,12 +2,13 @@ import { Commentaire } from '../model/commentaire';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ObjectToJsonService } from './object-to-json.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CommentaireService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private convert: ObjectToJsonService) {}
 
   allCommentaires(): Observable<Commentaire[]> {
     return this.http.get<Commentaire[]>(
@@ -57,14 +58,14 @@ export class CommentaireService {
   createCommentaire(commentaire: Commentaire): Observable<Commentaire> {
     return this.http.post<Commentaire>(
       'http://localhost:8080/projetFinal/api/commentaire',
-      commentaire
+      this.convert.commentaireToJson(commentaire)
     );
   }
 
   updateCommentaire(commentaire: Commentaire): Observable<Commentaire> {
     return this.http.put<Commentaire>(
       `http://localhost:8080/projetFinal/api/commentaire/${commentaire.id}`,
-      commentaire
+      this.convert.commentaireToJson(commentaire)
     );
   }
 

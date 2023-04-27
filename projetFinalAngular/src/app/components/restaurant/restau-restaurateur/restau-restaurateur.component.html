@@ -25,6 +25,14 @@
         </td>
         <td>
           <a
+            routerLink="/restau-reservation/{{ r.id }}"
+            routerLinkActive="active"
+            class="btn btn-outline-warning"
+            >reservations</a
+          >
+        </td>
+        <td>
+          <a
             routerLink="/restau-restaurateur/edit/{{ r.id }}"
             routerLinkActive="active"
             class="btn btn-outline-primary"

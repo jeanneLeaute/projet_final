@@ -1,34 +1,36 @@
-<form (ngSubmit)="submit()" [formGroup]="form">
-  <div class="form-group">
-    <label for="texte">texte :</label>
-    <textarea
-      [(ngModel)]="commentaire.texte"
-      id="texte"
-      class="form-control"
-      formControlName="texte"
-    ></textarea>
-  </div>
-  <div>
-    <button
-      type="submit"
-      class="btn btn-outline-primary"
-      [disabled]="form.invalid"
-    >
-      enregistrer
-    </button>
-    <a
-      *ngIf="commentaire.id"
-      routerLink="/client/moncompte"
-      routerLinkActive="active"
-      class="btn btn-link"
-      >annuler</a
-    >
-    <a
-      *ngIf="!commentaire.id"
-      routerLink="/restau-client"
-      routerLinkActive="active"
-      class="btn btn-link"
-      >annuler</a
-    >
-  </div>
-</form>
+<div class="p-3 m-3 bg-dark text-light center rounded position-relative">
+  <form (ngSubmit)="submit()" [formGroup]="form">
+    <div class="form-group">
+      <label for="texte">texte :</label>
+      <textarea
+        [(ngModel)]="commentaire.texte"
+        id="texte"
+        class="form-control"
+        formControlName="texte"
+      ></textarea>
+    </div>
+    <div>
+      <button
+        type="submit"
+        class="btn btn-outline-primary"
+        [disabled]="form.invalid"
+      >
+        enregistrer
+      </button>
+      <a
+        *ngIf="commentaire.id"
+        routerLink="/client/moncompte"
+        routerLinkActive="active"
+        class="btn btn-link"
+        >annuler</a
+      >
+      <a
+        *ngIf="!commentaire.id"
+        routerLink="/restau-client"
+        routerLinkActive="active"
+        class="btn btn-link"
+        >annuler</a
+      >
+    </div>
+  </form>
+</div>

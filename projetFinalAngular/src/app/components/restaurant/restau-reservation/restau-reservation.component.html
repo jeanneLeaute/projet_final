@@ -1,0 +1,70 @@
+<h1>Reservations sur place</h1>
+<div
+  class="bg-dark m-3 p-3 bg-dark text-light position-relative center rounded"
+>
+  <table class="table text-light text-center">
+    <thead>
+      <tr>
+        <th>login client:</th>
+        <th>heure :</th>
+        <th>date:</th>
+        <th>nombre de personne:</th>
+        <th>commande</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let r of reservationsSurPlace">
+        <td>{{ r.client.login }}</td>
+        <td>{{ r.heureReservation }}</td>
+        <td>{{ r.date }}</td>
+        <td>{{ r.nbPersonne }}</td>
+        <td>
+          {{ r.itemsMenu }}
+        </td>
+        <td>
+          <button class="btn btn-outline-danger" (click)="traite(r.id)">
+            traité
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <app-link etiquetteLien="retour" lien="/restaurateur/moncompte"></app-link>
+</div>
+<h1>Commande à domicile</h1>
+<div
+  class="bg-dark m-3 p-3 bg-dark text-light position-relative center rounded"
+>
+  <table class="table text-light text-center">
+    <thead>
+      <tr>
+        <th>login client:</th>
+        <th>heure :</th>
+        <th>date:</th>
+        <th>nombre de personne:</th>
+        <th>commande</th>
+        <th>spécification</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let r of reservationsCommande">
+        <td>{{ r.client.login }}</td>
+        <td>{{ r.date }}</td>
+        <td></td>
+        <!-- <td>{{ r.adresse.numero }} {{ r.adresse.rue }}, {{ r.adresse.codePostal }} {{ r.adresse.ville }}</td> -->
+        <td>
+          {{ r.itemsMenu }}
+        </td>
+        <td>{{ r.specification }}</td>
+        <td>
+          <button class="btn btn-outline-danger" (click)="traite(r.id)">
+            traité
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <app-link etiquetteLien="retour" lien="/restaurateur/moncompte"></app-link>
+</div>

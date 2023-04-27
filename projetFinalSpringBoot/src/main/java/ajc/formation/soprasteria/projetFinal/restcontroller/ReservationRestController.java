@@ -14,8 +14,10 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import ajc.formation.soprasteria.projetFinal.entities.Client;
 import ajc.formation.soprasteria.projetFinal.entities.Reservation;
+import ajc.formation.soprasteria.projetFinal.entities.Restaurant;
 import ajc.formation.soprasteria.projetFinal.entities.views.JsonViews;
 import ajc.formation.soprasteria.projetFinal.services.ReservationService;
+import ajc.formation.soprasteria.projetFinal.services.RestaurantService;
 
 @RestController
 @RequestMapping("/api/Reservation")
@@ -24,6 +26,8 @@ public class ReservationRestController {
 	
 	@Autowired
 	private ReservationService reservationService;
+	@Autowired
+	private RestaurantService restaurantService;
 
 	@GetMapping("")
 	@JsonView(JsonViews.Reservation.class)
@@ -43,9 +47,10 @@ public class ReservationRestController {
 		return reservationService.getByClient(client);
 	}
 	
-	@GetMapping("/getByRestaurant")
+	@GetMapping("/restau-reservation/{id}")
 	@JsonView(JsonViews.Reservation.class)
-	public List<Reservation> getByRestaurant(@RequestBody Client client) {
-		return reservationService.getByClient(client);
+	public List<Reservation> getByRestaurant(@PathVariable("id") Long id) {
+		Restaurant restaurant = restaurantService.getById(id);
+		return reservationService.getByRestaurant(restaurant);
 	}
 }
