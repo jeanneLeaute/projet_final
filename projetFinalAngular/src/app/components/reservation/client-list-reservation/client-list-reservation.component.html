@@ -35,7 +35,7 @@
   <table class="table text-light text-center">
     <thead>
       <tr>
-        <th>login client:</th>
+        <th>restaurant :</th>
         <th>date:</th>
         <th>adresse</th>
         <th>commande</th>
@@ -45,7 +45,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let r of reservationsCommande">
-        <td>{{ r.client.login }}</td>
+        <td>{{ r.restaurant?.nom }}</td>
         <td>{{ r.date }}</td>
         <td>
           {{ r.adresse.numero }} {{ r.adresse.rue }},
