@@ -5,18 +5,18 @@
   <table class="table text-light text-center">
     <thead>
       <tr>
-        <th>login client:</th>
+        <th>restaurant :</th>
         <th>heure :</th>
-        <th>date:</th>
-        <th>nombre de personne:</th>
-        <th>commande</th>
-        <th>spécification</th>
+        <th>date :</th>
+        <th>nombre de personne :</th>
+        <th>commande :</th>
+        <th>spécification :</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let r of reservationsSurPlace">
-        <td>{{ r.client.login }}</td>
+        <td>{{ r.restaurant?.nom }}</td>
         <td>{{ r.heureReservation }}</td>
         <td>{{ r.date }}</td>
         <td>{{ r.nbPersonne }}</td>
